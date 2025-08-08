@@ -12066,3 +12066,2665 @@ await client.clients.credentials.create("client_id", {
 </dd>
 </dl>
 </details>
+
+<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">get</a>(clientId, credentialId) -> Management.GetClientCredentialResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the details of a client credential.
+
+<b>Important</b>: To enable credentials to be used for a client authentication method, set the <code>client_authentication_methods</code> property on the client. To enable credentials to be used for JWT-Secured Authorization requests set the <code>signed_request_object</code> property on the client.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.clients.credentials.get("client_id", "credential_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**clientId:** `string` — ID of the client.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**credentialId:** `string` — ID of the credential.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credentials.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">delete</a>(clientId, credentialId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a client credential you previously created. May be enabled or disabled. For more information, read <a href="https://www.auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow">Client Credential Flow</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.clients.credentials.delete("client_id", "credential_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**clientId:** `string` — ID of the client.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**credentialId:** `string` — ID of the credential to delete.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credentials.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">update</a>(clientId, credentialId, { ...params }) -> Management.PatchClientCredentialResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Change a client credential you previously created. May be enabled or disabled. For more information, read <a href="https://www.auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow">Client Credential Flow</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.clients.credentials.update("client_id", "credential_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**clientId:** `string` — ID of the client.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**credentialId:** `string` — ID of the credential.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.clients.PatchClientCredentialRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Credentials.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Clients Connections
+
+<details><summary><code>client.clients.connections.<a href="/src/management/api/resources/clients/resources/connections/client/Client.ts">get</a>(id, { ...params }) -> core.Page<Management.ConnectionForList></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve all connections that are enabled for the specified <a href="https://www.auth0.com/docs/get-started/applications"> Application</a>, using checkpoint pagination. A list of fields to include or exclude for each connection may also be specified.
+
+<ul>
+  <li>
+    This endpoint requires the <code>read:connections</code> scope and any one of <code>read:clients</code> or <code>read:client_summary</code>.
+  </li>
+  <li>
+    <b>Note</b>: The first time you call this endpoint, omit the <code>from</code> parameter. If there are more results, a <code>next</code> value is included in the response. You can use this for subsequent API calls. When <code>next</code> is no longer included in the response, no further results are remaining.
+  </li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.clients.connections.get("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.clients.connections.get("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the client for which to retrieve enabled connections.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.clients.ConnectionsGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Connections.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections Clients
+
+<details><summary><code>client.connections.clients.<a href="/src/management/api/resources/connections/resources/clients/client/Client.ts">get</a>(id, { ...params }) -> core.Page<Management.ConnectionEnabledClient></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve all clients that have the specified <a href="https://auth0.com/docs/authenticate/identity-providers">connection</a> enabled.
+
+<b>Note</b>: The first time you call this endpoint, omit the <code>from</code> parameter. If there are more results, a <code>next</code> value is included in the response. You can use this for subsequent API calls. When <code>next</code> is no longer included in the response, no further results are remaining.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.connections.clients.get("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.connections.clients.get("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection for which enabled clients are to be retrieved
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.connections.GetConnectionEnabledClientsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Clients.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.clients.<a href="/src/management/api/resources/connections/resources/clients/client/Client.ts">update</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.clients.update("id", [
+    {
+        client_id: "client_id",
+        status: true,
+    },
+]);
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to modify
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.UpdateEnabledClientConnectionsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Clients.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections Keys
+
+<details><summary><code>client.connections.keys.<a href="/src/management/api/resources/connections/resources/keys/client/Client.ts">get</a>(id) -> Management.ConnectionKey[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets the connection keys for the Okta or OIDC connection strategy.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.keys.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the connection
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Keys.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.keys.<a href="/src/management/api/resources/connections/resources/keys/client/Client.ts">rotate</a>(id, { ...params }) -> Management.RotateConnectionsKeysResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Rotates the connection keys for the Okta or OIDC connection strategies.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.keys.rotate("id", undefined);
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the connection
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.RotateConnectionKeysRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Keys.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections ScimConfiguration
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">get</a>(id) -> Management.GetScimConfigurationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a scim configuration by its <code>connectionId</code>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to retrieve its SCIM configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfiguration.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">create</a>(id, { ...params }) -> Management.CreateScimConfigurationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a scim configuration for a connection.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.create("id", undefined);
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to create its SCIM configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.CreateScimConfigurationRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfiguration.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a scim configuration by its <code>connectionId</code>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to delete its SCIM configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfiguration.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">update</a>(id, { ...params }) -> Management.UpdateScimConfigurationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update a scim configuration by its <code>connectionId</code>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.update("id", {
+    user_id_attribute: "user_id_attribute",
+    mapping: [{}],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to update its SCIM configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.connections.UpdateScimConfigurationRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfiguration.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">getDefaultMapping</a>(id) -> Management.GetScimConfigurationDefaultMappingResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a scim configuration's default mapping by its <code>connectionId</code>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.getDefaultMapping("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to retrieve its default SCIM mapping
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfiguration.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections Users
+
+<details><summary><code>client.connections.users.<a href="/src/management/api/resources/connections/resources/users/client/Client.ts">deleteByEmail</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a specified connection user by its email (you cannot delete all users from specific connection). Currently, only Database Connections are supported.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.users.deleteByEmail("id", {
+    email: "email",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection (currently only database connections are supported)
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.connections.DeleteConnectionUsersByEmailQueryParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections ScimConfiguration Tokens
+
+<details><summary><code>client.connections.scimConfiguration.tokens.<a href="/src/management/api/resources/connections/resources/scimConfiguration/resources/tokens/client/Client.ts">get</a>(id) -> Management.GetScimTokensResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves all scim tokens by its connection <code>id</code>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.tokens.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to retrieve its SCIM configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.tokens.<a href="/src/management/api/resources/connections/resources/scimConfiguration/resources/tokens/client/Client.ts">create</a>(id, { ...params }) -> Management.CreateScimTokenResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a scim token for a scim client.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.tokens.create("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to create its SCIM token
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.connections.scimConfiguration.CreateScimTokenRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.tokens.<a href="/src/management/api/resources/connections/resources/scimConfiguration/resources/tokens/client/Client.ts">delete</a>(id, tokenId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a scim token by its connection <code>id</code> and <code>tokenId</code>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.tokens.delete("id", "tokenId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The connection id that owns the SCIM token to delete
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tokenId:** `string` — The id of the scim token to delete
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Tokens.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Emails Provider
+
+<details><summary><code>client.emails.provider.<a href="/src/management/api/resources/emails/resources/provider/client/Client.ts">get</a>({ ...params }) -> Management.GetEmailProviderResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of the <a href="https://auth0.com/docs/customize/email/smtp-email-providers">email provider configuration</a> in your tenant. A list of fields to include or exclude may also be specified.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.emails.provider.get();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.emails.GetEmailProviderRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Provider.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.emails.provider.<a href="/src/management/api/resources/emails/resources/provider/client/Client.ts">create</a>({ ...params }) -> Management.CreateEmailProviderResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create an <a href="https://auth0.com/docs/email/providers">email provider</a>. The <code>credentials</code> object
+requires different properties depending on the email provider (which is specified using the <code>name</code> property):
+
+<ul>
+  <li><code>mandrill</code> requires <code>api_key</code></li>
+  <li><code>sendgrid</code> requires <code>api_key</code></li>
+  <li>
+    <code>sparkpost</code> requires <code>api_key</code>. Optionally, set <code>region</code> to <code>eu</code> to use
+    the SparkPost service hosted in Western Europe; set to <code>null</code> to use the SparkPost service hosted in
+    North America. <code>eu</code> or <code>null</code> are the only valid values for <code>region</code>.
+  </li>
+  <li>
+    <code>mailgun</code> requires <code>api_key</code> and <code>domain</code>. Optionally, set <code>region</code> to
+    <code>eu</code> to use the Mailgun service hosted in Europe; set to <code>null</code> otherwise. <code>eu</code> or
+    <code>null</code> are the only valid values for <code>region</code>.
+  </li>
+  <li><code>ses</code> requires <code>accessKeyId</code>, <code>secretAccessKey</code>, and <code>region</code></li>
+  <li>
+    <code>smtp</code> requires <code>smtp_host</code>, <code>smtp_port</code>, <code>smtp_user</code>, and
+    <code>smtp_pass</code>
+  </li>
+</ul>
+Depending on the type of provider it is possible to specify <code>settings</code> object with different configuration
+options, which will be used when sending an email:
+<ul>
+  <li>
+    <code>smtp</code> provider, <code>settings</code> may contain <code>headers</code> object.
+    <ul>
+      <li>
+        When using AWS SES SMTP host, you may provide a name of configuration set in
+        <code>X-SES-Configuration-Set</code> header. Value must be a string.
+      </li>
+      <li>
+        When using Sparkpost host, you may provide value for
+        <code>X-MSYS_API</code> header. Value must be an object.
+      </li>
+    </ul>
+  </li>
+  <li>
+    for <code>ses</code> provider, <code>settings</code> may contain <code>message</code> object, where you can provide
+    a name of configuration set in <code>configuration_set_name</code> property. Value must be a string.
+  </li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.emails.provider.create({
+    name: "mailgun",
+    credentials: {
+        api_key: "api_key",
+    },
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.emails.CreateEmailProviderRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Provider.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.emails.provider.<a href="/src/management/api/resources/emails/resources/provider/client/Client.ts">delete</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete the email provider.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.emails.provider.delete();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Provider.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.emails.provider.<a href="/src/management/api/resources/emails/resources/provider/client/Client.ts">update</a>({ ...params }) -> Management.UpdateEmailProviderResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update an <a href="https://auth0.com/docs/email/providers">email provider</a>. The <code>credentials</code> object
+requires different properties depending on the email provider (which is specified using the <code>name</code> property):
+
+<ul>
+  <li><code>mandrill</code> requires <code>api_key</code></li>
+  <li><code>sendgrid</code> requires <code>api_key</code></li>
+  <li>
+    <code>sparkpost</code> requires <code>api_key</code>. Optionally, set <code>region</code> to <code>eu</code> to use
+    the SparkPost service hosted in Western Europe; set to <code>null</code> to use the SparkPost service hosted in
+    North America. <code>eu</code> or <code>null</code> are the only valid values for <code>region</code>.
+  </li>
+  <li>
+    <code>mailgun</code> requires <code>api_key</code> and <code>domain</code>. Optionally, set <code>region</code> to
+    <code>eu</code> to use the Mailgun service hosted in Europe; set to <code>null</code> otherwise. <code>eu</code> or
+    <code>null</code> are the only valid values for <code>region</code>.
+  </li>
+  <li><code>ses</code> requires <code>accessKeyId</code>, <code>secretAccessKey</code>, and <code>region</code></li>
+  <li>
+    <code>smtp</code> requires <code>smtp_host</code>, <code>smtp_port</code>, <code>smtp_user</code>, and
+    <code>smtp_pass</code>
+  </li>
+</ul>
+Depending on the type of provider it is possible to specify <code>settings</code> object with different configuration
+options, which will be used when sending an email:
+<ul>
+  <li>
+    <code>smtp</code> provider, <code>settings</code> may contain <code>headers</code> object.
+    <ul>
+      <li>
+        When using AWS SES SMTP host, you may provide a name of configuration set in
+        <code>X-SES-Configuration-Set</code> header. Value must be a string.
+      </li>
+      <li>
+        When using Sparkpost host, you may provide value for
+        <code>X-MSYS_API</code> header. Value must be an object.
+      </li>
+    </ul>
+    for <code>ses</code> provider, <code>settings</code> may contain <code>message</code> object, where you can provide
+    a name of configuration set in <code>configuration_set_name</code> property. Value must be a string.
+  </li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.emails.provider.update();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.emails.UpdateEmailProviderRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Provider.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## EventStreams Deliveries
+
+<details><summary><code>client.eventStreams.deliveries.<a href="/src/management/api/resources/eventStreams/resources/deliveries/client/Client.ts">list</a>(id, { ...params }) -> Management.EventStreamDelivery[]</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.eventStreams.deliveries.list("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Unique identifier for the event stream.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.eventStreams.ListEventStreamDeliveriesRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Deliveries.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.eventStreams.deliveries.<a href="/src/management/api/resources/eventStreams/resources/deliveries/client/Client.ts">getHistory</a>(id, eventId) -> Management.GetEventStreamDeliveryHistoryResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.eventStreams.deliveries.getHistory("id", "event_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Unique identifier for the event stream.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**eventId:** `string` — Unique identifier for the event
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Deliveries.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## EventStreams Redeliveries
+
+<details><summary><code>client.eventStreams.redeliveries.<a href="/src/management/api/resources/eventStreams/resources/redeliveries/client/Client.ts">create</a>(id, { ...params }) -> Management.CreateEventStreamRedeliveryResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.eventStreams.redeliveries.create("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Unique identifier for the event stream.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.eventStreams.CreateEventStreamRedeliveryRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Redeliveries.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.eventStreams.redeliveries.<a href="/src/management/api/resources/eventStreams/resources/redeliveries/client/Client.ts">createById</a>(id, eventId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.eventStreams.redeliveries.createById("id", "event_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Unique identifier for the event stream.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**eventId:** `string` — Unique identifier for the event
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Redeliveries.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Flows Executions
+
+<details><summary><code>client.flows.executions.<a href="/src/management/api/resources/flows/resources/executions/client/Client.ts">list</a>(flowId, { ...params }) -> core.Page<Management.FlowExecutionSummary></code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.flows.executions.list("flow_id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.flows.executions.list("flow_id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**flowId:** `string` — Flow id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.flows.ExecutionsListRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Executions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.flows.executions.<a href="/src/management/api/resources/flows/resources/executions/client/Client.ts">get</a>(flowId, executionId, { ...params }) -> Management.GetFlowExecutionResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.flows.executions.get("flow_id", "execution_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**flowId:** `string` — Flow id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**executionId:** `string` — Flow execution id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.flows.ExecutionsGetRequest`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Executions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.flows.executions.<a href="/src/management/api/resources/flows/resources/executions/client/Client.ts">delete</a>(flowId, executionId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.flows.executions.delete("flow_id", "execution_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**flowId:** `string` — Flows id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**executionId:** `string` — Flow execution identifier
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Executions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Guardian Enrollments
+
+<details><summary><code>client.guardian.enrollments.<a href="/src/management/api/resources/guardian/resources/enrollments/client/Client.ts">createTicket</a>({ ...params }) -> Management.CreateGuardianEnrollmentTicketResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a <a href="https://auth0.com/docs/secure/multi-factor-authentication/auth0-guardian/create-custom-enrollment-tickets">multi-factor authentication (MFA) enrollment ticket</a>, and optionally send an email with the created ticket, to a given user.
+Create a <a href="https://auth0.com/docs/secure/multi-factor-authentication/auth0-guardian/create-custom-enrollment-tickets">multi-factor authentication (MFA) enrollment ticket</a>, and optionally send an email with the created ticket to a given user. Enrollment tickets can specify which factor users must enroll with or allow existing MFA users to enroll in additional factors.<br/>
+
+Note: Users cannot enroll in Email as a factor through custom enrollment tickets.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.enrollments.createTicket({
+    user_id: "user_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.CreateGuardianEnrollmentTicketRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.enrollments.<a href="/src/management/api/resources/guardian/resources/enrollments/client/Client.ts">get</a>(id) -> Management.GetGuardianEnrollmentResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details, such as status and type, for a specific multi-factor authentication enrollment registered to a user account.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.enrollments.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the enrollment to be retrieve.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.enrollments.<a href="/src/management/api/resources/guardian/resources/enrollments/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove a specific multi-factor authentication (MFA) enrollment from a user's account. This allows the user to re-enroll with MFA. For more information, review <a href="https://auth0.com/docs/secure/multi-factor-authentication/reset-user-mfa">Reset User Multi-Factor Authentication and Recovery Codes</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.enrollments.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the enrollment to be deleted.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Guardian Factors
+
+<details><summary><code>client.guardian.factors.<a href="/src/management/api/resources/guardian/resources/factors/client/Client.ts">list</a>() -> Management.GuardianFactor[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of all <a href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors">multi-factor authentication factors</a> associated with your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Factors.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.<a href="/src/management/api/resources/guardian/resources/factors/client/Client.ts">set</a>(name, { ...params }) -> Management.SetGuardianFactorResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update the status (i.e., enabled or disabled) of a specific multi-factor authentication factor.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.set("push-notification", {
+    enabled: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**name:** `Management.GuardianFactorNameEnum` — Factor name. Can be `sms`, `push-notification`, `email`, `duo` `otp` `webauthn-roaming`, `webauthn-platform`, or `recovery-code`.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.SetGuardianFactorRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Factors.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Guardian Policies
+
+<details><summary><code>client.guardian.policies.<a href="/src/management/api/resources/guardian/resources/policies/client/Client.ts">list</a>() -> Management.ListGuardianPoliciesResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the <a href="https://auth0.com/docs/secure/multi-factor-authentication/enable-mfa">multi-factor authentication (MFA) policies</a> configured for your tenant.
+
+The following policies are supported:
+
+<ul>
+<li><code>all-applications</code> policy prompts with MFA for all logins.</li>
+<li><code>confidence-score</code> policy prompts with MFA only for low confidence logins.</li>
+</ul>
+
+<b>Note</b>: The <code>confidence-score</code> policy is part of the <a href="https://auth0.com/docs/secure/multi-factor-authentication/adaptive-mfa">Adaptive MFA feature</a>. Adaptive MFA requires an add-on for the Enterprise plan; review <a href="https://auth0.com/pricing">Auth0 Pricing</a> for more details.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.policies.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Policies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.policies.<a href="/src/management/api/resources/guardian/resources/policies/client/Client.ts">set</a>({ ...params }) -> Management.SetGuardianPoliciesResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Set <a href="https://auth0.com/docs/secure/multi-factor-authentication/enable-mfa">multi-factor authentication (MFA) policies</a> for your tenant.
+
+The following policies are supported:
+
+<ul>
+<li><code>all-applications</code> policy prompts with MFA for all logins.</li>
+<li><code>confidence-score</code> policy prompts with MFA only for low confidence logins.</li>
+</ul>
+
+<b>Note</b>: The <code>confidence-score</code> policy is part of the <a href="https://auth0.com/docs/secure/multi-factor-authentication/adaptive-mfa">Adaptive MFA feature</a>. Adaptive MFA requires an add-on for the Enterprise plan; review <a href="https://auth0.com/pricing">Auth0 Pricing</a> for more details.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.policies.set(["all-applications"]);
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.SetGuardianPoliciesRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Policies.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Guardian Factors Phone
+
+<details><summary><code>client.guardian.factors.phone.<a href="/src/management/api/resources/guardian/resources/factors/resources/phone/client/Client.ts">getMessageTypes</a>() -> Management.GetGuardianFactorPhoneMessageTypesResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve list of <a href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-sms-voice-notifications-mfa">phone-type MFA factors</a> (i.e., sms and voice) that are enabled for your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.phone.getMessageTypes();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Phone.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.phone.<a href="/src/management/api/resources/guardian/resources/factors/resources/phone/client/Client.ts">setMessageTypes</a>({ ...params }) -> Management.SetGuardianFactorPhoneMessageTypesResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replace the list of <a href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-sms-voice-notifications-mfa">phone-type MFA factors</a> (i.e., sms and voice) that are enabled for your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.phone.setMessageTypes({
+    message_types: ["sms"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.SetGuardianFactorPhoneMessageTypesRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Phone.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.phone.<a href="/src/management/api/resources/guardian/resources/factors/resources/phone/client/Client.ts">getTwilioProvider</a>() -> Management.GetGuardianFactorsProviderPhoneTwilioResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve configuration details for a Twilio phone provider that has been set up in your tenant. To learn more, review <a href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-sms-voice-notifications-mfa">Configure SMS and Voice Notifications for MFA</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.phone.getTwilioProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Phone.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.phone.<a href="/src/management/api/resources/guardian/resources/factors/resources/phone/client/Client.ts">setTwilioProvider</a>({ ...params }) -> Management.SetGuardianFactorsProviderPhoneTwilioResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update the configuration of a Twilio phone provider that has been set up in your tenant. To learn more, review <a href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-sms-voice-notifications-mfa">Configure SMS and Voice Notifications for MFA</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.phone.setTwilioProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.SetGuardianFactorsProviderPhoneTwilioRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Phone.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
