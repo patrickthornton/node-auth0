@@ -14728,3 +14728,7821 @@ await client.guardian.factors.phone.setTwilioProvider();
 </dd>
 </dl>
 </details>
+
+<details><summary><code>client.guardian.factors.phone.<a href="/src/management/api/resources/guardian/resources/factors/resources/phone/client/Client.ts">getSelectedProvider</a>() -> Management.GetGuardianFactorsProviderPhoneResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of the multi-factor authentication phone provider configured for your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.phone.getSelectedProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Phone.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.phone.<a href="/src/management/api/resources/guardian/resources/factors/resources/phone/client/Client.ts">setProvider</a>({ ...params }) -> Management.SetGuardianFactorsProviderPhoneResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.phone.setProvider({
+    provider: "auth0",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.SetGuardianFactorsProviderPhoneRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Phone.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.phone.<a href="/src/management/api/resources/guardian/resources/factors/resources/phone/client/Client.ts">getTemplates</a>() -> Management.GetGuardianFactorPhoneTemplatesResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of the multi-factor authentication enrollment and verification templates for phone-type factors available in your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.phone.getTemplates();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Phone.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.phone.<a href="/src/management/api/resources/guardian/resources/factors/resources/phone/client/Client.ts">setTemplates</a>({ ...params }) -> Management.SetGuardianFactorPhoneTemplatesResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Customize the messages sent to complete phone enrollment and verification (subscription required).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.phone.setTemplates({
+    enrollment_message: "enrollment_message",
+    verification_message: "verification_message",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.SetGuardianFactorPhoneTemplatesRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Phone.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Guardian Factors PushNotification
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">getApnsProvider</a>() -> Management.GetGuardianFactorsProviderApnsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve configuration details for the multi-factor authentication APNS provider associated with your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.getApnsProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotification.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">setApnsProvider</a>({ ...params }) -> Management.SetGuardianFactorsProviderPushNotificationApnsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Modify configuration details of the multi-factor authentication APNS provider associated with your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.setApnsProvider({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.SetGuardianFactorsProviderPushNotificationApnsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotification.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">setFcmProvider</a>({ ...params }) -> Management.SetGuardianFactorsProviderPushNotificationFcmResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Modify configuration details of the multi-factor authentication FCM provider associated with your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.setFcmProvider({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.SetGuardianFactorsProviderPushNotificationFcmRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotification.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">setFcmv1Provider</a>({ ...params }) -> Management.SetGuardianFactorsProviderPushNotificationFcmv1ResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Modify configuration details of the multi-factor authentication FCMV1 provider associated with your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.setFcmv1Provider({});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.SetGuardianFactorsProviderPushNotificationFcmv1RequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotification.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">getSnsProvider</a>() -> Management.GetGuardianFactorsProviderSnsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve configuration details for an AWS SNS push notification provider that has been enabled for MFA. To learn more, review <a href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-push-notifications-for-mfa">Configure Push Notifications for MFA</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.getSnsProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotification.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">setSnsProvider</a>({ ...params }) -> Management.SetGuardianFactorsProviderPushNotificationSnsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Configure the <a href="https://auth0.com/docs/multifactor-authentication/developer/sns-configuration">AWS SNS push notification provider configuration</a> (subscription required).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.setSnsProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.SetGuardianFactorsProviderPushNotificationSnsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotification.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">updateSnsProvider</a>({ ...params }) -> Management.UpdateGuardianFactorsProviderPushNotificationSnsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Configure the <a href="https://auth0.com/docs/multifactor-authentication/developer/sns-configuration">AWS SNS push notification provider configuration</a> (subscription required).
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.updateSnsProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.UpdateGuardianFactorsProviderPushNotificationSnsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotification.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">getSelectedProvider</a>() -> Management.GetGuardianFactorsProviderPushNotificationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Modify the push notification provider configured for your tenant. For more information, review <a href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-push-notifications-for-mfa">Configure Push Notifications for MFA</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.getSelectedProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotification.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">setProvider</a>({ ...params }) -> Management.SetGuardianFactorsProviderPushNotificationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Modify the push notification provider configured for your tenant. For more information, review <a href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-push-notifications-for-mfa">Configure Push Notifications for MFA</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.setProvider({
+    provider: "guardian",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.SetGuardianFactorsProviderPushNotificationRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotification.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Guardian Factors Sms
+
+<details><summary><code>client.guardian.factors.sms.<a href="/src/management/api/resources/guardian/resources/factors/resources/sms/client/Client.ts">getTwilioProvider</a>() -> Management.GetGuardianFactorsProviderSmsTwilioResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the <a href="https://auth0.com/docs/multifactor-authentication/twilio-configuration">Twilio SMS provider configuration</a> (subscription required).
+
+    A new endpoint is available to retrieve the Twilio configuration related to phone factors (<a href='https://auth0.com/docs/api/management/v2/#!/Guardian/get_twilio'>phone Twilio configuration</a>). It has the same payload as this one. Please use it instead.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.sms.getTwilioProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sms.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.sms.<a href="/src/management/api/resources/guardian/resources/factors/resources/sms/client/Client.ts">setTwilioProvider</a>({ ...params }) -> Management.SetGuardianFactorsProviderSmsTwilioResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint has been deprecated. To complete this action, use the <a href="https://auth0.com/docs/api/management/v2/guardian/put-twilio">Update Twilio phone configuration</a> endpoint.
+
+    <b>Previous functionality</b>: Update the Twilio SMS provider configuration.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.sms.setTwilioProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.SetGuardianFactorsProviderSmsTwilioRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sms.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.sms.<a href="/src/management/api/resources/guardian/resources/factors/resources/sms/client/Client.ts">getSelectedProvider</a>() -> Management.GetGuardianFactorsProviderSmsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint has been deprecated. To complete this action, use the <a href="https://auth0.com/docs/api/management/v2/guardian/get-phone-providers">Retrieve phone configuration</a> endpoint instead.
+
+    <b>Previous functionality</b>: Retrieve details for the multi-factor authentication SMS provider configured for your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.sms.getSelectedProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sms.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.sms.<a href="/src/management/api/resources/guardian/resources/factors/resources/sms/client/Client.ts">setProvider</a>({ ...params }) -> Management.SetGuardianFactorsProviderSmsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint has been deprecated. To complete this action, use the <a href="https://auth0.com/docs/api/management/v2/guardian/put-phone-providers">Update phone configuration</a> endpoint instead.
+
+    <b>Previous functionality</b>: Update the multi-factor authentication SMS provider configuration in your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.sms.setProvider({
+    provider: "auth0",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.SetGuardianFactorsProviderSmsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sms.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.sms.<a href="/src/management/api/resources/guardian/resources/factors/resources/sms/client/Client.ts">getTemplates</a>() -> Management.GetGuardianFactorSmsTemplatesResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint has been deprecated. To complete this action, use the <a href="https://auth0.com/docs/api/management/v2/guardian/get-factor-phone-templates">Retrieve enrollment and verification phone templates</a> endpoint instead.
+
+    <b>Previous function</b>: Retrieve details of SMS enrollment and verification templates configured for your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.sms.getTemplates();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sms.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.sms.<a href="/src/management/api/resources/guardian/resources/factors/resources/sms/client/Client.ts">setTemplates</a>({ ...params }) -> Management.SetGuardianFactorSmsTemplatesResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This endpoint has been deprecated. To complete this action, use the <a href="https://auth0.com/docs/api/management/v2/guardian/put-factor-phone-templates">Update enrollment and verification phone templates</a> endpoint instead.
+
+    <b>Previous functionality</b>: Customize the messages sent to complete SMS enrollment and verification.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.sms.setTemplates({
+    enrollment_message: "enrollment_message",
+    verification_message: "verification_message",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.SetGuardianFactorSmsTemplatesRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sms.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Guardian Factors Duo Settings
+
+<details><summary><code>client.guardian.factors.duo.settings.<a href="/src/management/api/resources/guardian/resources/factors/resources/duo/resources/settings/client/Client.ts">get</a>() -> Management.GetGuardianFactorDuoSettingsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves the DUO account and factor configuration.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.duo.settings.get();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Settings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.duo.settings.<a href="/src/management/api/resources/guardian/resources/factors/resources/duo/resources/settings/client/Client.ts">set</a>({ ...params }) -> Management.SetGuardianFactorDuoSettingsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Set the DUO account configuration and other properties specific to this factor.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.duo.settings.set();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.duo.SetGuardianFactorDuoSettingsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Settings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.duo.settings.<a href="/src/management/api/resources/guardian/resources/factors/resources/duo/resources/settings/client/Client.ts">update</a>({ ...params }) -> Management.UpdateGuardianFactorDuoSettingsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.duo.settings.update();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.guardian.factors.duo.UpdateGuardianFactorDuoSettingsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Settings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Hooks Secrets
+
+<details><summary><code>client.hooks.secrets.<a href="/src/management/api/resources/hooks/resources/secrets/client/Client.ts">get</a>(id) -> Management.GetHookSecretResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a hook's secrets by the ID of the hook.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.hooks.secrets.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the hook to retrieve secrets from.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Secrets.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hooks.secrets.<a href="/src/management/api/resources/hooks/resources/secrets/client/Client.ts">create</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Add one or more secrets to an existing hook. Accepts an object of key-value pairs, where the key is the name of the secret. A hook can have a maximum of 20 secrets.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.hooks.secrets.create("id", {
+    key: "value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the hook to retrieve
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.CreateHookSecretRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Secrets.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hooks.secrets.<a href="/src/management/api/resources/hooks/resources/secrets/client/Client.ts">delete</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete one or more existing secrets for a given hook. Accepts an array of secret names to delete.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.hooks.secrets.delete("id", ["string"]);
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the hook whose secrets to delete.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.DeleteHookSecretRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Secrets.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.hooks.secrets.<a href="/src/management/api/resources/hooks/resources/secrets/client/Client.ts">update</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update one or more existing secrets for an existing hook. Accepts an object of key-value pairs, where the key is the name of the existing secret.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.hooks.secrets.update("id", {
+    key: "value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the hook whose secrets to update.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.UpdateHookSecretRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Secrets.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Jobs UsersExports
+
+<details><summary><code>client.jobs.usersExports.<a href="/src/management/api/resources/jobs/resources/usersExports/client/Client.ts">create</a>({ ...params }) -> Management.CreateExportUsersResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Export all users to a file via a long-running job.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.jobs.usersExports.create();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.jobs.CreateExportUsersRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `UsersExports.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Jobs UsersImports
+
+<details><summary><code>client.jobs.usersImports.<a href="/src/management/api/resources/jobs/resources/usersImports/client/Client.ts">create</a>({ ...params }) -> Management.CreateImportUsersResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Import users from a <a href="https://auth0.com/docs/users/references/bulk-import-database-schema-examples">formatted file</a> into a connection via a long-running job. When importing users, with or without upsert, the `email_verified` is set to `false` when the email address is added or updated. Users must verify their email address. To avoid this behavior, set `email_verified` to `true` in the imported data.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.jobs.usersImports.create({
+    users: fs.createReadStream("/path/to/your/file"),
+    connection_id: "connection_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.jobs.CreateImportUsersRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `UsersImports.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Jobs VerificationEmail
+
+<details><summary><code>client.jobs.verificationEmail.<a href="/src/management/api/resources/jobs/resources/verificationEmail/client/Client.ts">create</a>({ ...params }) -> Management.CreateVerificationEmailResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Send an email to the specified user that asks them to click a link to <a href="https://auth0.com/docs/email/custom#verification-email">verify their email address</a>.
+
+Note: You must have the `Status` toggle enabled for the verification email template for the email to be sent.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.jobs.verificationEmail.create({
+    user_id: "user_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.jobs.CreateVerificationEmailRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VerificationEmail.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Jobs Errors
+
+<details><summary><code>client.jobs.errors.<a href="/src/management/api/resources/jobs/resources/errors/client/Client.ts">get</a>(id) -> Management.ErrorsGetResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve error details of a failed job.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.jobs.errors.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the job.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Errors.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Keys CustomSigning
+
+<details><summary><code>client.keys.customSigning.<a href="/src/management/api/resources/keys/resources/customSigning/client/Client.ts">get</a>() -> Management.GetCustomSigningKeysResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get entire jwks representation of custom signing keys.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.customSigning.get();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomSigning.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.customSigning.<a href="/src/management/api/resources/keys/resources/customSigning/client/Client.ts">set</a>({ ...params }) -> Management.SetCustomSigningKeysResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or replace entire jwks representation of custom signing keys.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.customSigning.set({
+    keys: [
+        {
+            kty: "EC",
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.keys.SetCustomSigningKeysRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomSigning.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.customSigning.<a href="/src/management/api/resources/keys/resources/customSigning/client/Client.ts">delete</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete entire jwks representation of custom signing keys.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.customSigning.delete();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomSigning.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Keys Encryption
+
+<details><summary><code>client.keys.encryption.<a href="/src/management/api/resources/keys/resources/encryption/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.EncryptionKey></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of all the encryption keys associated with your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.keys.encryption.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.keys.encryption.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.keys.ListEncryptionKeysRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Encryption.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.encryption.<a href="/src/management/api/resources/keys/resources/encryption/client/Client.ts">create</a>({ ...params }) -> Management.CreateEncryptionKeyResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create the new, pre-activated encryption key, without the key material.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.encryption.create({
+    type: "customer-provided-root-key",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.keys.CreateEncryptionKeyRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Encryption.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.encryption.<a href="/src/management/api/resources/keys/resources/encryption/client/Client.ts">rekey</a>() -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Perform rekeying operation on the key hierarchy.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.encryption.rekey();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Encryption.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.encryption.<a href="/src/management/api/resources/keys/resources/encryption/client/Client.ts">get</a>(kid) -> Management.GetEncryptionKeyResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of the encryption key with the given ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.encryption.get("kid");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**kid:** `string` — Encryption key ID
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Encryption.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.encryption.<a href="/src/management/api/resources/keys/resources/encryption/client/Client.ts">import</a>(kid, { ...params }) -> Management.ImportEncryptionKeyResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Import wrapped key material and activate encryption key.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.encryption.import("kid", {
+    wrapped_key: "wrapped_key",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**kid:** `string` — Encryption key ID
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.keys.ImportEncryptionKeyRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Encryption.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.encryption.<a href="/src/management/api/resources/keys/resources/encryption/client/Client.ts">delete</a>(kid) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete the custom provided encryption key with the given ID and move back to using native encryption key.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.encryption.delete("kid");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**kid:** `string` — Encryption key ID
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Encryption.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.encryption.<a href="/src/management/api/resources/keys/resources/encryption/client/Client.ts">createPublicWrappingKey</a>(kid) -> Management.CreateEncryptionKeyPublicWrappingResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create the public wrapping key to wrap your own encryption key material.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.encryption.createPublicWrappingKey("kid");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**kid:** `string` — Encryption key ID
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Encryption.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Keys Signing
+
+<details><summary><code>client.keys.signing.<a href="/src/management/api/resources/keys/resources/signing/client/Client.ts">list</a>() -> Management.SigningKeys[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of all the application signing keys associated with your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.signing.list();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Signing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.signing.<a href="/src/management/api/resources/keys/resources/signing/client/Client.ts">rotate</a>() -> Management.RotateSigningKeysResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Rotate the application signing key of your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.signing.rotate();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `Signing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.signing.<a href="/src/management/api/resources/keys/resources/signing/client/Client.ts">get</a>(kid) -> Management.GetSigningKeysResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of the application signing key with the given ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.signing.get("kid");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**kid:** `string` — Key id of the key to retrieve
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Signing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.keys.signing.<a href="/src/management/api/resources/keys/resources/signing/client/Client.ts">revoke</a>(kid) -> Management.RevokedSigningKeysResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Revoke the application signing key with the given ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.keys.signing.revoke("kid");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**kid:** `string` — Key id of the key to revoke
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Signing.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Organizations ClientGrants
+
+<details><summary><code>client.organizations.clientGrants.<a href="/src/management/api/resources/organizations/resources/clientGrants/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.OrganizationClientGrant></code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.organizations.clientGrants.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.organizations.clientGrants.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.ListOrganizationClientGrantsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ClientGrants.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.clientGrants.<a href="/src/management/api/resources/organizations/resources/clientGrants/client/Client.ts">create</a>(id, { ...params }) -> Management.AssociateOrganizationClientGrantResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.clientGrants.create("id", {
+    grant_id: "grant_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.AssociateOrganizationClientGrantRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ClientGrants.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.clientGrants.<a href="/src/management/api/resources/organizations/resources/clientGrants/client/Client.ts">delete</a>(id, grantId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.clientGrants.delete("id", "grant_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**grantId:** `string` — The Client Grant ID to remove from the organization
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ClientGrants.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Organizations EnabledConnections
+
+<details><summary><code>client.organizations.enabledConnections.<a href="/src/management/api/resources/organizations/resources/enabledConnections/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.OrganizationConnection></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details about a specific connection currently enabled for an Organization. Information returned includes details such as connection ID, name, strategy, and whether the connection automatically grants membership upon login.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.organizations.enabledConnections.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.organizations.enabledConnections.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.ListOrganizationConnectionsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnabledConnections.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.enabledConnections.<a href="/src/management/api/resources/organizations/resources/enabledConnections/client/Client.ts">add</a>(id, { ...params }) -> Management.AddOrganizationConnectionResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Enable a specific connection for a given Organization. To enable a connection, it must already exist within your tenant; connections cannot be created through this action.
+
+<a href="https://auth0.com/docs/authenticate/identity-providers">Connections</a> represent the relationship between Auth0 and a source of users. Available types of connections include database, enterprise, and social.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.enabledConnections.add("id", {
+    connection_id: "connection_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.AddOrganizationConnectionRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnabledConnections.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.enabledConnections.<a href="/src/management/api/resources/organizations/resources/enabledConnections/client/Client.ts">get</a>(id, connectionId) -> Management.GetOrganizationConnectionResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details about a specific connection currently enabled for an Organization. Information returned includes details such as connection ID, name, strategy, and whether the connection automatically grants membership upon login.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.enabledConnections.get("id", "connectionId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**connectionId:** `string` — Connection identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnabledConnections.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.enabledConnections.<a href="/src/management/api/resources/organizations/resources/enabledConnections/client/Client.ts">delete</a>(id, connectionId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Disable a specific connection for an Organization. Once disabled, Organization members can no longer use that connection to authenticate.
+
+<b>Note</b>: This action does not remove the connection from your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.enabledConnections.delete("id", "connectionId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**connectionId:** `string` — Connection identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnabledConnections.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.enabledConnections.<a href="/src/management/api/resources/organizations/resources/enabledConnections/client/Client.ts">update</a>(id, connectionId, { ...params }) -> Management.UpdateOrganizationConnectionResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Modify the details of a specific connection currently enabled for an Organization.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.enabledConnections.update("id", "connectionId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**connectionId:** `string` — Connection identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.UpdateOrganizationConnectionRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EnabledConnections.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Organizations Invitations
+
+<details><summary><code>client.organizations.invitations.<a href="/src/management/api/resources/organizations/resources/invitations/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.OrganizationInvitation></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a detailed list of invitations sent to users for a specific Organization. The list includes details such as inviter and invitee information, invitation URLs, and dates of creation and expiration. To learn more about Organization invitations, review <a href="https://auth0.com/docs/manage-users/organizations/configure-organizations/invite-members">Invite Organization Members</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.organizations.invitations.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.organizations.invitations.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.ListOrganizationInvitationsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Invitations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.invitations.<a href="/src/management/api/resources/organizations/resources/invitations/client/Client.ts">create</a>(id, { ...params }) -> Management.CreateOrganizationInvitationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a user invitation for a specific Organization. Upon creation, the listed user receives an email inviting them to join the Organization. To learn more about Organization invitations, review <a href="https://auth0.com/docs/manage-users/organizations/configure-organizations/invite-members">Invite Organization Members</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.invitations.create("id", {
+    inviter: {
+        name: "name",
+    },
+    invitee: {
+        email: "email",
+    },
+    client_id: "client_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.CreateOrganizationInvitationRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Invitations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.invitations.<a href="/src/management/api/resources/organizations/resources/invitations/client/Client.ts">get</a>(id, invitationId, { ...params }) -> Management.GetOrganizationInvitationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.invitations.get("id", "invitation_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invitationId:** `string` — The id of the user invitation.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.GetOrganizationInvitationRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Invitations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.invitations.<a href="/src/management/api/resources/organizations/resources/invitations/client/Client.ts">delete</a>(id, invitationId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.invitations.delete("id", "invitation_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**invitationId:** `string` — The id of the user invitation.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Invitations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Organizations Members
+
+<details><summary><code>client.organizations.members.<a href="/src/management/api/resources/organizations/resources/members/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.OrganizationMember></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List organization members.
+This endpoint is subject to eventual consistency. New users may not be immediately included in the response and deleted users may not be immediately removed from it.
+
+<ul>
+  <li>
+    Use the <code>fields</code> parameter to optionally define the specific member details retrieved. If <code>fields</code> is left blank, all fields (except roles) are returned.
+  </li>
+  <li>
+    Member roles are not sent by default. Use <code>fields=roles</code> to retrieve the roles assigned to each listed member. To use this parameter, you must include the <code>read:organization_member_roles</code> scope in the token.
+  </li>
+</ul>
+
+This endpoint supports two types of pagination:
+
+- Offset pagination
+- Checkpoint pagination
+
+Checkpoint pagination must be used if you need to retrieve more than 1000 organization members.
+
+<h2>Checkpoint Pagination</h2>
+
+To search by checkpoint, use the following parameters: - from: Optional id from which to start selection. - take: The total amount of entries to retrieve when using the from parameter. Defaults to 50. Note: The first time you call this endpoint using Checkpoint Pagination, you should omit the <code>from</code> parameter. If there are more results, a <code>next</code> value will be included in the response. You can use this for subsequent API calls. When <code>next</code> is no longer included in the response, this indicates there are no more pages remaining.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.organizations.members.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.organizations.members.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.ListOrganizationMembersRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Members.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.members.<a href="/src/management/api/resources/organizations/resources/members/client/Client.ts">create</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Set one or more existing users as members of a specific <a href="https://auth0.com/docs/manage-users/organizations">Organization</a>.
+
+To add a user to an Organization through this action, the user must already exist in your tenant. If a user does not yet exist, you can <a href="https://auth0.com/docs/manage-users/organizations/configure-organizations/invite-members">invite them to create an account</a>, manually create them through the Auth0 Dashboard, or use the Management API.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.members.create("id", {
+    members: ["members"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.CreateOrganizationMemberRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Members.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.members.<a href="/src/management/api/resources/organizations/resources/members/client/Client.ts">delete</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.members.delete("id", {
+    members: ["members"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.DeleteOrganizationMembersRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Members.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Organizations Members Roles
+
+<details><summary><code>client.organizations.members.roles.<a href="/src/management/api/resources/organizations/resources/members/resources/roles/client/Client.ts">list</a>(id, userId, { ...params }) -> core.Page<Management.Role></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve detailed list of roles assigned to a given user within the context of a specific Organization.
+
+Users can be members of multiple Organizations with unique roles assigned for each membership. This action only returns the roles associated with the specified Organization; any roles assigned to the user within other Organizations are not included.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.organizations.members.roles.list("id", "user_id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.organizations.members.roles.list("id", "user_id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**userId:** `string` — ID of the user to associate roles with.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.members.ListOrganizationMemberRolesRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Roles.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.members.roles.<a href="/src/management/api/resources/organizations/resources/members/resources/roles/client/Client.ts">assign</a>(id, userId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Assign one or more <a href="https://auth0.com/docs/manage-users/access-control/rbac">roles</a> to a user to determine their access for a specific Organization.
+
+Users can be members of multiple Organizations with unique roles assigned for each membership. This action assigns roles to a user only for the specified Organization. Roles cannot be assigned to a user across multiple Organizations in the same call.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.members.roles.assign("id", "user_id", {
+    roles: ["roles"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**userId:** `string` — ID of the user to associate roles with.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.members.AssignOrganizationMemberRolesRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Roles.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.members.roles.<a href="/src/management/api/resources/organizations/resources/members/resources/roles/client/Client.ts">delete</a>(id, userId, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove one or more Organization-specific <a href="https://auth0.com/docs/manage-users/access-control/rbac">roles</a> from a given user.
+
+Users can be members of multiple Organizations with unique roles assigned for each membership. This action removes roles from a user in relation to the specified Organization. Roles assigned to the user within a different Organization cannot be managed in the same call.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.members.roles.delete("id", "user_id", {
+    roles: ["roles"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**userId:** `string` — User ID of the organization member to remove roles from.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.organizations.members.DeleteOrganizationMemberRolesRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Roles.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Prompts Rendering
+
+<details><summary><code>client.prompts.rendering.<a href="/src/management/api/resources/prompts/resources/rendering/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.AculResponseContent></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get render setting configurations for all screens.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.prompts.rendering.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.prompts.rendering.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.prompts.ListAculsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Rendering.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.prompts.rendering.<a href="/src/management/api/resources/prompts/resources/rendering/client/Client.ts">get</a>(prompt, screen) -> Management.GetAculResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get render settings for a screen.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.prompts.rendering.get("login", "login");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**prompt:** `Management.PromptGroupNameEnum` — Name of the prompt
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**screen:** `Management.ScreenGroupNameEnum` — Name of the screen
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Rendering.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.prompts.rendering.<a href="/src/management/api/resources/prompts/resources/rendering/client/Client.ts">update</a>(prompt, screen, { ...params }) -> Management.UpdateAculResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Learn more about <a href='https://auth0.com/docs/customize/login-pages/advanced-customizations/getting-started/configure-acul-screens'>configuring render settings</a> for advanced customization.
+
+<p>
+  Example <code>head_tags</code> array. See our <a href='https://auth0.com/docs/customize/login-pages/advanced-customizations/getting-started/configure-acul-screens'>documentation</a> on using Liquid variables within head tags.
+</p>
+<pre>{
+  "head_tags": [
+    {
+      "tag": "script",
+      "attributes": {
+        "defer": true,
+        "src": "URL_TO_ASSET",
+        "async": true,
+        "integrity": [
+          "ASSET_SHA"
+        ]
+      }
+    },
+    {
+      "tag": "link",
+      "attributes": {
+        "href": "URL_TO_ASSET",
+        "rel": "stylesheet"
+      }
+    }
+  ]
+}
+</pre>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.prompts.rendering.update("login", "login");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**prompt:** `Management.PromptGroupNameEnum` — Name of the prompt
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**screen:** `Management.ScreenGroupNameEnum` — Name of the screen
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.prompts.UpdateAculRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Rendering.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Prompts CustomText
+
+<details><summary><code>client.prompts.customText.<a href="/src/management/api/resources/prompts/resources/customText/client/Client.ts">get</a>(prompt, language) -> Management.GetCustomTextsByLanguageResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve custom text for a specific prompt and language.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.prompts.customText.get("login", "am");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**prompt:** `Management.PromptGroupNameEnum` — Name of the prompt.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**language:** `Management.PromptLanguageEnum` — Language to update.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomText.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.prompts.customText.<a href="/src/management/api/resources/prompts/resources/customText/client/Client.ts">set</a>(prompt, language, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Set custom text for a specific prompt. Existing texts will be overwritten.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.prompts.customText.set("login", "am", {
+    key: "value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**prompt:** `Management.PromptGroupNameEnum` — Name of the prompt.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**language:** `Management.PromptLanguageEnum` — Language to update.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.SetsCustomTextsByLanguageRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomText.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Prompts Partials
+
+<details><summary><code>client.prompts.partials.<a href="/src/management/api/resources/prompts/resources/partials/client/Client.ts">get</a>(prompt) -> Management.GetPartialsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get template partials for a prompt
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.prompts.partials.get("login");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**prompt:** `Management.PartialGroupsEnum` — Name of the prompt.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Partials.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.prompts.partials.<a href="/src/management/api/resources/prompts/resources/partials/client/Client.ts">set</a>(prompt, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Set template partials for a prompt
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.prompts.partials.set("login", {
+    key: "value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**prompt:** `Management.PartialGroupsEnum` — Name of the prompt.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.SetPartialsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Partials.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Roles Permissions
+
+<details><summary><code>client.roles.permissions.<a href="/src/management/api/resources/roles/resources/permissions/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.PermissionsResponsePayload></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve detailed list (name, description, resource server) of permissions granted by a specified user role.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.roles.permissions.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.roles.permissions.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the role to list granted permissions.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.roles.ListRolePermissionsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Permissions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.roles.permissions.<a href="/src/management/api/resources/roles/resources/permissions/client/Client.ts">add</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Add one or more <a href="https://auth0.com/docs/manage-users/access-control/configure-core-rbac/manage-permissions">permissions</a> to a specified user role.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.roles.permissions.add("id", {
+    permissions: [
+        {
+            resource_server_identifier: "resource_server_identifier",
+            permission_name: "permission_name",
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the role to add permissions to.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.roles.AddRolePermissionsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Permissions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.roles.permissions.<a href="/src/management/api/resources/roles/resources/permissions/client/Client.ts">delete</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove one or more <a href="https://auth0.com/docs/manage-users/access-control/configure-core-rbac/manage-permissions">permissions</a> from a specified user role.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.roles.permissions.delete("id", {
+    permissions: [
+        {
+            resource_server_identifier: "resource_server_identifier",
+            permission_name: "permission_name",
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the role to remove permissions from.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.roles.DeleteRolePermissionsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Permissions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Roles Users
+
+<details><summary><code>client.roles.users.<a href="/src/management/api/resources/roles/resources/users/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.RoleUser></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve list of users associated with a specific role. For Dashboard instructions, review <a href="https://auth0.com/docs/manage-users/access-control/configure-core-rbac/roles/view-users-assigned-to-roles">View Users Assigned to Roles</a>.
+
+This endpoint supports two types of pagination:
+
+<ul>
+<li>Offset pagination</li>
+<li>Checkpoint pagination</li>
+</ul>
+
+Checkpoint pagination must be used if you need to retrieve more than 1000 organization members.
+
+<h2>Checkpoint Pagination</h2>
+
+To search by checkpoint, use the following parameters:
+
+<ul>
+<li><code>from</code>: Optional id from which to start selection.</li>
+<li><code>take</code>: The total amount of entries to retrieve when using the from parameter. Defaults to 50.</li>
+</ul>
+
+<b>Note</b>: The first time you call this endpoint using checkpoint pagination, omit the <code>from</code> parameter. If there are more results, a <code>next</code> value is included in the response. You can use this for subsequent API calls. When <code>next</code> is no longer included in the response, no pages are remaining.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.roles.users.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.roles.users.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the role to retrieve a list of users associated with.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.roles.ListRoleUsersRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.roles.users.<a href="/src/management/api/resources/roles/resources/users/client/Client.ts">assign</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Assign one or more users to an existing user role. To learn more, review <a href="https://auth0.com/docs/manage-users/access-control/rbac">Role-Based Access Control</a>.
+
+<b>Note</b>: New roles cannot be created through this action.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.roles.users.assign("id", {
+    users: ["users"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the role to assign users to.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.roles.AssignRoleUsersRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Users.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## SelfServiceProfiles CustomText
+
+<details><summary><code>client.selfServiceProfiles.customText.<a href="/src/management/api/resources/selfServiceProfiles/resources/customText/client/Client.ts">list</a>(id, language, page) -> Management.ListSelfServiceProfileCustomTextResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves text customizations for a given self-service profile, language and Self Service SSO Flow page.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.selfServiceProfiles.customText.list("id", "en", "get-started");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the self-service profile.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**language:** `Management.SelfServiceProfileCustomTextLanguageEnum` — The language of the custom text.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Management.SelfServiceProfileCustomTextPageEnum` — The page where the custom text is shown.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomText.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.selfServiceProfiles.customText.<a href="/src/management/api/resources/selfServiceProfiles/resources/customText/client/Client.ts">set</a>(id, language, page, { ...params }) -> Management.SetSelfServiceProfileCustomTextResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates text customizations for a given self-service profile, language and Self Service SSO Flow page.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.selfServiceProfiles.customText.set("id", "en", "get-started", {
+    key: "value",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the self-service profile.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**language:** `Management.SelfServiceProfileCustomTextLanguageEnum` — The language of the custom text.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**page:** `Management.SelfServiceProfileCustomTextPageEnum` — The page where the custom text is shown.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.SetSelfServiceProfileCustomTextRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomText.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## SelfServiceProfiles SsoTicket
+
+<details><summary><code>client.selfServiceProfiles.ssoTicket.<a href="/src/management/api/resources/selfServiceProfiles/resources/ssoTicket/client/Client.ts">create</a>(id, { ...params }) -> Management.CreateSelfServiceProfileSsoTicketResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates an SSO access ticket to initiate the Self Service SSO Flow using a self-service profile.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.selfServiceProfiles.ssoTicket.create("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the self-service profile to retrieve
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.selfServiceProfiles.CreateSelfServiceProfileSsoTicketRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SsoTicket.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.selfServiceProfiles.ssoTicket.<a href="/src/management/api/resources/selfServiceProfiles/resources/ssoTicket/client/Client.ts">revoke</a>(profileId, id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Revokes an SSO access ticket and invalidates associated sessions. The ticket will no longer be accepted to initiate a Self-Service SSO session. If any users have already started a session through this ticket, their session will be terminated. Clients should expect a `202 Accepted` response upon successful processing, indicating that the request has been acknowledged and that the revocation is underway but may not be fully completed at the time of response. If the specified ticket does not exist, a `202 Accepted` response is also returned, signaling that no further action is required.
+Clients should treat these `202` responses as an acknowledgment that the request has been accepted and is in progress, even if the ticket was not found.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.selfServiceProfiles.ssoTicket.revoke("profileId", "id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**profileId:** `string` — The id of the self-service profile
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the ticket to revoke
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SsoTicket.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Tenants Settings
+
+<details><summary><code>client.tenants.settings.<a href="/src/management/api/resources/tenants/resources/settings/client/Client.ts">get</a>({ ...params }) -> Management.GetTenantSettingsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve tenant settings. A list of fields to include or exclude may also be specified.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.settings.get();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.tenants.GetTenantSettingsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Settings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.tenants.settings.<a href="/src/management/api/resources/tenants/resources/settings/client/Client.ts">update</a>({ ...params }) -> Management.UpdateTenantSettingsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update settings for a tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.tenants.settings.update();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.tenants.UpdateTenantSettingsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Settings.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users AuthenticationMethods
+
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.UserAuthenticationMethod></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve detailed list of authentication methods associated with a specified user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.users.authenticationMethods.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.users.authenticationMethods.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the user in question.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.ListUserAuthenticationMethodsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuthenticationMethods.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">create</a>(id, { ...params }) -> Management.CreateUserAuthenticationMethodResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create an authentication method. Authentication methods created via this endpoint will be auto confirmed and should already have verification completed.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.authenticationMethods.create("id", {
+    type: "phone",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the user to whom the new authentication method will be assigned.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.CreateUserAuthenticationMethodRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuthenticationMethods.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">set</a>(id, { ...params }) -> Management.SetUserAuthenticationMethodResponseContent[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replace the specified user <a href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors"> authentication methods</a> with supplied values.
+
+    <b>Note</b>: Authentication methods supplied through this action do not iterate on existing methods. Instead, any methods passed will overwrite the user&#8217s existing settings.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.authenticationMethods.set("id", [
+    {
+        type: "phone",
+    },
+]);
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the user in question.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.SetUserAuthenticationMethodsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuthenticationMethods.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">deleteAll</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove all authentication methods (i.e., enrolled MFA factors) from the specified user account. This action cannot be undone.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.authenticationMethods.deleteAll("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the user in question.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuthenticationMethods.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">get</a>(id, authenticationMethodId) -> Management.GetUserAuthenticationMethodResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.authenticationMethods.get("id", "authentication_method_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the user in question.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**authenticationMethodId:** `string` — The ID of the authentication methods in question.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuthenticationMethods.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">delete</a>(id, authenticationMethodId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove the authentication method with the given ID from the specified user. For more information, review <a href="https://auth0.com/docs/secure/multi-factor-authentication/manage-mfa-auth0-apis/manage-authentication-methods-with-management-api">Manage Authentication Methods with Management API</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.authenticationMethods.delete("id", "authentication_method_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the user in question.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**authenticationMethodId:** `string` — The ID of the authentication method to delete.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuthenticationMethods.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">update</a>(id, authenticationMethodId, { ...params }) -> Management.UpdateUserAuthenticationMethodResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Modify the authentication method with the given ID from the specified user. For more information, review <a href="https://auth0.com/docs/secure/multi-factor-authentication/manage-mfa-auth0-apis/manage-authentication-methods-with-management-api">Manage Authentication Methods with Management API</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.authenticationMethods.update("id", "authentication_method_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the user in question.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**authenticationMethodId:** `string` — The ID of the authentication method to update.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.UpdateUserAuthenticationMethodRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `AuthenticationMethods.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users Authenticators
+
+<details><summary><code>client.users.authenticators.<a href="/src/management/api/resources/users/resources/authenticators/client/Client.ts">deleteAll</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove all authenticators registered to a given user ID, such as OTP, email, phone, and push-notification. This action cannot be undone. For more information, review <a href="https://auth0.com/docs/secure/multi-factor-authentication/manage-mfa-auth0-apis/manage-authentication-methods-with-management-api">Manage Authentication Methods with Management API</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.authenticators.deleteAll("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to delete.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Authenticators.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users Enrollments
+
+<details><summary><code>client.users.enrollments.<a href="/src/management/api/resources/users/resources/enrollments/client/Client.ts">get</a>(id) -> Management.UsersEnrollment[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the first <a href="https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors">multi-factor authentication</a> enrollment that a specific user has confirmed.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.enrollments.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to list enrollments for.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Enrollments.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users FederatedConnectionsTokensets
+
+<details><summary><code>client.users.federatedConnectionsTokensets.<a href="/src/management/api/resources/users/resources/federatedConnectionsTokensets/client/Client.ts">list</a>(id) -> Management.FederatedConnectionTokenSet[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List active federated connections tokensets for a provided user
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.federatedConnectionsTokensets.list("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — User identifier
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FederatedConnectionsTokensets.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.federatedConnectionsTokensets.<a href="/src/management/api/resources/users/resources/federatedConnectionsTokensets/client/Client.ts">delete</a>(id, tokensetId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.federatedConnectionsTokensets.delete("id", "tokenset_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Id of the user that owns the tokenset
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**tokensetId:** `string` — The tokenset id
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `FederatedConnectionsTokensets.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users Identities
+
+<details><summary><code>client.users.identities.<a href="/src/management/api/resources/users/resources/identities/client/Client.ts">link</a>(id, { ...params }) -> Management.UserIdentity[]</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Link two user accounts together forming a primary and secondary relationship. On successful linking, the endpoint returns the new array of the primary account identities.
+
+Note: There are two ways of invoking the endpoint:
+
+<ul>
+  <li>With the authenticated primary account's JWT in the Authorization header, which has the <code>update:current_user_identities</code> scope:
+    <pre>
+      POST /api/v2/users/PRIMARY_ACCOUNT_USER_ID/identities
+      Authorization: "Bearer PRIMARY_ACCOUNT_JWT"
+      {
+        "link_with": "SECONDARY_ACCOUNT_JWT"
+      }
+    </pre>
+    In this case, only the <code>link_with</code> param is required in the body, which also contains the JWT obtained upon the secondary account's authentication.
+  </li>
+  <li>With a token generated by the API V2 containing the <code>update:users</code> scope:
+    <pre>
+    POST /api/v2/users/PRIMARY_ACCOUNT_USER_ID/identities
+    Authorization: "Bearer YOUR_API_V2_TOKEN"
+    {
+      "provider": "SECONDARY_ACCOUNT_PROVIDER",
+      "connection_id": "SECONDARY_ACCOUNT_CONNECTION_ID(OPTIONAL)",
+      "user_id": "SECONDARY_ACCOUNT_USER_ID"
+    }
+    </pre>
+    In this case you need to send <code>provider</code> and <code>user_id</code> in the body. Optionally you can also send the <code>connection_id</code> param which is suitable for identifying a particular database connection for the 'auth0' provider.
+  </li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.identities.link("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the primary user account to link a second user account to.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.LinkUserIdentityRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Identities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.identities.<a href="/src/management/api/resources/users/resources/identities/client/Client.ts">delete</a>(id, provider, userId) -> Management.DeleteUserIdentityResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Unlink a specific secondary account from a target user. This action requires the ID of both the target user and the secondary account.
+
+Unlinking the secondary account removes it from the identities array of the target user and creates a new standalone profile for the secondary account. To learn more, review <a href="https://auth0.com/docs/manage-users/user-accounts/user-account-linking/unlink-user-accounts">Unlink User Accounts</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.identities.delete("id", "ad", "user_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the primary user account.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**provider:** `Management.UserIdentityProviderEnum` — Identity provider name of the secondary linked account (e.g. `google-oauth2`).
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**userId:** `string` — ID of the secondary linked account (e.g. `123456789081523216417` part after the `|` in `google-oauth2|123456789081523216417`).
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Identities.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users Logs
+
+<details><summary><code>client.users.logs.<a href="/src/management/api/resources/users/resources/logs/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.Log></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve log events for a specific user.
+
+Note: For more information on all possible event types, their respective acronyms and descriptions, see <a href="https://auth0.com/docs/logs/log-event-type-codes">Log Event Type Codes</a>.
+
+For more information on the list of fields that can be used in `sort`, see <a href="https://auth0.com/docs/logs/log-search-query-syntax#searchable-fields">Searchable Fields</a>.
+
+Auth0 <a href="https://auth0.com/docs/logs/retrieve-log-events-using-mgmt-api#limitations">limits the number of logs</a> you can return by search criteria to 100 logs per request. Furthermore, you may only paginate through up to 1,000 search results. If you exceed this threshold, please redefine your search.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.users.logs.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.users.logs.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user of the logs to retrieve
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.ListUserLogsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Logs.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users Multifactor
+
+<details><summary><code>client.users.multifactor.<a href="/src/management/api/resources/users/resources/multifactor/client/Client.ts">invalidateRememberBrowser</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Invalidate all remembered browsers across all <a href="https://auth0.com/docs/multifactor-authentication">authentication factors</a> for a user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.multifactor.invalidateRememberBrowser("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to invalidate all remembered browsers and authentication factors for.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Multifactor.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.multifactor.<a href="/src/management/api/resources/users/resources/multifactor/client/Client.ts">deleteProvider</a>(id, provider) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove a <a href="https://auth0.com/docs/multifactor-authentication">multifactor</a> authentication configuration from a user's account. This forces the user to manually reconfigure the multi-factor provider.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.multifactor.deleteProvider("id", "duo");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to remove a multifactor configuration from.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**provider:** `Management.UserMultifactorProviderEnum` — The multi-factor provider. Supported values 'duo' or 'google-authenticator'
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Multifactor.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users Organizations
+
+<details><summary><code>client.users.organizations.<a href="/src/management/api/resources/users/resources/organizations/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.Organization></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve list of the specified user's current Organization memberships. User must be specified by user ID. For more information, review <a href="https://auth0.com/docs/manage-users/organizations">Auth0 Organizations</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.users.organizations.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.users.organizations.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to retrieve the organizations for.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.ListUserOrganizationsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Organizations.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users Permissions
+
+<details><summary><code>client.users.permissions.<a href="/src/management/api/resources/users/resources/permissions/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.UserPermissionSchema></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve all permissions associated with the user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.users.permissions.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.users.permissions.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to retrieve the permissions for.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.ListUserPermissionsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Permissions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.permissions.<a href="/src/management/api/resources/users/resources/permissions/client/Client.ts">create</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Assign permissions to a user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.permissions.create("id", {
+    permissions: [
+        {
+            resource_server_identifier: "resource_server_identifier",
+            permission_name: "permission_name",
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to assign permissions to.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.CreateUserPermissionsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Permissions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.permissions.<a href="/src/management/api/resources/users/resources/permissions/client/Client.ts">delete</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove permissions from a user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.permissions.delete("id", {
+    permissions: [
+        {
+            resource_server_identifier: "resource_server_identifier",
+            permission_name: "permission_name",
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to remove permissions from.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.DeleteUserPermissionsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Permissions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users Roles
+
+<details><summary><code>client.users.roles.<a href="/src/management/api/resources/users/resources/roles/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.Role></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve detailed list of all user roles currently assigned to a user.
+
+<b>Note</b>: This action retrieves all roles assigned to a user in the context of your whole tenant. To retrieve Organization-specific roles, use the following endpoint: <a href="https://auth0.com/docs/api/management/v2/organizations/get-organization-member-roles">Get user roles assigned to an Organization member</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.users.roles.list("id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.users.roles.list("id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to list roles for.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.ListUserRolesRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Roles.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.roles.<a href="/src/management/api/resources/users/resources/roles/client/Client.ts">assign</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Assign one or more existing user roles to a user. For more information, review <a href="https://auth0.com/docs/manage-users/access-control/rbac">Role-Based Access Control</a>.
+
+<b>Note</b>: New roles cannot be created through this action. Additionally, this action is used to assign roles to a user in the context of your whole tenant. To assign roles in the context of a specific Organization, use the following endpoint: <a href="https://auth0.com/docs/api/management/v2/organizations/post-organization-member-roles">Assign user roles to an Organization member</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.roles.assign("id", {
+    roles: ["roles"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to associate roles with.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.AssignUserRolesRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Roles.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.roles.<a href="/src/management/api/resources/users/resources/roles/client/Client.ts">delete</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Remove one or more specified user roles assigned to a user.
+
+<b>Note</b>: This action removes a role from a user in the context of your whole tenant. If you want to unassign a role from a user in the context of a specific Organization, use the following endpoint: <a href="https://auth0.com/docs/api/management/v2/organizations/delete-organization-member-roles">Delete user roles from an Organization member</a>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.roles.delete("id", {
+    roles: ["roles"],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to remove roles from.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.DeleteUserRolesRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Roles.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users RefreshToken
+
+<details><summary><code>client.users.refreshToken.<a href="/src/management/api/resources/users/resources/refreshToken/client/Client.ts">list</a>(userId, { ...params }) -> core.Page<Management.RefreshTokenResponseContent></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details for a user's refresh tokens.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.users.refreshToken.list("user_id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.users.refreshToken.list("user_id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `string` — ID of the user to get refresh tokens for
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.ListRefreshTokensRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RefreshToken.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.refreshToken.<a href="/src/management/api/resources/users/resources/refreshToken/client/Client.ts">delete</a>(userId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete all refresh tokens for a user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.refreshToken.delete("user_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `string` — ID of the user to get remove refresh tokens for
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RefreshToken.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users Sessions
+
+<details><summary><code>client.users.sessions.<a href="/src/management/api/resources/users/resources/sessions/client/Client.ts">list</a>(userId, { ...params }) -> core.Page<Management.SessionResponseContent></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details for a user's sessions.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.users.sessions.list("user_id");
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.users.sessions.list("user_id");
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `string` — ID of the user to get sessions for
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.users.ListUserSessionsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sessions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.users.sessions.<a href="/src/management/api/resources/users/resources/sessions/client/Client.ts">delete</a>(userId) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete all sessions for a user.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.users.sessions.delete("user_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**userId:** `string` — ID of the user to get sessions for
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Sessions.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## VerifiableCredentials Verification Templates
+
+<details><summary><code>client.verifiableCredentials.verification.templates.<a href="/src/management/api/resources/verifiableCredentials/resources/verification/resources/templates/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.VerifiableCredentialTemplateResponse></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List a verifiable credential templates.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.verifiableCredentials.verification.templates.list();
+for await (const item of response) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.verifiableCredentials.verification.templates.list();
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.verifiableCredentials.verification.ListVerifiableCredentialTemplatesRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Templates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.verifiableCredentials.verification.templates.<a href="/src/management/api/resources/verifiableCredentials/resources/verification/resources/templates/client/Client.ts">create</a>({ ...params }) -> Management.CreateVerifiableCredentialTemplateResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a verifiable credential template.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.verifiableCredentials.verification.templates.create({
+    name: "name",
+    type: "type",
+    dialect: "dialect",
+    presentation: {
+        "org.iso.18013.5.1.mDL": {
+            "org.iso.18013.5.1": {},
+        },
+    },
+    well_known_trusted_issuers: "well_known_trusted_issuers",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.verifiableCredentials.verification.CreateVerifiableCredentialTemplateRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Templates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.verifiableCredentials.verification.templates.<a href="/src/management/api/resources/verifiableCredentials/resources/verification/resources/templates/client/Client.ts">get</a>(id) -> Management.GetVerifiableCredentialTemplateResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a verifiable credential template.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.verifiableCredentials.verification.templates.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the template to retrieve.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Templates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.verifiableCredentials.verification.templates.<a href="/src/management/api/resources/verifiableCredentials/resources/verification/resources/templates/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a verifiable credential template.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.verifiableCredentials.verification.templates.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the template to retrieve.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Templates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.verifiableCredentials.verification.templates.<a href="/src/management/api/resources/verifiableCredentials/resources/verification/resources/templates/client/Client.ts">update</a>(id, { ...params }) -> Management.UpdateVerifiableCredentialTemplateResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update a verifiable credential template.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.verifiableCredentials.verification.templates.update("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the template to retrieve.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.verifiableCredentials.verification.UpdateVerifiableCredentialTemplateRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `Templates.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
