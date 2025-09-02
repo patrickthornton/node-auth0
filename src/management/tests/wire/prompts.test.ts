@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("Prompts", () => {
     test("getSettings", async () => {
@@ -43,7 +44,7 @@ describe("Prompts", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.prompts.updateSettings();
+        const response = await client.prompts.updateSettings({});
         expect(response).toEqual({
             universal_login_experience: "new",
             identifier_first: true,

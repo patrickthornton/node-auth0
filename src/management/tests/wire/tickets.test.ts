@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("Tickets", () => {
     test("verifyEmail", async () => {
@@ -42,7 +43,7 @@ describe("Tickets", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.tickets.changePassword();
+        const response = await client.tickets.changePassword({});
         expect(response).toEqual({
             ticket: "ticket",
         });

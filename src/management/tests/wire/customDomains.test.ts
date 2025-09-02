@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("CustomDomains", () => {
     test("list", async () => {
@@ -15,7 +16,6 @@ describe("CustomDomains", () => {
                 custom_domain_id: "custom_domain_id",
                 domain: "domain",
                 primary: true,
-                status: "disabled",
                 type: "auth0_managed_certs",
                 origin_domain_name: "origin_domain_name",
                 verification: { methods: [{ name: "cname", record: "record" }] },
@@ -31,7 +31,6 @@ describe("CustomDomains", () => {
                 custom_domain_id: "custom_domain_id",
                 domain: "domain",
                 primary: true,
-                status: "disabled",
                 type: "auth0_managed_certs",
                 origin_domain_name: "origin_domain_name",
                 verification: {
@@ -56,7 +55,6 @@ describe("CustomDomains", () => {
             custom_domain_id: "custom_domain_id",
             domain: "domain",
             primary: true,
-            status: "disabled",
             type: "auth0_managed_certs",
             verification: { methods: [{ name: "cname", record: "record" }] },
             custom_client_ip_header: "custom_client_ip_header",
@@ -79,7 +77,6 @@ describe("CustomDomains", () => {
             custom_domain_id: "custom_domain_id",
             domain: "domain",
             primary: true,
-            status: "disabled",
             type: "auth0_managed_certs",
             verification: {
                 methods: [
@@ -102,7 +99,6 @@ describe("CustomDomains", () => {
             custom_domain_id: "custom_domain_id",
             domain: "domain",
             primary: true,
-            status: "disabled",
             type: "auth0_managed_certs",
             origin_domain_name: "origin_domain_name",
             verification: { methods: [{ name: "cname", record: "record" }] },
@@ -116,7 +112,6 @@ describe("CustomDomains", () => {
             custom_domain_id: "custom_domain_id",
             domain: "domain",
             primary: true,
-            status: "disabled",
             type: "auth0_managed_certs",
             origin_domain_name: "origin_domain_name",
             verification: {
@@ -150,7 +145,6 @@ describe("CustomDomains", () => {
             custom_domain_id: "custom_domain_id",
             domain: "domain",
             primary: true,
-            status: "disabled",
             type: "auth0_managed_certs",
             verification: { methods: [{ name: "cname", record: "record" }] },
             custom_client_ip_header: "custom_client_ip_header",
@@ -165,12 +159,11 @@ describe("CustomDomains", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.customDomains.update("id");
+        const response = await client.customDomains.update("id", {});
         expect(response).toEqual({
             custom_domain_id: "custom_domain_id",
             domain: "domain",
             primary: true,
-            status: "disabled",
             type: "auth0_managed_certs",
             verification: {
                 methods: [
@@ -213,7 +206,6 @@ describe("CustomDomains", () => {
             custom_domain_id: "custom_domain_id",
             domain: "domain",
             primary: true,
-            status: "disabled",
             type: "auth0_managed_certs",
             cname_api_key: "cname_api_key",
             origin_domain_name: "origin_domain_name",
@@ -234,7 +226,6 @@ describe("CustomDomains", () => {
             custom_domain_id: "custom_domain_id",
             domain: "domain",
             primary: true,
-            status: "disabled",
             type: "auth0_managed_certs",
             cname_api_key: "cname_api_key",
             origin_domain_name: "origin_domain_name",

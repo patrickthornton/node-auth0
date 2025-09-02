@@ -3,6 +3,7 @@
  */
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
+import * as Management from "../../../api/index.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("UsersExports", () => {
@@ -29,7 +30,7 @@ describe("UsersExports", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.jobs.usersExports.create();
+        const response = await client.jobs.usersExports.create({});
         expect(response).toEqual({
             status: "status",
             type: "type",

@@ -4,8 +4,57 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("TokenExchangeProfiles", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            next: "next",
+            token_exchange_profiles: [
+                {
+                    id: "id",
+                    name: "name",
+                    subject_token_type: "subject_token_type",
+                    action_id: "action_id",
+                    type: "custom_authentication",
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/token-exchange-profiles")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            next: "next",
+            token_exchange_profiles: [
+                {
+                    id: "id",
+                    name: "name",
+                    subject_token_type: "subject_token_type",
+                    action_id: "action_id",
+                    type: "custom_authentication",
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                },
+            ],
+        };
+        const page = await client.tokenExchangeProfiles.list();
+        expect(expected.token_exchange_profiles).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.token_exchange_profiles).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -37,6 +86,7 @@ describe("TokenExchangeProfiles", () => {
             name: "name",
             subject_token_type: "subject_token_type",
             action_id: "action_id",
+            type: "custom_authentication",
         });
         expect(response).toEqual({
             id: "id",
@@ -105,7 +155,7 @@ describe("TokenExchangeProfiles", () => {
             .statusCode(200)
             .build();
 
-        const response = await client.tokenExchangeProfiles.update("id");
+        const response = await client.tokenExchangeProfiles.update("id", {});
         expect(response).toEqual(undefined);
     });
 });

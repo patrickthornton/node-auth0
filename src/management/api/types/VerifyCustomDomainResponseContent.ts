@@ -11,7 +11,6 @@ export interface VerifyCustomDomainResponseContent {
     domain: string;
     /** Whether this is a primary domain (true) or not (false). */
     primary: boolean;
-    status: Management.CustomDomainStatusEnum;
     type: Management.CustomDomainTypeEnum;
     /** CNAME API key header. */
     cname_api_key?: string;

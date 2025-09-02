@@ -6,6 +6,40 @@ import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
 
 describe("UserGrants", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            grants: [{ id: "id", clientID: "clientID", user_id: "user_id", audience: "audience", scope: ["scope"] }],
+        };
+        server.mockEndpoint().get("/grants").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            grants: [
+                {
+                    id: "id",
+                    clientID: "clientID",
+                    user_id: "user_id",
+                    audience: "audience",
+                    scope: ["scope"],
+                },
+            ],
+        };
+        const page = await client.userGrants.list();
+        expect(expected.grants).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.grants).toEqual(nextPage.data);
+    });
+
     test("deleteByUserId", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });

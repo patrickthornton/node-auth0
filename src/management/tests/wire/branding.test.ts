@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("Branding", () => {
     test("get", async () => {
@@ -51,7 +52,7 @@ describe("Branding", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.branding.update();
+        const response = await client.branding.update({});
         expect(response).toEqual({
             colors: {
                 primary: "primary",

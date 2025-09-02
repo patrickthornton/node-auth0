@@ -6,6 +6,76 @@ import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("Invitations", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            invitations: [
+                {
+                    id: "id",
+                    organization_id: "organization_id",
+                    inviter: { name: "name" },
+                    invitee: { email: "email" },
+                    invitation_url: "invitation_url",
+                    created_at: "2024-01-15T09:30:00Z",
+                    expires_at: "2024-01-15T09:30:00Z",
+                    client_id: "client_id",
+                    connection_id: "connection_id",
+                    app_metadata: { key: "value" },
+                    user_metadata: { key: "value" },
+                    roles: ["roles"],
+                    ticket_id: "ticket_id",
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/organizations/id/invitations")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            invitations: [
+                {
+                    id: "id",
+                    organization_id: "organization_id",
+                    inviter: {
+                        name: "name",
+                    },
+                    invitee: {
+                        email: "email",
+                    },
+                    invitation_url: "invitation_url",
+                    created_at: "2024-01-15T09:30:00Z",
+                    expires_at: "2024-01-15T09:30:00Z",
+                    client_id: "client_id",
+                    connection_id: "connection_id",
+                    app_metadata: {
+                        key: "value",
+                    },
+                    user_metadata: {
+                        key: "value",
+                    },
+                    roles: ["roles"],
+                    ticket_id: "ticket_id",
+                },
+            ],
+        };
+        const page = await client.organizations.invitations.list("id");
+        expect(expected.invitations).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.invitations).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });

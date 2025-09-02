@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
+import * as Management from "../../../api/index.js";
 
 describe("BruteForceProtection", () => {
     test("get", async () => {
@@ -55,7 +56,7 @@ describe("BruteForceProtection", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.attackProtection.bruteForceProtection.update();
+        const response = await client.attackProtection.bruteForceProtection.update({});
         expect(response).toEqual({
             enabled: true,
             shields: ["block"],

@@ -4,8 +4,59 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("Connections", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            next: "next",
+            connections: [
+                {
+                    name: "name",
+                    display_name: "display_name",
+                    options: { key: "value" },
+                    id: "id",
+                    strategy: "strategy",
+                    realms: ["realms"],
+                    is_domain_connection: true,
+                    show_as_button: true,
+                    metadata: { key: "value" },
+                },
+            ],
+        };
+        server.mockEndpoint().get("/connections").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            next: "next",
+            connections: [
+                {
+                    name: "name",
+                    display_name: "display_name",
+                    options: {
+                        key: "value",
+                    },
+                    id: "id",
+                    strategy: "strategy",
+                    realms: ["realms"],
+                    is_domain_connection: true,
+                    show_as_button: true,
+                    metadata: {
+                        key: "value",
+                    },
+                },
+            ],
+        };
+        const page = await client.connections.list();
+        expect(expected.connections).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.connections).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -125,7 +176,7 @@ describe("Connections", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.connections.update("id");
+        const response = await client.connections.update("id", {});
         expect(response).toEqual({
             name: "name",
             display_name: "display_name",

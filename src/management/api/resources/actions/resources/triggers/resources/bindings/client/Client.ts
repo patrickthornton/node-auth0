@@ -72,6 +72,11 @@ export class Bindings {
                 if (perPage != null) {
                     _queryParams["per_page"] = perPage.toString();
                 }
+                let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                    requestOptions?.headers,
+                );
                 const _response = await (this._options.fetcher ?? core.fetcher)({
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
@@ -80,11 +85,7 @@ export class Bindings {
                         `actions/triggers/${encodeURIComponent(triggerId)}/bindings`,
                     ),
                     method: "GET",
-                    headers: mergeHeaders(
-                        this._options?.headers,
-                        mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                        requestOptions?.headers,
-                    ),
+                    headers: _headers,
                     queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
                     timeoutMs:
                         requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -161,7 +162,7 @@ export class Bindings {
      * Update the actions that are bound (i.e. attached) to a trigger. Once an action is created and deployed, it must be attached (i.e. bound) to a trigger so that it will be executed as part of a flow. The order in which the actions are provided will determine the order in which they are executed.
      *
      * @param {Management.ActionTriggerTypeEnum} triggerId - An actions extensibility point.
-     * @param {Management.actions.triggers.UpdateActionBindingsRequestContent} request
+     * @param {Management.UpdateActionBindingsRequestContent} request
      * @param {Bindings.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Management.BadRequestError}
@@ -170,11 +171,11 @@ export class Bindings {
      * @throws {@link Management.TooManyRequestsError}
      *
      * @example
-     *     await client.actions.triggers.bindings.updateMany("triggerId")
+     *     await client.actions.triggers.bindings.updateMany("triggerId", {})
      */
     public updateMany(
         triggerId: Management.ActionTriggerTypeEnum,
-        request: Management.actions.triggers.UpdateActionBindingsRequestContent = {},
+        request: Management.UpdateActionBindingsRequestContent,
         requestOptions?: Bindings.RequestOptions,
     ): core.HttpResponsePromise<Management.UpdateActionBindingsResponseContent> {
         return core.HttpResponsePromise.fromPromise(this.__updateMany(triggerId, request, requestOptions));
@@ -182,9 +183,14 @@ export class Bindings {
 
     private async __updateMany(
         triggerId: Management.ActionTriggerTypeEnum,
-        request: Management.actions.triggers.UpdateActionBindingsRequestContent = {},
+        request: Management.UpdateActionBindingsRequestContent,
         requestOptions?: Bindings.RequestOptions,
     ): Promise<core.WithRawResponse<Management.UpdateActionBindingsResponseContent>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -193,11 +199,7 @@ export class Bindings {
                 `actions/triggers/${encodeURIComponent(triggerId)}/bindings`,
             ),
             method: "PATCH",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",

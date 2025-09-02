@@ -6,6 +6,56 @@ import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("ClientGrants", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            client_grants: [
+                {
+                    id: "id",
+                    client_id: "client_id",
+                    audience: "audience",
+                    scope: ["scope"],
+                    organization_usage: "deny",
+                    allow_any_organization: true,
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/organizations/id/client-grants")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            client_grants: [
+                {
+                    id: "id",
+                    client_id: "client_id",
+                    audience: "audience",
+                    scope: ["scope"],
+                    organization_usage: "deny",
+                    allow_any_organization: true,
+                },
+            ],
+        };
+        const page = await client.organizations.clientGrants.list("id");
+        expect(expected.client_grants).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.client_grants).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });

@@ -457,6 +457,12 @@ export type OauthScope =
      * Read Organization Connections */
     | "read:organization_connections"
     /**
+     * Create Organization Discovery Domains */
+    | "create:organization_discovery_domains"
+    /**
+     * Update Organization Discovery Domains */
+    | "update:organization_discovery_domains"
+    /**
      * Update Organization Connections */
     | "update:organization_connections"
     /**
@@ -866,6 +872,8 @@ export const OauthScope = {
     CreateOrganizationClientGrants: "create:organization_client_grants",
     DeleteOrganizationClientGrants: "delete:organization_client_grants",
     ReadOrganizationConnections: "read:organization_connections",
+    CreateOrganizationDiscoveryDomains: "create:organization_discovery_domains",
+    UpdateOrganizationDiscoveryDomains: "update:organization_discovery_domains",
     UpdateOrganizationConnections: "update:organization_connections",
     DeleteOrganizationConnections: "delete:organization_connections",
     ReadOrganizationInvitations: "read:organization_invitations",

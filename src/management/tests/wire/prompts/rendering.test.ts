@@ -4,8 +4,51 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
+import * as Management from "../../../api/index.js";
 
 describe("Rendering", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            configs: [
+                {
+                    rendering_mode: "advanced",
+                    context_configuration: ["context_configuration"],
+                    default_head_tags_disabled: true,
+                    head_tags: [{}],
+                    use_page_template: true,
+                },
+            ],
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+        };
+        server.mockEndpoint().get("/prompts/rendering").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            configs: [
+                {
+                    rendering_mode: "advanced",
+                    context_configuration: ["context_configuration"],
+                    default_head_tags_disabled: true,
+                    head_tags: [{}],
+                    use_page_template: true,
+                },
+            ],
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+        };
+        const page = await client.prompts.rendering.list();
+        expect(expected.configs).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.configs).toEqual(nextPage.data);
+    });
+
     test("get", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -74,7 +117,7 @@ describe("Rendering", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.prompts.rendering.update("login", "login");
+        const response = await client.prompts.rendering.update("login", "login", {});
         expect(response).toEqual({
             rendering_mode: "advanced",
             context_configuration: ["context_configuration"],

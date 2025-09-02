@@ -6,6 +6,58 @@ import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("Sessions", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            sessions: [
+                {
+                    id: "id",
+                    user_id: "user_id",
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    authenticated_at: "2024-01-15T09:30:00Z",
+                    idle_expires_at: "2024-01-15T09:30:00Z",
+                    expires_at: "2024-01-15T09:30:00Z",
+                    last_interacted_at: "2024-01-15T09:30:00Z",
+                    clients: [{}],
+                },
+            ],
+            next: "next",
+        };
+        server
+            .mockEndpoint()
+            .get("/users/user_id/sessions")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            sessions: [
+                {
+                    id: "id",
+                    user_id: "user_id",
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    authenticated_at: "2024-01-15T09:30:00Z",
+                    idle_expires_at: "2024-01-15T09:30:00Z",
+                    expires_at: "2024-01-15T09:30:00Z",
+                    last_interacted_at: "2024-01-15T09:30:00Z",
+                    clients: [{}],
+                },
+            ],
+            next: "next",
+        };
+        const page = await client.users.sessions.list("user_id");
+        expect(expected.sessions).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.sessions).toEqual(nextPage.data);
+    });
+
     test("delete", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });

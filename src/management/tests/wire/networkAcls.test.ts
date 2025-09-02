@@ -4,8 +4,58 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("NetworkAcls", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            network_acls: [
+                {
+                    id: "id",
+                    description: "description",
+                    active: true,
+                    priority: 1.1,
+                    rule: { action: {}, scope: "management" },
+                    created_at: "created_at",
+                    updated_at: "updated_at",
+                },
+            ],
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+        };
+        server.mockEndpoint().get("/network-acls").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            network_acls: [
+                {
+                    id: "id",
+                    description: "description",
+                    active: true,
+                    priority: 1.1,
+                    rule: {
+                        action: {},
+                        scope: "management",
+                    },
+                    created_at: "created_at",
+                    updated_at: "updated_at",
+                },
+            ],
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+        };
+        const page = await client.networkAcls.list();
+        expect(expected.network_acls).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.network_acls).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -263,7 +313,7 @@ describe("NetworkAcls", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.networkAcls.update("id");
+        const response = await client.networkAcls.update("id", {});
         expect(response).toEqual({
             id: "id",
             description: "description",

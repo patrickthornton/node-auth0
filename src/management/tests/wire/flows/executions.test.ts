@@ -6,6 +6,56 @@ import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("Executions", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            next: "next",
+            executions: [
+                {
+                    id: "id",
+                    trace_id: "trace_id",
+                    journey_id: "journey_id",
+                    status: "status",
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    started_at: "2024-01-15T09:30:00Z",
+                    ended_at: "2024-01-15T09:30:00Z",
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/flows/flow_id/executions")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            next: "next",
+            executions: [
+                {
+                    id: "id",
+                    trace_id: "trace_id",
+                    journey_id: "journey_id",
+                    status: "status",
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    started_at: "2024-01-15T09:30:00Z",
+                    ended_at: "2024-01-15T09:30:00Z",
+                },
+            ],
+        };
+        const page = await client.flows.executions.list("flow_id");
+        expect(expected.executions).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.executions).toEqual(nextPage.data);
+    });
+
     test("get", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });

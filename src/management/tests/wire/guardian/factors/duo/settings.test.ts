@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../../../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../../../Client.js";
+import * as Management from "../../../../../api/index.js";
 
 describe("Settings", () => {
     test("get", async () => {
@@ -41,7 +42,7 @@ describe("Settings", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.guardian.factors.duo.settings.set();
+        const response = await client.guardian.factors.duo.settings.set({});
         expect(response).toEqual({
             ikey: "ikey",
             skey: "skey",
@@ -63,7 +64,7 @@ describe("Settings", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.guardian.factors.duo.settings.update();
+        const response = await client.guardian.factors.duo.settings.update({});
         expect(response).toEqual({
             ikey: "ikey",
             skey: "skey",

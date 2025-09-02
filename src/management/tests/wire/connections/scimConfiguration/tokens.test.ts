@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../../Client.js";
+import * as Management from "../../../../api/index.js";
 
 describe("Tokens", () => {
     test("get", async () => {
@@ -59,7 +60,7 @@ describe("Tokens", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.connections.scimConfiguration.tokens.create("id");
+        const response = await client.connections.scimConfiguration.tokens.create("id", {});
         expect(response).toEqual({
             token_id: "token_id",
             token: "token",

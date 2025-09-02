@@ -3,6 +3,7 @@
  */
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
+import * as Management from "../../../api/index.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("SsoTicket", () => {
@@ -20,7 +21,7 @@ describe("SsoTicket", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.selfServiceProfiles.ssoTicket.create("id");
+        const response = await client.selfServiceProfiles.ssoTicket.create("id", {});
         expect(response).toEqual({
             ticket: "ticket",
         });

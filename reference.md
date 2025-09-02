@@ -306,7 +306,7 @@ Update an existing action. If this action is currently bound to a trigger, updat
 <dd>
 
 ```typescript
-await client.actions.update("id");
+await client.actions.update("id", {});
 ```
 
 </dd>
@@ -572,7 +572,7 @@ Update branding settings.
 <dd>
 
 ```typescript
-await client.branding.update();
+await client.branding.update({});
 ```
 
 </dd>
@@ -839,7 +839,7 @@ Update a client grant.
 <dd>
 
 ```typescript
-await client.clientGrants.update("id");
+await client.clientGrants.update("id", {});
 ```
 
 </dd>
@@ -1265,7 +1265,7 @@ Notes:
 <dd>
 
 ```typescript
-await client.clients.update("id");
+await client.clients.update("id", {});
 ```
 
 </dd>
@@ -1699,7 +1699,7 @@ Update details for a specific <a href="https://auth0.com/docs/authenticate/ident
 <dd>
 
 ```typescript
-await client.connections.update("id");
+await client.connections.update("id", {});
 ```
 
 </dd>
@@ -2113,7 +2113,7 @@ Some considerations:
 <dd>
 
 ```typescript
-await client.customDomains.update("id");
+await client.customDomains.update("id", {});
 ```
 
 </dd>
@@ -2395,6 +2395,7 @@ When refresh token rotation is enabled, the endpoint becomes consistent. For mor
 ```typescript
 await client.deviceCredentials.createPublicKey({
     device_name: "device_name",
+    type: "public_key",
     value: "value",
     device_id: "device_id",
 });
@@ -2574,7 +2575,7 @@ await client.emailTemplates.create({
 <dl>
 <dd>
 
-Retrieve an email template by pre-defined name. These names are `verify_email`, `verify_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, and `user_invitation`. The names `change_password`, and `password_reset` are also supported for legacy scenarios.
+Retrieve an email template by pre-defined name. These names are `verify_email`, `verify_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, `user_invitation`, and `async_approval`. The names `change_password`, and `password_reset` are also supported for legacy scenarios.
 
 </dd>
 </dl>
@@ -2606,7 +2607,7 @@ await client.emailTemplates.get("verify_email");
 <dl>
 <dd>
 
-**templateName:** `Management.EmailTemplateNameEnum` — Template name. Can be `verify_email`, `verify_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, `user_invitation`, `change_password` (legacy), or `password_reset` (legacy).
+**templateName:** `Management.EmailTemplateNameEnum` — Template name. Can be `verify_email`, `verify_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, `user_invitation`, `async_approval`, `change_password` (legacy), or `password_reset` (legacy).
 
 </dd>
 </dl>
@@ -2671,7 +2672,7 @@ await client.emailTemplates.set("verify_email", {
 <dl>
 <dd>
 
-**templateName:** `Management.EmailTemplateNameEnum` — Template name. Can be `verify_email`, `verify_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, `user_invitation`, `change_password` (legacy), or `password_reset` (legacy).
+**templateName:** `Management.EmailTemplateNameEnum` — Template name. Can be `verify_email`, `verify_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, `user_invitation`, `async_approval`, `change_password` (legacy), or `password_reset` (legacy).
 
 </dd>
 </dl>
@@ -2726,7 +2727,7 @@ Modify an email template.
 <dd>
 
 ```typescript
-await client.emailTemplates.update("verify_email");
+await client.emailTemplates.update("verify_email", {});
 ```
 
 </dd>
@@ -2742,7 +2743,7 @@ await client.emailTemplates.update("verify_email");
 <dl>
 <dd>
 
-**templateName:** `Management.EmailTemplateNameEnum` — Template name. Can be `verify_email`, `verify_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, `user_invitation`, `change_password` (legacy), or `password_reset` (legacy).
+**templateName:** `Management.EmailTemplateNameEnum` — Template name. Can be `verify_email`, `verify_email_by_code`, `reset_email`, `reset_email_by_code`, `welcome_email`, `blocked_account`, `stolen_credentials`, `enrollment_email`, `mfa_oob_code`, `user_invitation`, `async_approval`, `change_password` (legacy), or `password_reset` (legacy).
 
 </dd>
 </dl>
@@ -2987,7 +2988,7 @@ await client.eventStreams.delete("id");
 <dd>
 
 ```typescript
-await client.eventStreams.update("id");
+await client.eventStreams.update("id", {});
 ```
 
 </dd>
@@ -3370,7 +3371,7 @@ await client.flows.delete("id");
 <dd>
 
 ```typescript
-await client.flows.update("id");
+await client.flows.update("id", {});
 ```
 
 </dd>
@@ -3639,7 +3640,7 @@ await client.forms.delete("id");
 <dd>
 
 ```typescript
-await client.forms.update("id");
+await client.forms.update("id", {});
 ```
 
 </dd>
@@ -4187,7 +4188,7 @@ Update an existing hook.
 <dd>
 
 ```typescript
-await client.hooks.update("id");
+await client.hooks.update("id", {});
 ```
 
 </dd>
@@ -4896,7 +4897,7 @@ Update a log stream.
 <dd>
 
 ```typescript
-await client.logStreams.update("id");
+await client.logStreams.update("id", {});
 ```
 
 </dd>
@@ -5482,7 +5483,7 @@ Update existing access control list for your client.
 <dd>
 
 ```typescript
-await client.networkAcls.update("id");
+await client.networkAcls.update("id", {});
 ```
 
 </dd>
@@ -5903,7 +5904,7 @@ Update the details of a specific <a href="https://auth0.com/docs/manage-users/or
 <dd>
 
 ```typescript
-await client.organizations.update("id");
+await client.organizations.update("id", {});
 ```
 
 </dd>
@@ -6031,7 +6032,7 @@ Update the Universal Login configuration of your tenant. This includes the <a hr
 <dd>
 
 ```typescript
-await client.prompts.updateSettings();
+await client.prompts.updateSettings({});
 ```
 
 </dd>
@@ -6495,7 +6496,7 @@ Change an existing API setting by resource server ID. For more information, read
 <dd>
 
 ```typescript
-await client.resourceServers.update("id");
+await client.resourceServers.update("id", {});
 ```
 
 </dd>
@@ -6835,7 +6836,7 @@ Modify the details of a specific <a href="https://auth0.com/docs/manage-users/ac
 <dd>
 
 ```typescript
-await client.roles.update("id");
+await client.roles.update("id", {});
 ```
 
 </dd>
@@ -7182,7 +7183,7 @@ Update an existing rule.
 <dd>
 
 ```typescript
-await client.rules.update("id");
+await client.rules.update("id", {});
 ```
 
 </dd>
@@ -7713,7 +7714,7 @@ Updates a self-service profile.
 <dd>
 
 ```typescript
-await client.selfServiceProfiles.update("id");
+await client.selfServiceProfiles.update("id", {});
 ```
 
 </dd>
@@ -8067,6 +8068,128 @@ await client.stats.getDaily();
 </dl>
 </details>
 
+## SupplementalSignals
+
+<details><summary><code>client.supplementalSignals.<a href="/src/management/api/resources/supplementalSignals/client/Client.ts">get</a>() -> Management.GetSupplementalSignalsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get the supplemental signals configuration for a tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.supplementalSignals.get();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `SupplementalSignals.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.supplementalSignals.<a href="/src/management/api/resources/supplementalSignals/client/Client.ts">patch</a>({ ...params }) -> Management.PatchSupplementalSignalsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update the supplemental signals configuration for a tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.supplementalSignals.patch({
+    akamai_enabled: true,
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.UpdateSupplementalSignalsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SupplementalSignals.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
 ## Tickets
 
 <details><summary><code>client.tickets.<a href="/src/management/api/resources/tickets/client/Client.ts">verifyEmail</a>({ ...params }) -> Management.VerifyEmailTicketResponseContent</code></summary>
@@ -8164,7 +8287,7 @@ Note: This endpoint does not verify the given user’s identity. If you call thi
 <dd>
 
 ```typescript
-await client.tickets.changePassword();
+await client.tickets.changePassword({});
 ```
 
 </dd>
@@ -8314,6 +8437,7 @@ await client.tokenExchangeProfiles.create({
     name: "name",
     subject_token_type: "subject_token_type",
     action_id: "action_id",
+    type: "custom_authentication",
 });
 ```
 
@@ -8503,7 +8627,7 @@ Update a Token Exchange Profile within your tenant.
 <dd>
 
 ```typescript
-await client.tokenExchangeProfiles.update("id");
+await client.tokenExchangeProfiles.update("id", {});
 ```
 
 </dd>
@@ -9272,7 +9396,7 @@ The modified object ends up with the following <code>user_metadata</code> proper
 <dd>
 
 ```typescript
-await client.users.update("id");
+await client.users.update("id", {});
 ```
 
 </dd>
@@ -9406,7 +9530,7 @@ Revokes selected resources related to a user (sessions, refresh tokens, ...).
 <dd>
 
 ```typescript
-await client.users.revokeAccess("id");
+await client.users.revokeAccess("id", {});
 ```
 
 </dd>
@@ -9913,7 +10037,7 @@ Update the actions that are bound (i.e. attached) to a trigger. Once an action i
 <dd>
 
 ```typescript
-await client.actions.triggers.bindings.updateMany("triggerId");
+await client.actions.triggers.bindings.updateMany("triggerId", {});
 ```
 
 </dd>
@@ -9937,7 +10061,7 @@ await client.actions.triggers.bindings.updateMany("triggerId");
 <dl>
 <dd>
 
-**request:** `Management.actions.triggers.UpdateActionBindingsRequestContent`
+**request:** `Management.UpdateActionBindingsRequestContent`
 
 </dd>
 </dl>
@@ -10169,7 +10293,7 @@ Update details of the Breached Password Detection configuration of your tenant.
 <dd>
 
 ```typescript
-await client.attackProtection.breachedPasswordDetection.update();
+await client.attackProtection.breachedPasswordDetection.update({});
 ```
 
 </dd>
@@ -10185,7 +10309,7 @@ await client.attackProtection.breachedPasswordDetection.update();
 <dl>
 <dd>
 
-**request:** `Management.attackProtection.UpdateBreachedPasswordDetectionSettingsRequestContent`
+**request:** `Management.UpdateBreachedPasswordDetectionSettingsRequestContent`
 
 </dd>
 </dl>
@@ -10289,7 +10413,7 @@ Update the Brute-force Protection configuration of your tenant.
 <dd>
 
 ```typescript
-await client.attackProtection.bruteForceProtection.update();
+await client.attackProtection.bruteForceProtection.update({});
 ```
 
 </dd>
@@ -10305,7 +10429,7 @@ await client.attackProtection.bruteForceProtection.update();
 <dl>
 <dd>
 
-**request:** `Management.attackProtection.UpdateBruteForceSettingsRequestContent`
+**request:** `Management.UpdateBruteForceSettingsRequestContent`
 
 </dd>
 </dl>
@@ -10409,7 +10533,7 @@ Update the details of the Suspicious IP Throttling configuration of your tenant.
 <dd>
 
 ```typescript
-await client.attackProtection.suspiciousIpThrottling.update();
+await client.attackProtection.suspiciousIpThrottling.update({});
 ```
 
 </dd>
@@ -10425,7 +10549,7 @@ await client.attackProtection.suspiciousIpThrottling.update();
 <dl>
 <dd>
 
-**request:** `Management.attackProtection.UpdateSuspiciousIpThrottlingSettingsRequestContent`
+**request:** `Management.UpdateSuspiciousIpThrottlingSettingsRequestContent`
 
 </dd>
 </dl>
@@ -10729,7 +10853,7 @@ await client.branding.themes.create({
 <dl>
 <dd>
 
-**request:** `Management.branding.CreateBrandingThemeRequestContent`
+**request:** `Management.CreateBrandingThemeRequestContent`
 
 </dd>
 </dl>
@@ -11052,7 +11176,7 @@ await client.branding.themes.update("themeId", {
 <dl>
 <dd>
 
-**request:** `Management.branding.UpdateBrandingThemeRequestContent`
+**request:** `Management.UpdateBrandingThemeRequestContent`
 
 </dd>
 </dl>
@@ -11186,7 +11310,7 @@ await client.branding.phone.providers.create({
 <dl>
 <dd>
 
-**request:** `Management.branding.phone.CreateBrandingPhoneProviderRequestContent`
+**request:** `Management.CreateBrandingPhoneProviderRequestContent`
 
 </dd>
 </dl>
@@ -11360,7 +11484,7 @@ The <code>credentials</code> object requires different properties depending on t
 <dd>
 
 ```typescript
-await client.branding.phone.providers.update("id");
+await client.branding.phone.providers.update("id", {});
 ```
 
 </dd>
@@ -11384,7 +11508,7 @@ await client.branding.phone.providers.update("id");
 <dl>
 <dd>
 
-**request:** `Management.branding.phone.UpdateBrandingPhoneProviderRequestContent`
+**request:** `Management.UpdateBrandingPhoneProviderRequestContent`
 
 </dd>
 </dl>
@@ -11442,7 +11566,7 @@ await client.branding.phone.providers.test("id", {
 <dl>
 <dd>
 
-**request:** `Management.branding.phone.CreatePhoneProviderSendTestRequestContent`
+**request:** `Management.CreatePhoneProviderSendTestRequestContent`
 
 </dd>
 </dl>
@@ -11524,7 +11648,7 @@ await client.branding.phone.templates.list();
 <dd>
 
 ```typescript
-await client.branding.phone.templates.create();
+await client.branding.phone.templates.create({});
 ```
 
 </dd>
@@ -11540,7 +11664,7 @@ await client.branding.phone.templates.create();
 <dl>
 <dd>
 
-**request:** `Management.branding.phone.CreatePhoneTemplateRequestContent`
+**request:** `Management.CreatePhoneTemplateRequestContent`
 
 </dd>
 </dl>
@@ -11668,7 +11792,7 @@ await client.branding.phone.templates.delete("id");
 <dd>
 
 ```typescript
-await client.branding.phone.templates.update("id");
+await client.branding.phone.templates.update("id", {});
 ```
 
 </dd>
@@ -11692,7 +11816,7 @@ await client.branding.phone.templates.update("id");
 <dl>
 <dd>
 
-**request:** `Management.branding.phone.UpdatePhoneTemplateRequestContent`
+**request:** `Management.UpdatePhoneTemplateRequestContent`
 
 </dd>
 </dl>
@@ -11808,7 +11932,7 @@ await client.branding.phone.templates.test("id", {
 <dl>
 <dd>
 
-**request:** `Management.branding.phone.CreatePhoneTemplateTestNotificationRequestContent`
+**request:** `Management.CreatePhoneTemplateTestNotificationRequestContent`
 
 </dd>
 </dl>
@@ -12048,7 +12172,7 @@ await client.clients.credentials.create("client_id", {
 <dl>
 <dd>
 
-**request:** `Management.clients.PostClientCredentialRequestContent`
+**request:** `Management.PostClientCredentialRequestContent`
 
 </dd>
 </dl>
@@ -12239,7 +12363,7 @@ Change a client credential you previously created. May be enabled or disabled. F
 <dd>
 
 ```typescript
-await client.clients.credentials.update("client_id", "credential_id");
+await client.clients.credentials.update("client_id", "credential_id", {});
 ```
 
 </dd>
@@ -12271,7 +12395,7 @@ await client.clients.credentials.update("client_id", "credential_id");
 <dl>
 <dd>
 
-**request:** `Management.clients.PatchClientCredentialRequestContent`
+**request:** `Management.PatchClientCredentialRequestContent`
 
 </dd>
 </dl>
@@ -12915,7 +13039,7 @@ await client.connections.scimConfiguration.update("id", {
 <dl>
 <dd>
 
-**request:** `Management.connections.UpdateScimConfigurationRequestContent`
+**request:** `Management.UpdateScimConfigurationRequestContent`
 
 </dd>
 </dl>
@@ -13165,7 +13289,7 @@ Create a scim token for a scim client.
 <dd>
 
 ```typescript
-await client.connections.scimConfiguration.tokens.create("id");
+await client.connections.scimConfiguration.tokens.create("id", {});
 ```
 
 </dd>
@@ -13189,7 +13313,7 @@ await client.connections.scimConfiguration.tokens.create("id");
 <dl>
 <dd>
 
-**request:** `Management.connections.scimConfiguration.CreateScimTokenRequestContent`
+**request:** `Management.CreateScimTokenRequestContent`
 
 </dd>
 </dl>
@@ -13434,7 +13558,7 @@ await client.emails.provider.create({
 <dl>
 <dd>
 
-**request:** `Management.emails.CreateEmailProviderRequestContent`
+**request:** `Management.CreateEmailProviderRequestContent`
 
 </dd>
 </dl>
@@ -13575,7 +13699,7 @@ options, which will be used when sending an email:
 <dd>
 
 ```typescript
-await client.emails.provider.update();
+await client.emails.provider.update({});
 ```
 
 </dd>
@@ -13591,7 +13715,7 @@ await client.emails.provider.update();
 <dl>
 <dd>
 
-**request:** `Management.emails.UpdateEmailProviderRequestContent`
+**request:** `Management.UpdateEmailProviderRequestContent`
 
 </dd>
 </dl>
@@ -13739,7 +13863,7 @@ await client.eventStreams.deliveries.getHistory("id", "event_id");
 <dd>
 
 ```typescript
-await client.eventStreams.redeliveries.create("id");
+await client.eventStreams.redeliveries.create("id", {});
 ```
 
 </dd>
@@ -13763,7 +13887,7 @@ await client.eventStreams.redeliveries.create("id");
 <dl>
 <dd>
 
-**request:** `Management.eventStreams.CreateEventStreamRedeliveryRequestContent`
+**request:** `Management.CreateEventStreamRedeliveryRequestContent`
 
 </dd>
 </dl>
@@ -14076,7 +14200,7 @@ await client.guardian.enrollments.createTicket({
 <dl>
 <dd>
 
-**request:** `Management.guardian.CreateGuardianEnrollmentTicketRequestContent`
+**request:** `Management.CreateGuardianEnrollmentTicketRequestContent`
 
 </dd>
 </dl>
@@ -14332,7 +14456,7 @@ await client.guardian.factors.set("push-notification", {
 <dl>
 <dd>
 
-**request:** `Management.guardian.SetGuardianFactorRequestContent`
+**request:** `Management.SetGuardianFactorRequestContent`
 
 </dd>
 </dl>
@@ -14592,7 +14716,7 @@ await client.guardian.factors.phone.setMessageTypes({
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.SetGuardianFactorPhoneMessageTypesRequestContent`
+**request:** `Management.SetGuardianFactorPhoneMessageTypesRequestContent`
 
 </dd>
 </dl>
@@ -14694,7 +14818,7 @@ Update the configuration of a Twilio phone provider that has been set up in your
 <dd>
 
 ```typescript
-await client.guardian.factors.phone.setTwilioProvider();
+await client.guardian.factors.phone.setTwilioProvider({});
 ```
 
 </dd>
@@ -14710,7 +14834,7 @@ await client.guardian.factors.phone.setTwilioProvider();
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.SetGuardianFactorsProviderPhoneTwilioRequestContent`
+**request:** `Management.SetGuardianFactorsProviderPhoneTwilioRequestContent`
 
 </dd>
 </dl>
@@ -14815,7 +14939,7 @@ await client.guardian.factors.phone.setProvider({
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.SetGuardianFactorsProviderPhoneRequestContent`
+**request:** `Management.SetGuardianFactorsProviderPhoneRequestContent`
 
 </dd>
 </dl>
@@ -14936,7 +15060,7 @@ await client.guardian.factors.phone.setTemplates({
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.SetGuardianFactorPhoneTemplatesRequestContent`
+**request:** `Management.SetGuardianFactorPhoneTemplatesRequestContent`
 
 </dd>
 </dl>
@@ -15284,7 +15408,7 @@ Configure the <a href="https://auth0.com/docs/multifactor-authentication/develop
 <dd>
 
 ```typescript
-await client.guardian.factors.pushNotification.setSnsProvider();
+await client.guardian.factors.pushNotification.setSnsProvider({});
 ```
 
 </dd>
@@ -15300,7 +15424,7 @@ await client.guardian.factors.pushNotification.setSnsProvider();
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.SetGuardianFactorsProviderPushNotificationSnsRequestContent`
+**request:** `Management.SetGuardianFactorsProviderPushNotificationSnsRequestContent`
 
 </dd>
 </dl>
@@ -15347,7 +15471,7 @@ Configure the <a href="https://auth0.com/docs/multifactor-authentication/develop
 <dd>
 
 ```typescript
-await client.guardian.factors.pushNotification.updateSnsProvider();
+await client.guardian.factors.pushNotification.updateSnsProvider({});
 ```
 
 </dd>
@@ -15363,7 +15487,7 @@ await client.guardian.factors.pushNotification.updateSnsProvider();
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.UpdateGuardianFactorsProviderPushNotificationSnsRequestContent`
+**request:** `Management.UpdateGuardianFactorsProviderPushNotificationSnsRequestContent`
 
 </dd>
 </dl>
@@ -15483,7 +15607,7 @@ await client.guardian.factors.pushNotification.setProvider({
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.SetGuardianFactorsProviderPushNotificationRequestContent`
+**request:** `Management.SetGuardianFactorsProviderPushNotificationRequestContent`
 
 </dd>
 </dl>
@@ -15591,7 +15715,7 @@ This endpoint has been deprecated. To complete this action, use the <a href="htt
 <dd>
 
 ```typescript
-await client.guardian.factors.sms.setTwilioProvider();
+await client.guardian.factors.sms.setTwilioProvider({});
 ```
 
 </dd>
@@ -15607,7 +15731,7 @@ await client.guardian.factors.sms.setTwilioProvider();
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.SetGuardianFactorsProviderSmsTwilioRequestContent`
+**request:** `Management.SetGuardianFactorsProviderSmsTwilioRequestContent`
 
 </dd>
 </dl>
@@ -15731,7 +15855,7 @@ await client.guardian.factors.sms.setProvider({
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.SetGuardianFactorsProviderSmsRequestContent`
+**request:** `Management.SetGuardianFactorsProviderSmsRequestContent`
 
 </dd>
 </dl>
@@ -15856,7 +15980,7 @@ await client.guardian.factors.sms.setTemplates({
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.SetGuardianFactorSmsTemplatesRequestContent`
+**request:** `Management.SetGuardianFactorSmsTemplatesRequestContent`
 
 </dd>
 </dl>
@@ -15960,7 +16084,7 @@ Set the DUO account configuration and other properties specific to this factor.
 <dd>
 
 ```typescript
-await client.guardian.factors.duo.settings.set();
+await client.guardian.factors.duo.settings.set({});
 ```
 
 </dd>
@@ -15976,7 +16100,7 @@ await client.guardian.factors.duo.settings.set();
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.duo.SetGuardianFactorDuoSettingsRequestContent`
+**request:** `Management.SetGuardianFactorDuoSettingsRequestContent`
 
 </dd>
 </dl>
@@ -16008,7 +16132,7 @@ await client.guardian.factors.duo.settings.set();
 <dd>
 
 ```typescript
-await client.guardian.factors.duo.settings.update();
+await client.guardian.factors.duo.settings.update({});
 ```
 
 </dd>
@@ -16024,7 +16148,7 @@ await client.guardian.factors.duo.settings.update();
 <dl>
 <dd>
 
-**request:** `Management.guardian.factors.duo.UpdateGuardianFactorDuoSettingsRequestContent`
+**request:** `Management.UpdateGuardianFactorDuoSettingsRequestContent`
 
 </dd>
 </dl>
@@ -16355,7 +16479,7 @@ Export all users to a file via a long-running job.
 <dd>
 
 ```typescript
-await client.jobs.usersExports.create();
+await client.jobs.usersExports.create({});
 ```
 
 </dd>
@@ -16371,7 +16495,7 @@ await client.jobs.usersExports.create();
 <dl>
 <dd>
 
-**request:** `Management.jobs.CreateExportUsersRequestContent`
+**request:** `Management.CreateExportUsersRequestContent`
 
 </dd>
 </dl>
@@ -16508,7 +16632,7 @@ await client.jobs.verificationEmail.create({
 <dl>
 <dd>
 
-**request:** `Management.jobs.CreateVerificationEmailRequestContent`
+**request:** `Management.CreateVerificationEmailRequestContent`
 
 </dd>
 </dl>
@@ -16699,7 +16823,7 @@ await client.keys.customSigning.set({
 <dl>
 <dd>
 
-**request:** `Management.keys.SetCustomSigningKeysRequestContent`
+**request:** `Management.SetCustomSigningKeysRequestContent`
 
 </dd>
 </dl>
@@ -16893,7 +17017,7 @@ await client.keys.encryption.create({
 <dl>
 <dd>
 
-**request:** `Management.keys.CreateEncryptionKeyRequestContent`
+**request:** `Management.CreateEncryptionKeyRequestContent`
 
 </dd>
 </dl>
@@ -17084,7 +17208,7 @@ await client.keys.encryption.import("kid", {
 <dl>
 <dd>
 
-**request:** `Management.keys.ImportEncryptionKeyRequestContent`
+**request:** `Management.ImportEncryptionKeyRequestContent`
 
 </dd>
 </dl>
@@ -17573,7 +17697,7 @@ await client.organizations.clientGrants.create("id", {
 <dl>
 <dd>
 
-**request:** `Management.organizations.AssociateOrganizationClientGrantRequestContent`
+**request:** `Management.AssociateOrganizationClientGrantRequestContent`
 
 </dd>
 </dl>
@@ -17786,7 +17910,7 @@ await client.organizations.enabledConnections.add("id", {
 <dl>
 <dd>
 
-**request:** `Management.organizations.AddOrganizationConnectionRequestContent`
+**request:** `Management.AddOrganizationConnectionRequestContent`
 
 </dd>
 </dl>
@@ -17977,7 +18101,7 @@ Modify the details of a specific connection currently enabled for an Organizatio
 <dd>
 
 ```typescript
-await client.organizations.enabledConnections.update("id", "connectionId");
+await client.organizations.enabledConnections.update("id", "connectionId", {});
 ```
 
 </dd>
@@ -18009,7 +18133,7 @@ await client.organizations.enabledConnections.update("id", "connectionId");
 <dl>
 <dd>
 
-**request:** `Management.organizations.UpdateOrganizationConnectionRequestContent`
+**request:** `Management.UpdateOrganizationConnectionRequestContent`
 
 </dd>
 </dl>
@@ -18170,7 +18294,7 @@ await client.organizations.invitations.create("id", {
 <dl>
 <dd>
 
-**request:** `Management.organizations.CreateOrganizationInvitationRequestContent`
+**request:** `Management.CreateOrganizationInvitationRequestContent`
 
 </dd>
 </dl>
@@ -18468,7 +18592,7 @@ await client.organizations.members.create("id", {
 <dl>
 <dd>
 
-**request:** `Management.organizations.CreateOrganizationMemberRequestContent`
+**request:** `Management.CreateOrganizationMemberRequestContent`
 
 </dd>
 </dl>
@@ -18526,7 +18650,7 @@ await client.organizations.members.delete("id", {
 <dl>
 <dd>
 
-**request:** `Management.organizations.DeleteOrganizationMembersRequestContent`
+**request:** `Management.DeleteOrganizationMembersRequestContent`
 
 </dd>
 </dl>
@@ -18701,7 +18825,7 @@ await client.organizations.members.roles.assign("id", "user_id", {
 <dl>
 <dd>
 
-**request:** `Management.organizations.members.AssignOrganizationMemberRolesRequestContent`
+**request:** `Management.AssignOrganizationMemberRolesRequestContent`
 
 </dd>
 </dl>
@@ -18784,7 +18908,7 @@ await client.organizations.members.roles.delete("id", "user_id", {
 <dl>
 <dd>
 
-**request:** `Management.organizations.members.DeleteOrganizationMemberRolesRequestContent`
+**request:** `Management.DeleteOrganizationMemberRolesRequestContent`
 
 </dd>
 </dl>
@@ -19002,7 +19126,7 @@ Learn more about <a href='https://auth0.com/docs/customize/login-pages/advanced-
 <dd>
 
 ```typescript
-await client.prompts.rendering.update("login", "login");
+await client.prompts.rendering.update("login", "login", {});
 ```
 
 </dd>
@@ -19034,7 +19158,7 @@ await client.prompts.rendering.update("login", "login");
 <dl>
 <dd>
 
-**request:** `Management.prompts.UpdateAculRequestContent`
+**request:** `Management.UpdateAculRequestContent`
 
 </dd>
 </dl>
@@ -19486,7 +19610,7 @@ await client.roles.permissions.add("id", {
 <dl>
 <dd>
 
-**request:** `Management.roles.AddRolePermissionsRequestContent`
+**request:** `Management.AddRolePermissionsRequestContent`
 
 </dd>
 </dl>
@@ -19564,7 +19688,7 @@ await client.roles.permissions.delete("id", {
 <dl>
 <dd>
 
-**request:** `Management.roles.DeleteRolePermissionsRequestContent`
+**request:** `Management.DeleteRolePermissionsRequestContent`
 
 </dd>
 </dl>
@@ -19741,7 +19865,7 @@ await client.roles.users.assign("id", {
 <dl>
 <dd>
 
-**request:** `Management.roles.AssignRoleUsersRequestContent`
+**request:** `Management.AssignRoleUsersRequestContent`
 
 </dd>
 </dl>
@@ -19960,7 +20084,7 @@ Creates an SSO access ticket to initiate the Self Service SSO Flow using a self-
 <dd>
 
 ```typescript
-await client.selfServiceProfiles.ssoTicket.create("id");
+await client.selfServiceProfiles.ssoTicket.create("id", {});
 ```
 
 </dd>
@@ -19984,7 +20108,7 @@ await client.selfServiceProfiles.ssoTicket.create("id");
 <dl>
 <dd>
 
-**request:** `Management.selfServiceProfiles.CreateSelfServiceProfileSsoTicketRequestContent`
+**request:** `Management.CreateSelfServiceProfileSsoTicketRequestContent`
 
 </dd>
 </dl>
@@ -20168,7 +20292,7 @@ Update settings for a tenant.
 <dd>
 
 ```typescript
-await client.tenants.settings.update();
+await client.tenants.settings.update({});
 ```
 
 </dd>
@@ -20184,7 +20308,7 @@ await client.tenants.settings.update();
 <dl>
 <dd>
 
-**request:** `Management.tenants.UpdateTenantSettingsRequestContent`
+**request:** `Management.UpdateTenantSettingsRequestContent`
 
 </dd>
 </dl>
@@ -20339,7 +20463,7 @@ await client.users.authenticationMethods.create("id", {
 <dl>
 <dd>
 
-**request:** `Management.users.CreateUserAuthenticationMethodRequestContent`
+**request:** `Management.CreateUserAuthenticationMethodRequestContent`
 
 </dd>
 </dl>
@@ -20653,7 +20777,7 @@ Modify the authentication method with the given ID from the specified user. For 
 <dd>
 
 ```typescript
-await client.users.authenticationMethods.update("id", "authentication_method_id");
+await client.users.authenticationMethods.update("id", "authentication_method_id", {});
 ```
 
 </dd>
@@ -20685,7 +20809,7 @@ await client.users.authenticationMethods.update("id", "authentication_method_id"
 <dl>
 <dd>
 
-**request:** `Management.users.UpdateUserAuthenticationMethodRequestContent`
+**request:** `Management.UpdateUserAuthenticationMethodRequestContent`
 
 </dd>
 </dl>
@@ -21011,7 +21135,7 @@ Note: There are two ways of invoking the endpoint:
 <dd>
 
 ```typescript
-await client.users.identities.link("id");
+await client.users.identities.link("id", {});
 ```
 
 </dd>
@@ -21035,7 +21159,7 @@ await client.users.identities.link("id");
 <dl>
 <dd>
 
-**request:** `Management.users.LinkUserIdentityRequestContent`
+**request:** `Management.LinkUserIdentityRequestContent`
 
 </dd>
 </dl>
@@ -21582,7 +21706,7 @@ await client.users.permissions.create("id", {
 <dl>
 <dd>
 
-**request:** `Management.users.CreateUserPermissionsRequestContent`
+**request:** `Management.CreateUserPermissionsRequestContent`
 
 </dd>
 </dl>
@@ -21660,7 +21784,7 @@ await client.users.permissions.delete("id", {
 <dl>
 <dd>
 
-**request:** `Management.users.DeleteUserPermissionsRequestContent`
+**request:** `Management.DeleteUserPermissionsRequestContent`
 
 </dd>
 </dl>
@@ -21819,7 +21943,7 @@ await client.users.roles.assign("id", {
 <dl>
 <dd>
 
-**request:** `Management.users.AssignUserRolesRequestContent`
+**request:** `Management.AssignUserRolesRequestContent`
 
 </dd>
 </dl>
@@ -21894,7 +22018,7 @@ await client.users.roles.delete("id", {
 <dl>
 <dd>
 
-**request:** `Management.users.DeleteUserRolesRequestContent`
+**request:** `Management.DeleteUserRolesRequestContent`
 
 </dd>
 </dl>
@@ -22331,7 +22455,7 @@ await client.verifiableCredentials.verification.templates.create({
 <dl>
 <dd>
 
-**request:** `Management.verifiableCredentials.verification.CreateVerifiableCredentialTemplateRequestContent`
+**request:** `Management.CreateVerifiableCredentialTemplateRequestContent`
 
 </dd>
 </dl>
@@ -22504,7 +22628,7 @@ Update a verifiable credential template.
 <dd>
 
 ```typescript
-await client.verifiableCredentials.verification.templates.update("id");
+await client.verifiableCredentials.verification.templates.update("id", {});
 ```
 
 </dd>
@@ -22528,7 +22652,7 @@ await client.verifiableCredentials.verification.templates.update("id");
 <dl>
 <dd>
 
-**request:** `Management.verifiableCredentials.verification.UpdateVerifiableCredentialTemplateRequestContent`
+**request:** `Management.UpdateVerifiableCredentialTemplateRequestContent`
 
 </dd>
 </dl>

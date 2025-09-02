@@ -4,8 +4,51 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("ClientGrants", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            next: "next",
+            client_grants: [
+                {
+                    id: "id",
+                    client_id: "client_id",
+                    audience: "audience",
+                    scope: ["scope"],
+                    organization_usage: "deny",
+                    allow_any_organization: true,
+                    is_system: true,
+                },
+            ],
+        };
+        server.mockEndpoint().get("/client-grants").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            next: "next",
+            client_grants: [
+                {
+                    id: "id",
+                    client_id: "client_id",
+                    audience: "audience",
+                    scope: ["scope"],
+                    organization_usage: "deny",
+                    allow_any_organization: true,
+                    is_system: true,
+                },
+            ],
+        };
+        const page = await client.clientGrants.list();
+        expect(expected.client_grants).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.client_grants).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -76,7 +119,7 @@ describe("ClientGrants", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.clientGrants.update("id");
+        const response = await client.clientGrants.update("id", {});
         expect(response).toEqual({
             id: "id",
             client_id: "client_id",

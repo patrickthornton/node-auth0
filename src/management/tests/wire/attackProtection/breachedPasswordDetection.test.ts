@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
+import * as Management from "../../../api/index.js";
 
 describe("BreachedPasswordDetection", () => {
     test("get", async () => {
@@ -62,7 +63,7 @@ describe("BreachedPasswordDetection", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.attackProtection.breachedPasswordDetection.update();
+        const response = await client.attackProtection.breachedPasswordDetection.update({});
         expect(response).toEqual({
             enabled: true,
             shields: ["block"],

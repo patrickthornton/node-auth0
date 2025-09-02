@@ -75,6 +75,11 @@ export class Settings {
             _queryParams["include_fields"] = includeFields.toString();
         }
 
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -83,11 +88,7 @@ export class Settings {
                 "tenants/settings",
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -139,7 +140,7 @@ export class Settings {
     /**
      * Update settings for a tenant.
      *
-     * @param {Management.tenants.UpdateTenantSettingsRequestContent} request
+     * @param {Management.UpdateTenantSettingsRequestContent} request
      * @param {Settings.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Management.BadRequestError}
@@ -148,19 +149,24 @@ export class Settings {
      * @throws {@link Management.TooManyRequestsError}
      *
      * @example
-     *     await client.tenants.settings.update()
+     *     await client.tenants.settings.update({})
      */
     public update(
-        request: Management.tenants.UpdateTenantSettingsRequestContent = {},
+        request: Management.UpdateTenantSettingsRequestContent,
         requestOptions?: Settings.RequestOptions,
     ): core.HttpResponsePromise<Management.UpdateTenantSettingsResponseContent> {
         return core.HttpResponsePromise.fromPromise(this.__update(request, requestOptions));
     }
 
     private async __update(
-        request: Management.tenants.UpdateTenantSettingsRequestContent = {},
+        request: Management.UpdateTenantSettingsRequestContent,
         requestOptions?: Settings.RequestOptions,
     ): Promise<core.WithRawResponse<Management.UpdateTenantSettingsResponseContent>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -169,11 +175,7 @@ export class Settings {
                 "tenants/settings",
             ),
             method: "PATCH",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",

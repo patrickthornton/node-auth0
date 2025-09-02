@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../../Client.js";
+import * as Management from "../../../../api/index.js";
 
 describe("Phone", () => {
     test("getMessageTypes", async () => {
@@ -93,7 +94,7 @@ describe("Phone", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.guardian.factors.phone.setTwilioProvider();
+        const response = await client.guardian.factors.phone.setTwilioProvider({});
         expect(response).toEqual({
             from: "from",
             messaging_service_sid: "messaging_service_sid",

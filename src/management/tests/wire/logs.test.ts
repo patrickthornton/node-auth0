@@ -6,6 +6,80 @@ import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
 
 describe("Logs", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            length: 1.1,
+            total: 1.1,
+            logs: [
+                {
+                    date: "date",
+                    type: "type",
+                    description: "description",
+                    connection: "connection",
+                    connection_id: "connection_id",
+                    client_id: "client_id",
+                    client_name: "client_name",
+                    ip: "ip",
+                    hostname: "hostname",
+                    user_id: "user_id",
+                    user_name: "user_name",
+                    audience: "audience",
+                    scope: "scope",
+                    strategy: "strategy",
+                    strategy_type: "strategy_type",
+                    log_id: "log_id",
+                    isMobile: true,
+                    details: { key: "value" },
+                    user_agent: "user_agent",
+                },
+            ],
+        };
+        server.mockEndpoint().get("/logs").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            length: 1.1,
+            total: 1.1,
+            logs: [
+                {
+                    date: "date",
+                    type: "type",
+                    description: "description",
+                    connection: "connection",
+                    connection_id: "connection_id",
+                    client_id: "client_id",
+                    client_name: "client_name",
+                    ip: "ip",
+                    hostname: "hostname",
+                    user_id: "user_id",
+                    user_name: "user_name",
+                    audience: "audience",
+                    scope: "scope",
+                    strategy: "strategy",
+                    strategy_type: "strategy_type",
+                    log_id: "log_id",
+                    isMobile: true,
+                    details: {
+                        key: "value",
+                    },
+                    user_agent: "user_agent",
+                },
+            ],
+        };
+        const page = await client.logs.list();
+        expect(expected.logs).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.logs).toEqual(nextPage.data);
+    });
+
     test("get", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -30,6 +104,7 @@ describe("Logs", () => {
             isMobile: true,
             details: { key: "value" },
             user_agent: "user_agent",
+            security_context: { ja3: "ja3", ja4: "ja4" },
             location_info: {
                 country_code: "country_code",
                 country_code3: "country_code3",
@@ -66,6 +141,10 @@ describe("Logs", () => {
                 key: "value",
             },
             user_agent: "user_agent",
+            security_context: {
+                ja3: "ja3",
+                ja4: "ja4",
+            },
             location_info: {
                 country_code: "country_code",
                 country_code3: "country_code3",

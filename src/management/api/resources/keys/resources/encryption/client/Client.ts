@@ -73,6 +73,11 @@ export class Encryption {
                 if (includeTotals != null) {
                     _queryParams["include_totals"] = includeTotals.toString();
                 }
+                let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                    requestOptions?.headers,
+                );
                 const _response = await (this._options.fetcher ?? core.fetcher)({
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
@@ -81,11 +86,7 @@ export class Encryption {
                         "keys/encryption",
                     ),
                     method: "GET",
-                    headers: mergeHeaders(
-                        this._options?.headers,
-                        mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                        requestOptions?.headers,
-                    ),
+                    headers: _headers,
                     queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
                     timeoutMs:
                         requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -159,7 +160,7 @@ export class Encryption {
     /**
      * Create the new, pre-activated encryption key, without the key material.
      *
-     * @param {Management.keys.CreateEncryptionKeyRequestContent} request
+     * @param {Management.CreateEncryptionKeyRequestContent} request
      * @param {Encryption.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Management.BadRequestError}
@@ -174,16 +175,21 @@ export class Encryption {
      *     })
      */
     public create(
-        request: Management.keys.CreateEncryptionKeyRequestContent,
+        request: Management.CreateEncryptionKeyRequestContent,
         requestOptions?: Encryption.RequestOptions,
     ): core.HttpResponsePromise<Management.CreateEncryptionKeyResponseContent> {
         return core.HttpResponsePromise.fromPromise(this.__create(request, requestOptions));
     }
 
     private async __create(
-        request: Management.keys.CreateEncryptionKeyRequestContent,
+        request: Management.CreateEncryptionKeyRequestContent,
         requestOptions?: Encryption.RequestOptions,
     ): Promise<core.WithRawResponse<Management.CreateEncryptionKeyResponseContent>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -192,11 +198,7 @@ export class Encryption {
                 "keys/encryption",
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
@@ -267,6 +269,11 @@ export class Encryption {
     }
 
     private async __rekey(requestOptions?: Encryption.RequestOptions): Promise<core.WithRawResponse<void>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -275,11 +282,7 @@ export class Encryption {
                 "keys/encryption/rekey",
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -349,6 +352,11 @@ export class Encryption {
         kid: string,
         requestOptions?: Encryption.RequestOptions,
     ): Promise<core.WithRawResponse<Management.GetEncryptionKeyResponseContent>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -357,11 +365,7 @@ export class Encryption {
                 `keys/encryption/${encodeURIComponent(kid)}`,
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -416,7 +420,7 @@ export class Encryption {
      * Import wrapped key material and activate encryption key.
      *
      * @param {string} kid - Encryption key ID
-     * @param {Management.keys.ImportEncryptionKeyRequestContent} request
+     * @param {Management.ImportEncryptionKeyRequestContent} request
      * @param {Encryption.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Management.BadRequestError}
@@ -432,7 +436,7 @@ export class Encryption {
      */
     public import(
         kid: string,
-        request: Management.keys.ImportEncryptionKeyRequestContent,
+        request: Management.ImportEncryptionKeyRequestContent,
         requestOptions?: Encryption.RequestOptions,
     ): core.HttpResponsePromise<Management.ImportEncryptionKeyResponseContent> {
         return core.HttpResponsePromise.fromPromise(this.__import(kid, request, requestOptions));
@@ -440,9 +444,14 @@ export class Encryption {
 
     private async __import(
         kid: string,
-        request: Management.keys.ImportEncryptionKeyRequestContent,
+        request: Management.ImportEncryptionKeyRequestContent,
         requestOptions?: Encryption.RequestOptions,
     ): Promise<core.WithRawResponse<Management.ImportEncryptionKeyResponseContent>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -451,11 +460,7 @@ export class Encryption {
                 `keys/encryption/${encodeURIComponent(kid)}`,
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
@@ -531,6 +536,11 @@ export class Encryption {
         kid: string,
         requestOptions?: Encryption.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -539,11 +549,7 @@ export class Encryption {
                 `keys/encryption/${encodeURIComponent(kid)}`,
             ),
             method: "DELETE",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -615,6 +621,11 @@ export class Encryption {
         kid: string,
         requestOptions?: Encryption.RequestOptions,
     ): Promise<core.WithRawResponse<Management.CreateEncryptionKeyPublicWrappingResponseContent>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -623,11 +634,7 @@ export class Encryption {
                 `keys/encryption/${encodeURIComponent(kid)}/wrapping-key`,
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,

@@ -4,8 +4,89 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("Users", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            length: 1.1,
+            total: 1.1,
+            users: [
+                {
+                    user_id: "user_id",
+                    email: "email",
+                    email_verified: true,
+                    username: "username",
+                    phone_number: "phone_number",
+                    phone_verified: true,
+                    created_at: "created_at",
+                    updated_at: "updated_at",
+                    identities: [{}],
+                    app_metadata: { key: "value" },
+                    user_metadata: { key: "value" },
+                    picture: "picture",
+                    name: "name",
+                    nickname: "nickname",
+                    multifactor: ["multifactor"],
+                    last_ip: "last_ip",
+                    last_login: "last_login",
+                    logins_count: 1,
+                    blocked: true,
+                    given_name: "given_name",
+                    family_name: "family_name",
+                },
+            ],
+        };
+        server.mockEndpoint().get("/users").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            length: 1.1,
+            total: 1.1,
+            users: [
+                {
+                    user_id: "user_id",
+                    email: "email",
+                    email_verified: true,
+                    username: "username",
+                    phone_number: "phone_number",
+                    phone_verified: true,
+                    created_at: "created_at",
+                    updated_at: "updated_at",
+                    identities: [{}],
+                    app_metadata: {
+                        key: "value",
+                    },
+                    user_metadata: {
+                        key: "value",
+                    },
+                    picture: "picture",
+                    name: "name",
+                    nickname: "nickname",
+                    multifactor: ["multifactor"],
+                    last_ip: "last_ip",
+                    last_login: "last_login",
+                    logins_count: 1,
+                    blocked: true,
+                    given_name: "given_name",
+                    family_name: "family_name",
+                },
+            ],
+        };
+        const page = await client.users.list();
+        expect(expected.users).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.users).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -294,7 +375,7 @@ describe("Users", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.users.update("id");
+        const response = await client.users.update("id", {});
         expect(response).toEqual({
             user_id: "user_id",
             email: "email",
@@ -366,7 +447,7 @@ describe("Users", () => {
             .statusCode(200)
             .build();
 
-        const response = await client.users.revokeAccess("id");
+        const response = await client.users.revokeAccess("id", {});
         expect(response).toEqual(undefined);
     });
 });

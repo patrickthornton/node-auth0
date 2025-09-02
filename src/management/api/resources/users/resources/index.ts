@@ -11,7 +11,6 @@ export * as roles from "./roles/index.js";
 export * as refreshToken from "./refreshToken/index.js";
 export * as sessions from "./sessions/index.js";
 export * from "./authenticationMethods/client/requests/index.js";
-export * from "./identities/client/requests/index.js";
 export * from "./logs/client/requests/index.js";
 export * from "./organizations/client/requests/index.js";
 export * from "./permissions/client/requests/index.js";

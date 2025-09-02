@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../../Client.js";
+import * as Management from "../../../../api/index.js";
 
 describe("Providers", () => {
     test("list", async () => {
@@ -171,7 +172,7 @@ describe("Providers", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.branding.phone.providers.update("id");
+        const response = await client.branding.phone.providers.update("id", {});
         expect(response).toEqual({
             id: "id",
             tenant: "tenant",

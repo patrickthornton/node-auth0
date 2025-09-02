@@ -6,6 +6,42 @@ import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("Members", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            next: "next",
+            members: [{ user_id: "user_id", picture: "picture", name: "name", email: "email", roles: [{}] }],
+        };
+        server
+            .mockEndpoint()
+            .get("/organizations/id/members")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            next: "next",
+            members: [
+                {
+                    user_id: "user_id",
+                    picture: "picture",
+                    name: "name",
+                    email: "email",
+                    roles: [{}],
+                },
+            ],
+        };
+        const page = await client.organizations.members.list("id");
+        expect(expected.members).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.members).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });

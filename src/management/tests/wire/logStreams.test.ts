@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("LogStreams", () => {
     test("list", async () => {
@@ -206,7 +207,7 @@ describe("LogStreams", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.logStreams.update("id");
+        const response = await client.logStreams.update("id", {});
         expect(response).toEqual({
             id: "id",
             name: "name",

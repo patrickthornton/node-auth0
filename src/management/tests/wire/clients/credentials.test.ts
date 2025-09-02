@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
+import * as Management from "../../../api/index.js";
 
 describe("Credentials", () => {
     test("list", async () => {
@@ -170,7 +171,7 @@ describe("Credentials", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.clients.credentials.update("client_id", "credential_id");
+        const response = await client.clients.credentials.update("client_id", "credential_id", {});
         expect(response).toEqual({
             id: "id",
             name: "name",

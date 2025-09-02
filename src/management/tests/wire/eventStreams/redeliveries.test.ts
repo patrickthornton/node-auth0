@@ -3,6 +3,7 @@
  */
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
+import * as Management from "../../../api/index.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("Redeliveries", () => {
@@ -25,7 +26,7 @@ describe("Redeliveries", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.eventStreams.redeliveries.create("id");
+        const response = await client.eventStreams.redeliveries.create("id", {});
         expect(response).toEqual({
             date_from: "2024-01-15T09:30:00Z",
             date_to: "2024-01-15T09:30:00Z",

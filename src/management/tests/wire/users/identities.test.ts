@@ -3,6 +3,7 @@
  */
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
+import * as Management from "../../../api/index.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("Identities", () => {
@@ -40,7 +41,7 @@ describe("Identities", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.users.identities.link("id");
+        const response = await client.users.identities.link("id", {});
         expect(response).toEqual([
             {
                 connection: "connection",

@@ -92,6 +92,11 @@ export class Invitations {
                 if (sort != null) {
                     _queryParams["sort"] = sort;
                 }
+                let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                    requestOptions?.headers,
+                );
                 const _response = await (this._options.fetcher ?? core.fetcher)({
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
@@ -100,11 +105,7 @@ export class Invitations {
                         `organizations/${encodeURIComponent(id)}/invitations`,
                     ),
                     method: "GET",
-                    headers: mergeHeaders(
-                        this._options?.headers,
-                        mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                        requestOptions?.headers,
-                    ),
+                    headers: _headers,
                     queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
                     timeoutMs:
                         requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -186,7 +187,7 @@ export class Invitations {
      * Create a user invitation for a specific Organization. Upon creation, the listed user receives an email inviting them to join the Organization. To learn more about Organization invitations, review <a href="https://auth0.com/docs/manage-users/organizations/configure-organizations/invite-members">Invite Organization Members</a>.
      *
      * @param {string} id - Organization identifier.
-     * @param {Management.organizations.CreateOrganizationInvitationRequestContent} request
+     * @param {Management.CreateOrganizationInvitationRequestContent} request
      * @param {Invitations.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Management.BadRequestError}
@@ -208,7 +209,7 @@ export class Invitations {
      */
     public create(
         id: string,
-        request: Management.organizations.CreateOrganizationInvitationRequestContent,
+        request: Management.CreateOrganizationInvitationRequestContent,
         requestOptions?: Invitations.RequestOptions,
     ): core.HttpResponsePromise<Management.CreateOrganizationInvitationResponseContent> {
         return core.HttpResponsePromise.fromPromise(this.__create(id, request, requestOptions));
@@ -216,9 +217,14 @@ export class Invitations {
 
     private async __create(
         id: string,
-        request: Management.organizations.CreateOrganizationInvitationRequestContent,
+        request: Management.CreateOrganizationInvitationRequestContent,
         requestOptions?: Invitations.RequestOptions,
     ): Promise<core.WithRawResponse<Management.CreateOrganizationInvitationResponseContent>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -227,11 +233,7 @@ export class Invitations {
                 `organizations/${encodeURIComponent(id)}/invitations`,
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
@@ -327,6 +329,11 @@ export class Invitations {
             _queryParams["include_fields"] = includeFields.toString();
         }
 
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -335,11 +342,7 @@ export class Invitations {
                 `organizations/${encodeURIComponent(id)}/invitations/${encodeURIComponent(invitationId)}`,
             ),
             method: "GET",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,
@@ -418,6 +421,11 @@ export class Invitations {
         invitationId: string,
         requestOptions?: Invitations.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -426,11 +434,7 @@ export class Invitations {
                 `organizations/${encodeURIComponent(id)}/invitations/${encodeURIComponent(invitationId)}`,
             ),
             method: "DELETE",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             queryParameters: requestOptions?.queryParams,
             timeoutMs: requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
             maxRetries: requestOptions?.maxRetries,

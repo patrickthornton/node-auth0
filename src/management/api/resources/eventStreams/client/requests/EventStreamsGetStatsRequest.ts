@@ -7,12 +7,8 @@
  *     {}
  */
 export interface EventStreamsGetStatsRequest {
-    /**
-     * The RFC3339 start date for the stats query.
-     */
+    /** The RFC3339 start date for the stats query. */
     date_from?: string;
-    /**
-     * The RFC3339 end date for the stats query.
-     */
+    /** The RFC3339 end date for the stats query. */
     date_to?: string;
 }

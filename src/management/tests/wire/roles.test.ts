@@ -4,8 +4,41 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("Roles", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            roles: [{ id: "id", name: "name", description: "description" }],
+        };
+        server.mockEndpoint().get("/roles").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            roles: [
+                {
+                    id: "id",
+                    name: "name",
+                    description: "description",
+                },
+            ],
+        };
+        const page = await client.roles.list();
+        expect(expected.roles).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.roles).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -69,7 +102,7 @@ describe("Roles", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.roles.update("id");
+        const response = await client.roles.update("id", {});
         expect(response).toEqual({
             id: "id",
             name: "name",

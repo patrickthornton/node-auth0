@@ -4,8 +4,127 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("Clients", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            clients: [
+                {
+                    client_id: "client_id",
+                    tenant: "tenant",
+                    name: "name",
+                    description: "description",
+                    global: true,
+                    client_secret: "client_secret",
+                    app_type: "app_type",
+                    logo_uri: "logo_uri",
+                    is_first_party: true,
+                    oidc_conformant: true,
+                    callbacks: ["callbacks"],
+                    allowed_origins: ["allowed_origins"],
+                    web_origins: ["web_origins"],
+                    client_aliases: ["client_aliases"],
+                    allowed_clients: ["allowed_clients"],
+                    allowed_logout_urls: ["allowed_logout_urls"],
+                    grant_types: ["grant_types"],
+                    signing_keys: [{}],
+                    sso: true,
+                    sso_disabled: true,
+                    cross_origin_authentication: true,
+                    cross_origin_loc: "cross_origin_loc",
+                    custom_login_page_on: true,
+                    custom_login_page: "custom_login_page",
+                    custom_login_page_preview: "custom_login_page_preview",
+                    form_template: "form_template",
+                    token_endpoint_auth_method: "none",
+                    client_metadata: { key: "value" },
+                    initiate_login_uri: "initiate_login_uri",
+                    refresh_token: { rotation_type: "rotating", expiration_type: "expiring" },
+                    default_organization: { organization_id: "organization_id", flows: ["client_credentials"] },
+                    organization_usage: "deny",
+                    organization_require_behavior: "no_prompt",
+                    require_pushed_authorization_requests: true,
+                    require_proof_of_possession: true,
+                    compliance_level: "compliance_level",
+                    par_request_expiry: 1,
+                    token_quota: { client_credentials: {} },
+                },
+            ],
+        };
+        server.mockEndpoint().get("/clients").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            clients: [
+                {
+                    client_id: "client_id",
+                    tenant: "tenant",
+                    name: "name",
+                    description: "description",
+                    global: true,
+                    client_secret: "client_secret",
+                    app_type: "app_type",
+                    logo_uri: "logo_uri",
+                    is_first_party: true,
+                    oidc_conformant: true,
+                    callbacks: ["callbacks"],
+                    allowed_origins: ["allowed_origins"],
+                    web_origins: ["web_origins"],
+                    client_aliases: ["client_aliases"],
+                    allowed_clients: ["allowed_clients"],
+                    allowed_logout_urls: ["allowed_logout_urls"],
+                    grant_types: ["grant_types"],
+                    signing_keys: [{}],
+                    sso: true,
+                    sso_disabled: true,
+                    cross_origin_authentication: true,
+                    cross_origin_loc: "cross_origin_loc",
+                    custom_login_page_on: true,
+                    custom_login_page: "custom_login_page",
+                    custom_login_page_preview: "custom_login_page_preview",
+                    form_template: "form_template",
+                    token_endpoint_auth_method: "none",
+                    client_metadata: {
+                        key: "value",
+                    },
+                    initiate_login_uri: "initiate_login_uri",
+                    refresh_token: {
+                        rotation_type: "rotating",
+                        expiration_type: "expiring",
+                    },
+                    default_organization: {
+                        organization_id: "organization_id",
+                        flows: ["client_credentials"],
+                    },
+                    organization_usage: "deny",
+                    organization_require_behavior: "no_prompt",
+                    require_pushed_authorization_requests: true,
+                    require_proof_of_possession: true,
+                    compliance_level: "compliance_level",
+                    par_request_expiry: 1,
+                    token_quota: {
+                        client_credentials: {},
+                    },
+                },
+            ],
+        };
+        const page = await client.clients.list();
+        expect(expected.clients).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.clients).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -1134,7 +1253,7 @@ describe("Clients", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.clients.update("id");
+        const response = await client.clients.update("id", {});
         expect(response).toEqual({
             client_id: "client_id",
             tenant: "tenant",

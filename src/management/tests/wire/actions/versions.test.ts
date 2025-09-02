@@ -6,6 +6,76 @@ import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("Versions", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            total: 1.1,
+            page: 1.1,
+            per_page: 1.1,
+            versions: [
+                {
+                    id: "id",
+                    action_id: "action_id",
+                    code: "code",
+                    dependencies: [{}],
+                    deployed: true,
+                    runtime: "runtime",
+                    secrets: [{}],
+                    status: "pending",
+                    number: 1.1,
+                    errors: [{}],
+                    built_at: "2024-01-15T09:30:00Z",
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    supported_triggers: [{ id: "id" }],
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/actions/actions/actionId/versions")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            total: 1.1,
+            page: 1.1,
+            per_page: 1.1,
+            versions: [
+                {
+                    id: "id",
+                    action_id: "action_id",
+                    code: "code",
+                    dependencies: [{}],
+                    deployed: true,
+                    runtime: "runtime",
+                    secrets: [{}],
+                    status: "pending",
+                    number: 1.1,
+                    errors: [{}],
+                    built_at: "2024-01-15T09:30:00Z",
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    supported_triggers: [
+                        {
+                            id: "id",
+                        },
+                    ],
+                },
+            ],
+        };
+        const page = await client.actions.versions.list("actionId");
+        expect(expected.versions).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.versions).toEqual(nextPage.data);
+    });
+
     test("get", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });

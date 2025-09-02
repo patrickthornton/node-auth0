@@ -4,8 +4,67 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("SelfServiceProfiles", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            self_service_profiles: [
+                {
+                    id: "id",
+                    name: "name",
+                    description: "description",
+                    user_attributes: [{ name: "name", description: "description", is_optional: true }],
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    allowed_strategies: ["oidc"],
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/self-service-profiles")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            self_service_profiles: [
+                {
+                    id: "id",
+                    name: "name",
+                    description: "description",
+                    user_attributes: [
+                        {
+                            name: "name",
+                            description: "description",
+                            is_optional: true,
+                        },
+                    ],
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    allowed_strategies: ["oidc"],
+                },
+            ],
+        };
+        const page = await client.selfServiceProfiles.list();
+        expect(expected.self_service_profiles).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.self_service_profiles).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -134,7 +193,7 @@ describe("SelfServiceProfiles", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.selfServiceProfiles.update("id");
+        const response = await client.selfServiceProfiles.update("id", {});
         expect(response).toEqual({
             id: "id",
             name: "name",

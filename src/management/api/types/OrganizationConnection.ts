@@ -7,6 +7,8 @@ import * as Management from "../index.js";
 export interface OrganizationConnection {
     /** ID of the connection. */
     connection_id?: string;
+    /** Name of the connection in the scope of this organization. */
+    organization_connection_name?: string;
     /** When true, all users that log in with this connection will be automatically granted membership in the organization. When false, users must be granted membership in the organization before logging in with this connection. */
     assign_membership_on_login?: boolean;
     /** Determines whether a connection should be displayed on this organization’s login prompt. Only applicable for enterprise connections. Default: true. */
@@ -14,4 +16,7 @@ export interface OrganizationConnection {
     /** Determines whether organization signup should be enabled for this organization connection. Only applicable for database connections. Default: false. */
     is_signup_enabled?: boolean;
     connection?: Management.OrganizationConnectionInformation;
+    organization_access_level?: Management.OrganizationAccessLevelEnum;
+    /** Whether the connection is enabled for the organization. */
+    is_enabled?: boolean;
 }

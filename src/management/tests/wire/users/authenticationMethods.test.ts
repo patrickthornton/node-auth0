@@ -4,8 +4,83 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
+import * as Management from "../../../api/index.js";
 
 describe("AuthenticationMethods", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            authenticators: [
+                {
+                    id: "id",
+                    type: "recovery-code",
+                    confirmed: true,
+                    name: "name",
+                    authentication_methods: [{}],
+                    preferred_authentication_method: "voice",
+                    link_id: "link_id",
+                    phone_number: "phone_number",
+                    email: "email",
+                    key_id: "key_id",
+                    public_key: "public_key",
+                    created_at: "2024-01-15T09:30:00Z",
+                    enrolled_at: "2024-01-15T09:30:00Z",
+                    last_auth_at: "2024-01-15T09:30:00Z",
+                    credential_device_type: "credential_device_type",
+                    credential_backed_up: true,
+                    identity_user_id: "identity_user_id",
+                    user_agent: "user_agent",
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/users/id/authentication-methods")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            authenticators: [
+                {
+                    id: "id",
+                    type: "recovery-code",
+                    confirmed: true,
+                    name: "name",
+                    authentication_methods: [{}],
+                    preferred_authentication_method: "voice",
+                    link_id: "link_id",
+                    phone_number: "phone_number",
+                    email: "email",
+                    key_id: "key_id",
+                    public_key: "public_key",
+                    created_at: "2024-01-15T09:30:00Z",
+                    enrolled_at: "2024-01-15T09:30:00Z",
+                    last_auth_at: "2024-01-15T09:30:00Z",
+                    credential_device_type: "credential_device_type",
+                    credential_backed_up: true,
+                    identity_user_id: "identity_user_id",
+                    user_agent: "user_agent",
+                },
+            ],
+        };
+        const page = await client.users.authenticationMethods.list("id");
+        expect(expected.authenticators).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.authenticators).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -221,7 +296,7 @@ describe("AuthenticationMethods", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.users.authenticationMethods.update("id", "authentication_method_id");
+        const response = await client.users.authenticationMethods.update("id", "authentication_method_id", {});
         expect(response).toEqual({
             id: "id",
             type: "phone",

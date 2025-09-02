@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("EmailTemplates", () => {
     test("create", async () => {
@@ -147,7 +148,7 @@ describe("EmailTemplates", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.emailTemplates.update("verify_email");
+        const response = await client.emailTemplates.update("verify_email", {});
         expect(response).toEqual({
             template: "verify_email",
             body: "body",

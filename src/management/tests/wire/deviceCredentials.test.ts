@@ -6,6 +6,56 @@ import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
 
 describe("DeviceCredentials", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            device_credentials: [
+                {
+                    id: "id",
+                    device_name: "device_name",
+                    device_id: "device_id",
+                    type: "public_key",
+                    user_id: "user_id",
+                    client_id: "client_id",
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/device-credentials")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            device_credentials: [
+                {
+                    id: "id",
+                    device_name: "device_name",
+                    device_id: "device_id",
+                    type: "public_key",
+                    user_id: "user_id",
+                    client_id: "client_id",
+                },
+            ],
+        };
+        const page = await client.deviceCredentials.list();
+        expect(expected.device_credentials).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.device_credentials).toEqual(nextPage.data);
+    });
+
     test("createPublicKey", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -27,6 +77,7 @@ describe("DeviceCredentials", () => {
 
         const response = await client.deviceCredentials.createPublicKey({
             device_name: "device_name",
+            type: "public_key",
             value: "value",
             device_id: "device_id",
         });

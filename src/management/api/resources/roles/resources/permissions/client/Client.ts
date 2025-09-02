@@ -76,6 +76,11 @@ export class Permissions {
                 if (includeTotals != null) {
                     _queryParams["include_totals"] = includeTotals.toString();
                 }
+                let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+                    this._options?.headers,
+                    mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+                    requestOptions?.headers,
+                );
                 const _response = await (this._options.fetcher ?? core.fetcher)({
                     url: core.url.join(
                         (await core.Supplier.get(this._options.baseUrl)) ??
@@ -84,11 +89,7 @@ export class Permissions {
                         `roles/${encodeURIComponent(id)}/permissions`,
                     ),
                     method: "GET",
-                    headers: mergeHeaders(
-                        this._options?.headers,
-                        mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                        requestOptions?.headers,
-                    ),
+                    headers: _headers,
                     queryParameters: { ..._queryParams, ...requestOptions?.queryParams },
                     timeoutMs:
                         requestOptions?.timeoutInSeconds != null ? requestOptions.timeoutInSeconds * 1000 : 60000,
@@ -170,7 +171,7 @@ export class Permissions {
      * Add one or more <a href="https://auth0.com/docs/manage-users/access-control/configure-core-rbac/manage-permissions">permissions</a> to a specified user role.
      *
      * @param {string} id - ID of the role to add permissions to.
-     * @param {Management.roles.AddRolePermissionsRequestContent} request
+     * @param {Management.AddRolePermissionsRequestContent} request
      * @param {Permissions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Management.BadRequestError}
@@ -188,7 +189,7 @@ export class Permissions {
      */
     public add(
         id: string,
-        request: Management.roles.AddRolePermissionsRequestContent,
+        request: Management.AddRolePermissionsRequestContent,
         requestOptions?: Permissions.RequestOptions,
     ): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__add(id, request, requestOptions));
@@ -196,9 +197,14 @@ export class Permissions {
 
     private async __add(
         id: string,
-        request: Management.roles.AddRolePermissionsRequestContent,
+        request: Management.AddRolePermissionsRequestContent,
         requestOptions?: Permissions.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -207,11 +213,7 @@ export class Permissions {
                 `roles/${encodeURIComponent(id)}/permissions`,
             ),
             method: "POST",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",
@@ -264,7 +266,7 @@ export class Permissions {
      * Remove one or more <a href="https://auth0.com/docs/manage-users/access-control/configure-core-rbac/manage-permissions">permissions</a> from a specified user role.
      *
      * @param {string} id - ID of the role to remove permissions from.
-     * @param {Management.roles.DeleteRolePermissionsRequestContent} request
+     * @param {Management.DeleteRolePermissionsRequestContent} request
      * @param {Permissions.RequestOptions} requestOptions - Request-specific configuration.
      *
      * @throws {@link Management.BadRequestError}
@@ -282,7 +284,7 @@ export class Permissions {
      */
     public delete(
         id: string,
-        request: Management.roles.DeleteRolePermissionsRequestContent,
+        request: Management.DeleteRolePermissionsRequestContent,
         requestOptions?: Permissions.RequestOptions,
     ): core.HttpResponsePromise<void> {
         return core.HttpResponsePromise.fromPromise(this.__delete(id, request, requestOptions));
@@ -290,9 +292,14 @@ export class Permissions {
 
     private async __delete(
         id: string,
-        request: Management.roles.DeleteRolePermissionsRequestContent,
+        request: Management.DeleteRolePermissionsRequestContent,
         requestOptions?: Permissions.RequestOptions,
     ): Promise<core.WithRawResponse<void>> {
+        let _headers: core.Fetcher.Args["headers"] = mergeHeaders(
+            this._options?.headers,
+            mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
+            requestOptions?.headers,
+        );
         const _response = await (this._options.fetcher ?? core.fetcher)({
             url: core.url.join(
                 (await core.Supplier.get(this._options.baseUrl)) ??
@@ -301,11 +308,7 @@ export class Permissions {
                 `roles/${encodeURIComponent(id)}/permissions`,
             ),
             method: "DELETE",
-            headers: mergeHeaders(
-                this._options?.headers,
-                mergeOnlyDefinedHeaders({ Authorization: await this._getAuthorizationHeader() }),
-                requestOptions?.headers,
-            ),
+            headers: _headers,
             contentType: "application/json",
             queryParameters: requestOptions?.queryParams,
             requestType: "json",

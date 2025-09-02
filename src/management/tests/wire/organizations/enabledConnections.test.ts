@@ -4,8 +4,61 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
+import * as Management from "../../../api/index.js";
 
 describe("EnabledConnections", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            enabled_connections: [
+                {
+                    connection_id: "connection_id",
+                    organization_connection_name: "organization_connection_name",
+                    assign_membership_on_login: true,
+                    show_as_button: true,
+                    is_signup_enabled: true,
+                    organization_access_level: "none",
+                    is_enabled: true,
+                },
+            ],
+        };
+        server
+            .mockEndpoint()
+            .get("/organizations/id/enabled_connections")
+            .respondWith()
+            .statusCode(200)
+            .jsonBody(rawResponseBody)
+            .build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            enabled_connections: [
+                {
+                    connection_id: "connection_id",
+                    organization_connection_name: "organization_connection_name",
+                    assign_membership_on_login: true,
+                    show_as_button: true,
+                    is_signup_enabled: true,
+                    organization_access_level: "none",
+                    is_enabled: true,
+                },
+            ],
+        };
+        const page = await client.organizations.enabledConnections.list("id");
+        expect(expected.enabled_connections).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.enabled_connections).toEqual(nextPage.data);
+    });
+
     test("add", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -108,7 +161,7 @@ describe("EnabledConnections", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.organizations.enabledConnections.update("id", "connectionId");
+        const response = await client.organizations.enabledConnections.update("id", "connectionId", {});
         expect(response).toEqual({
             connection_id: "connection_id",
             assign_membership_on_login: true,

@@ -6,6 +6,35 @@ import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
 
 describe("Users", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            next: "next",
+            users: [{ user_id: "user_id", picture: "picture", name: "name", email: "email" }],
+        };
+        server.mockEndpoint().get("/roles/id/users").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            next: "next",
+            users: [
+                {
+                    user_id: "user_id",
+                    picture: "picture",
+                    name: "name",
+                    email: "email",
+                },
+            ],
+        };
+        const page = await client.roles.users.list("id");
+        expect(expected.users).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.users).toEqual(nextPage.data);
+    });
+
     test("assign", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });

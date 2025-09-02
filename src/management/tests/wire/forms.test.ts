@@ -4,8 +4,53 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("Forms", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            forms: [
+                {
+                    id: "id",
+                    name: "name",
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    embedded_at: "embedded_at",
+                    submitted_at: "submitted_at",
+                },
+            ],
+        };
+        server.mockEndpoint().get("/forms").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            forms: [
+                {
+                    id: "id",
+                    name: "name",
+                    created_at: "2024-01-15T09:30:00Z",
+                    updated_at: "2024-01-15T09:30:00Z",
+                    embedded_at: "embedded_at",
+                    submitted_at: "submitted_at",
+                },
+            ],
+        };
+        const page = await client.forms.list();
+        expect(expected.forms).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.forms).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -254,7 +299,7 @@ describe("Forms", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.forms.update("id");
+        const response = await client.forms.update("id", {});
         expect(response).toEqual({
             id: "id",
             name: "name",

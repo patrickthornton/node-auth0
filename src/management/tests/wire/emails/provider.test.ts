@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../Client.js";
+import * as Management from "../../../api/index.js";
 
 describe("Provider", () => {
     test("get", async () => {
@@ -128,7 +129,7 @@ describe("Provider", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.emails.provider.update();
+        const response = await client.emails.provider.update({});
         expect(response).toEqual({
             name: "name",
             enabled: true,

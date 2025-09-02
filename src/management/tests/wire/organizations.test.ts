@@ -4,8 +4,51 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("Organizations", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            next: "next",
+            organizations: [
+                {
+                    id: "id",
+                    name: "name",
+                    display_name: "display_name",
+                    metadata: { key: "value" },
+                    token_quota: { client_credentials: {} },
+                },
+            ],
+        };
+        server.mockEndpoint().get("/organizations").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            next: "next",
+            organizations: [
+                {
+                    id: "id",
+                    name: "name",
+                    display_name: "display_name",
+                    metadata: {
+                        key: "value",
+                    },
+                    token_quota: {
+                        client_credentials: {},
+                    },
+                },
+            ],
+        };
+        const page = await client.organizations.list();
+        expect(expected.organizations).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.organizations).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -185,7 +228,7 @@ describe("Organizations", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.organizations.update("id");
+        const response = await client.organizations.update("id", {});
         expect(response).toEqual({
             id: "id",
             name: "name",

@@ -4,8 +4,89 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("ResourceServers", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            resource_servers: [
+                {
+                    id: "id",
+                    name: "name",
+                    is_system: true,
+                    identifier: "identifier",
+                    scopes: [{ value: "value" }],
+                    signing_alg: "HS256",
+                    signing_secret: "signing_secret",
+                    allow_offline_access: true,
+                    skip_consent_for_verifiable_first_party_clients: true,
+                    token_lifetime: 1,
+                    token_lifetime_for_web: 1,
+                    enforce_policies: true,
+                    token_dialect: "access_token",
+                    token_encryption: {
+                        format: "compact-nested-jwe",
+                        encryption_key: { alg: "RSA-OAEP-256", pem: "pem" },
+                    },
+                    consent_policy: "consent_policy",
+                    proof_of_possession: { mechanism: "mtls", required: true },
+                },
+            ],
+        };
+        server.mockEndpoint().get("/resource-servers").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            resource_servers: [
+                {
+                    id: "id",
+                    name: "name",
+                    is_system: true,
+                    identifier: "identifier",
+                    scopes: [
+                        {
+                            value: "value",
+                        },
+                    ],
+                    signing_alg: "HS256",
+                    signing_secret: "signing_secret",
+                    allow_offline_access: true,
+                    skip_consent_for_verifiable_first_party_clients: true,
+                    token_lifetime: 1,
+                    token_lifetime_for_web: 1,
+                    enforce_policies: true,
+                    token_dialect: "access_token",
+                    token_encryption: {
+                        format: "compact-nested-jwe",
+                        encryption_key: {
+                            alg: "RSA-OAEP-256",
+                            pem: "pem",
+                        },
+                    },
+                    consent_policy: "consent_policy",
+                    proof_of_possession: {
+                        mechanism: "mtls",
+                        required: true,
+                    },
+                },
+            ],
+        };
+        const page = await client.resourceServers.list();
+        expect(expected.resource_servers).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.resource_servers).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -206,7 +287,7 @@ describe("ResourceServers", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.resourceServers.update("id");
+        const response = await client.resourceServers.update("id", {});
         expect(response).toEqual({
             id: "id",
             name: "name",

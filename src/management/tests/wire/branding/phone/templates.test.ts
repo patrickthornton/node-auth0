@@ -4,6 +4,7 @@
 
 import { mockServerPool } from "../../../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../../../Client.js";
+import * as Management from "../../../../api/index.js";
 
 describe("Templates", () => {
     test("list", async () => {
@@ -69,7 +70,7 @@ describe("Templates", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.branding.phone.templates.create();
+        const response = await client.branding.phone.templates.create({});
         expect(response).toEqual({
             id: "id",
             channel: "channel",
@@ -160,7 +161,7 @@ describe("Templates", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.branding.phone.templates.update("id");
+        const response = await client.branding.phone.templates.update("id", {});
         expect(response).toEqual({
             id: "id",
             channel: "channel",

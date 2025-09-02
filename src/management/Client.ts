@@ -31,6 +31,7 @@ import { RulesConfigs } from "./api/resources/rulesConfigs/client/Client.js";
 import { SelfServiceProfiles } from "./api/resources/selfServiceProfiles/client/Client.js";
 import { Sessions } from "./api/resources/sessions/client/Client.js";
 import { Stats } from "./api/resources/stats/client/Client.js";
+import { SupplementalSignals } from "./api/resources/supplementalSignals/client/Client.js";
 import { Tickets } from "./api/resources/tickets/client/Client.js";
 import { TokenExchangeProfiles } from "./api/resources/tokenExchangeProfiles/client/Client.js";
 import { UserBlocks } from "./api/resources/userBlocks/client/Client.js";
@@ -97,6 +98,7 @@ export class ManagementClient {
     protected _selfServiceProfiles: SelfServiceProfiles | undefined;
     protected _sessions: Sessions | undefined;
     protected _stats: Stats | undefined;
+    protected _supplementalSignals: SupplementalSignals | undefined;
     protected _tickets: Tickets | undefined;
     protected _tokenExchangeProfiles: TokenExchangeProfiles | undefined;
     protected _userBlocks: UserBlocks | undefined;
@@ -219,6 +221,10 @@ export class ManagementClient {
 
     public get stats(): Stats {
         return (this._stats ??= new Stats(this._options));
+    }
+
+    public get supplementalSignals(): SupplementalSignals {
+        return (this._supplementalSignals ??= new SupplementalSignals(this._options));
     }
 
     public get tickets(): Tickets {

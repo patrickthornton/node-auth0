@@ -4,8 +4,55 @@
 
 import { mockServerPool } from "../mock-server/MockServerPool.js";
 import { ManagementClient } from "../../Client.js";
+import * as Management from "../../api/index.js";
 
 describe("Hooks", () => {
+    test("list", async () => {
+        const server = mockServerPool.createServer();
+        const client = new ManagementClient({ token: "test", environment: server.baseUrl });
+
+        const rawResponseBody = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            hooks: [
+                {
+                    triggerId: "triggerId",
+                    id: "id",
+                    name: "name",
+                    enabled: true,
+                    script: "script",
+                    dependencies: { key: "value" },
+                },
+            ],
+        };
+        server.mockEndpoint().get("/hooks").respondWith().statusCode(200).jsonBody(rawResponseBody).build();
+
+        const expected = {
+            start: 1.1,
+            limit: 1.1,
+            total: 1.1,
+            hooks: [
+                {
+                    triggerId: "triggerId",
+                    id: "id",
+                    name: "name",
+                    enabled: true,
+                    script: "script",
+                    dependencies: {
+                        key: "value",
+                    },
+                },
+            ],
+        };
+        const page = await client.hooks.list();
+        expect(expected.hooks).toEqual(page.data);
+
+        expect(page.hasNextPage()).toBe(true);
+        const nextPage = await page.getNextPage();
+        expect(expected.hooks).toEqual(nextPage.data);
+    });
+
     test("create", async () => {
         const server = mockServerPool.createServer();
         const client = new ManagementClient({ token: "test", environment: server.baseUrl });
@@ -102,7 +149,7 @@ describe("Hooks", () => {
             .jsonBody(rawResponseBody)
             .build();
 
-        const response = await client.hooks.update("id");
+        const response = await client.hooks.update("id", {});
         expect(response).toEqual({
             triggerId: "triggerId",
             id: "id",
