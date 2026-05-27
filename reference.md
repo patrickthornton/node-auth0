@@ -2,7 +2,7 @@
 
 ## Actions
 
-<details><summary><code>client.actions.<a href="/src/management/api/resources/actions/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.Action, Management.ListActionsPaginatedResponseContent></code></summary>
+<details><summary><code>client.actions.<a href="/src/management/api/resources/actions/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.Action, Management.ListActionsPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -31,7 +31,7 @@ Retrieve all actions.
 
 ```typescript
 const pageableResponse = await client.actions.list({
-    triggerId: "triggerId",
+    triggerId: "post-login",
     actionName: "actionName",
     deployed: true,
     page: 1,
@@ -44,7 +44,7 @@ for await (const item of pageableResponse) {
 
 // Or you can manually iterate page-by-page
 let page = await client.actions.list({
-    triggerId: "triggerId",
+    triggerId: "post-login",
     actionName: "actionName",
     deployed: true,
     page: 1,
@@ -80,7 +80,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `ActionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -123,7 +123,7 @@ await client.actions.create({
     name: "name",
     supported_triggers: [
         {
-            id: "id",
+            id: "post-login",
         },
     ],
 });
@@ -150,7 +150,7 @@ await client.actions.create({
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `ActionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -213,7 +213,7 @@ await client.actions.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `ActionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -286,7 +286,7 @@ await client.actions.delete("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `ActionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -357,7 +357,7 @@ await client.actions.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `ActionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -420,7 +420,7 @@ await client.actions.deploy("id");
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `ActionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -495,7 +495,7 @@ await client.actions.test("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Actions.RequestOptions`
+**requestOptions:** `ActionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -552,7 +552,7 @@ await client.branding.get();
 <dl>
 <dd>
 
-**requestOptions:** `Branding.RequestOptions`
+**requestOptions:** `BrandingClient.RequestOptions`
 
 </dd>
 </dl>
@@ -615,7 +615,7 @@ await client.branding.update();
 <dl>
 <dd>
 
-**requestOptions:** `Branding.RequestOptions`
+**requestOptions:** `BrandingClient.RequestOptions`
 
 </dd>
 </dl>
@@ -628,7 +628,7 @@ await client.branding.update();
 
 ## ClientGrants
 
-<details><summary><code>client.clientGrants.<a href="/src/management/api/resources/clientGrants/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.ClientGrantResponseContent, Management.ListClientGrantPaginatedResponseContent></code></summary>
+<details><summary><code>client.clientGrants.<a href="/src/management/api/resources/clientGrants/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.ClientGrantResponseContent, Management.ListClientGrantPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -663,6 +663,7 @@ const pageableResponse = await client.clientGrants.list({
     client_id: "client_id",
     allow_any_organization: true,
     subject_type: "client",
+    default_for: "third_party_clients",
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -676,6 +677,7 @@ let page = await client.clientGrants.list({
     client_id: "client_id",
     allow_any_organization: true,
     subject_type: "client",
+    default_for: "third_party_clients",
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -706,7 +708,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `ClientGrants.RequestOptions`
+**requestOptions:** `ClientGrantsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -746,7 +748,6 @@ Create a client grant for a machine-to-machine login flow. To learn more, read <
 
 ```typescript
 await client.clientGrants.create({
-    client_id: "client_id",
     audience: "audience",
 });
 ```
@@ -772,7 +773,71 @@ await client.clientGrants.create({
 <dl>
 <dd>
 
-**requestOptions:** `ClientGrants.RequestOptions`
+**requestOptions:** `ClientGrantsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.clientGrants.<a href="/src/management/api/resources/clientGrants/client/Client.ts">get</a>(id) -> Management.GetClientGrantResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a single <a href="https://auth0.com/docs/get-started/applications/application-access-to-apis-client-grants">client grant</a>, including the
+scopes associated with the application/API pair.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.clientGrants.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the client grant to retrieve.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ClientGrantsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -835,7 +900,7 @@ await client.clientGrants.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `ClientGrants.RequestOptions`
+**requestOptions:** `ClientGrantsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -906,7 +971,7 @@ await client.clientGrants.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `ClientGrants.RequestOptions`
+**requestOptions:** `ClientGrantsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -919,7 +984,7 @@ await client.clientGrants.update("id");
 
 ## Clients
 
-<details><summary><code>client.clients.<a href="/src/management/api/resources/clients/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.Client, Management.ListClientsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.clients.<a href="/src/management/api/resources/clients/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.Client, Management.ListClientsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -987,6 +1052,7 @@ const pageableResponse = await client.clients.list({
     is_global: true,
     is_first_party: true,
     app_type: "app_type",
+    external_client_id: "external_client_id",
     q: "q",
 });
 for await (const item of pageableResponse) {
@@ -1003,6 +1069,7 @@ let page = await client.clients.list({
     is_global: true,
     is_first_party: true,
     app_type: "app_type",
+    external_client_id: "external_client_id",
     q: "q",
 });
 while (page.hasNextPage()) {
@@ -1034,7 +1101,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Clients.RequestOptions`
+**requestOptions:** `ClientsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1112,7 +1179,141 @@ await client.clients.create({
 <dl>
 <dd>
 
-**requestOptions:** `Clients.RequestOptions`
+**requestOptions:** `ClientsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.clients.<a href="/src/management/api/resources/clients/client/Client.ts">previewCimdMetadata</a>({ ...params }) -> Management.PreviewCimdMetadataResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+      Fetches and validates a Client ID Metadata Document without creating a client.
+      Returns the raw metadata and how it would be mapped to Auth0 client fields.
+      This endpoint is useful for testing metadata URIs before creating CIMD clients.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.clients.previewCimdMetadata({
+    external_client_id: "external_client_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.PreviewCimdMetadataRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ClientsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.clients.<a href="/src/management/api/resources/clients/client/Client.ts">registerCimdClient</a>({ ...params }) -> Management.RegisterCimdClientResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+      Idempotent registration for Client ID Metadata Document (CIMD) clients.
+      Uses external_client_id as the unique identifier for upsert operations.
+      **Create:** Returns 201 when a new client is created (requires \
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.clients.registerCimdClient({
+    external_client_id: "external_client_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.RegisterCimdClientRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ClientsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1216,7 +1417,7 @@ await client.clients.get("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Clients.RequestOptions`
+**requestOptions:** `ClientsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1279,7 +1480,7 @@ await client.clients.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Clients.RequestOptions`
+**requestOptions:** `ClientsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1358,7 +1559,7 @@ await client.clients.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Clients.RequestOptions`
+**requestOptions:** `ClientsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1425,7 +1626,470 @@ await client.clients.rotateSecret("id");
 <dl>
 <dd>
 
-**requestOptions:** `Clients.RequestOptions`
+**requestOptions:** `ClientsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## ConnectionProfiles
+
+<details><summary><code>client.connectionProfiles.<a href="/src/management/api/resources/connectionProfiles/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.ConnectionProfile, Management.ListConnectionProfilesPaginatedResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of Connection Profiles. This endpoint supports Checkpoint pagination.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.connectionProfiles.list({
+    from: "from",
+    take: 1,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.connectionProfiles.list({
+    from: "from",
+    take: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.ListConnectionProfileRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionProfilesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connectionProfiles.<a href="/src/management/api/resources/connectionProfiles/client/Client.ts">create</a>({ ...params }) -> Management.CreateConnectionProfileResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a Connection Profile.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connectionProfiles.create({
+    name: "name",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.CreateConnectionProfileRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionProfilesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connectionProfiles.<a href="/src/management/api/resources/connectionProfiles/client/Client.ts">listTemplates</a>() -> Management.ListConnectionProfileTemplateResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of Connection Profile Templates.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connectionProfiles.listTemplates();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionProfilesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connectionProfiles.<a href="/src/management/api/resources/connectionProfiles/client/Client.ts">getTemplate</a>(id) -> Management.GetConnectionProfileTemplateResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a Connection Profile Template.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connectionProfiles.getTemplate("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the connection-profile-template to retrieve.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionProfilesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connectionProfiles.<a href="/src/management/api/resources/connectionProfiles/client/Client.ts">get</a>(id) -> Management.GetConnectionProfileResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details about a single Connection Profile specified by ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connectionProfiles.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the connection-profile to retrieve.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionProfilesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connectionProfiles.<a href="/src/management/api/resources/connectionProfiles/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a single Connection Profile specified by ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connectionProfiles.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the connection-profile to delete.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionProfilesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connectionProfiles.<a href="/src/management/api/resources/connectionProfiles/client/Client.ts">update</a>(id, { ...params }) -> Management.UpdateConnectionProfileResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update the details of a specific Connection Profile.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connectionProfiles.update("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the connection profile to update.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.UpdateConnectionProfileRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1438,7 +2102,7 @@ await client.clients.rotateSecret("id");
 
 ## Connections
 
-<details><summary><code>client.connections.<a href="/src/management/api/resources/connections/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.ConnectionForList, Management.ListConnectionsCheckpointPaginatedResponseContent></code></summary>
+<details><summary><code>client.connections.<a href="/src/management/api/resources/connections/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.ConnectionForList, Management.ListConnectionsCheckpointPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1489,6 +2153,7 @@ To search by checkpoint, use the following parameters:
 const pageableResponse = await client.connections.list({
     from: "from",
     take: 1,
+    strategy: ["ad"],
     name: "name",
     fields: "fields",
     include_fields: true,
@@ -1501,6 +2166,7 @@ for await (const item of pageableResponse) {
 let page = await client.connections.list({
     from: "from",
     take: 1,
+    strategy: ["ad"],
     name: "name",
     fields: "fields",
     include_fields: true,
@@ -1534,7 +2200,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1557,7 +2223,9 @@ const response = page.response;
 <dl>
 <dd>
 
-Creates a new connection according to the JSON object received in <code>body</code>.<br/>
+Creates a new connection according to the JSON object received in <code>body</code>.
+
+<b>Note:</b> If a connection with the same name was recently deleted and had a large number of associated users, the deletion may still be processing. Creating a new connection with that name before the deletion completes may fail or produce unexpected results.
 
 </dd>
 </dl>
@@ -1600,7 +2268,7 @@ await client.connections.create({
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1674,7 +2342,7 @@ await client.connections.get("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1698,6 +2366,8 @@ await client.connections.get("id", {
 <dd>
 
 Removes a specific <a href="https://auth0.com/docs/authenticate/identity-providers">connection</a> from your tenant. This action cannot be undone. Once removed, users can no longer use this connection to authenticate.
+
+<b>Note:</b> If your connection has a large amount of users associated with it, please be aware that this operation can be long running after the response is returned and may impact concurrent <a href="https://auth0.com/docs/api/management/v2/connections/post-connections">create connection</a> requests, if they use an identical connection name.
 
 </dd>
 </dl>
@@ -1737,7 +2407,7 @@ await client.connections.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1810,7 +2480,7 @@ await client.connections.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1873,7 +2543,7 @@ await client.connections.checkStatus("id");
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -1886,7 +2556,7 @@ await client.connections.checkStatus("id");
 
 ## CustomDomains
 
-<details><summary><code>client.customDomains.<a href="/src/management/api/resources/customDomains/client/Client.ts">list</a>() -> Management.ListCustomDomainsResponseContent</code></summary>
+<details><summary><code>client.customDomains.<a href="/src/management/api/resources/customDomains/client/Client.ts">list</a>({ ...params }) -> Management.ListCustomDomainsResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -1914,7 +2584,12 @@ Retrieve details on <a href="https://auth0.com/docs/custom-domains">custom domai
 <dd>
 
 ```typescript
-await client.customDomains.list();
+await client.customDomains.list({
+    q: "q",
+    fields: "fields",
+    include_fields: true,
+    sort: "sort",
+});
 ```
 
 </dd>
@@ -1930,7 +2605,15 @@ await client.customDomains.list();
 <dl>
 <dd>
 
-**requestOptions:** `CustomDomains.RequestOptions`
+**request:** `Management.ListCustomDomainsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2007,7 +2690,127 @@ await client.customDomains.create({
 <dl>
 <dd>
 
-**requestOptions:** `CustomDomains.RequestOptions`
+**requestOptions:** `CustomDomainsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.customDomains.<a href="/src/management/api/resources/customDomains/client/Client.ts">getDefault</a>() -> Management.GetDefaultDomainResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the tenant's default domain.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.customDomains.getDefault();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomDomainsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.customDomains.<a href="/src/management/api/resources/customDomains/client/Client.ts">setDefault</a>({ ...params }) -> Management.UpdateDefaultDomainResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Set the default custom domain for the tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.customDomains.setDefault({
+    domain: "domain",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.SetDefaultCustomDomainRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `CustomDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2070,7 +2873,7 @@ await client.customDomains.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `CustomDomains.RequestOptions`
+**requestOptions:** `CustomDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2133,7 +2936,7 @@ await client.customDomains.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `CustomDomains.RequestOptions`
+**requestOptions:** `CustomDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2224,7 +3027,7 @@ await client.customDomains.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `CustomDomains.RequestOptions`
+**requestOptions:** `CustomDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2287,7 +3090,7 @@ await client.customDomains.test("id");
 <dl>
 <dd>
 
-**requestOptions:** `CustomDomains.RequestOptions`
+**requestOptions:** `CustomDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2357,7 +3160,7 @@ await client.customDomains.verify("id");
 <dl>
 <dd>
 
-**requestOptions:** `CustomDomains.RequestOptions`
+**requestOptions:** `CustomDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2370,7 +3173,7 @@ await client.customDomains.verify("id");
 
 ## DeviceCredentials
 
-<details><summary><code>client.deviceCredentials.<a href="/src/management/api/resources/deviceCredentials/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.DeviceCredential, Management.ListDeviceCredentialsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.deviceCredentials.<a href="/src/management/api/resources/deviceCredentials/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.DeviceCredential, Management.ListDeviceCredentialsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2452,7 +3255,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `DeviceCredentials.RequestOptions`
+**requestOptions:** `DeviceCredentialsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2521,7 +3324,7 @@ await client.deviceCredentials.createPublicKey({
 <dl>
 <dd>
 
-**requestOptions:** `DeviceCredentials.RequestOptions`
+**requestOptions:** `DeviceCredentialsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2584,7 +3387,7 @@ await client.deviceCredentials.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `DeviceCredentials.RequestOptions`
+**requestOptions:** `DeviceCredentialsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2651,7 +3454,7 @@ await client.emailTemplates.create({
 <dl>
 <dd>
 
-**requestOptions:** `EmailTemplates.RequestOptions`
+**requestOptions:** `EmailTemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2714,7 +3517,7 @@ await client.emailTemplates.get("verify_email");
 <dl>
 <dd>
 
-**requestOptions:** `EmailTemplates.RequestOptions`
+**requestOptions:** `EmailTemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2787,7 +3590,7 @@ await client.emailTemplates.set("verify_email", {
 <dl>
 <dd>
 
-**requestOptions:** `EmailTemplates.RequestOptions`
+**requestOptions:** `EmailTemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2858,7 +3661,7 @@ await client.emailTemplates.update("verify_email");
 <dl>
 <dd>
 
-**requestOptions:** `EmailTemplates.RequestOptions`
+**requestOptions:** `EmailTemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2871,7 +3674,7 @@ await client.emailTemplates.update("verify_email");
 
 ## EventStreams
 
-<details><summary><code>client.eventStreams.<a href="/src/management/api/resources/eventStreams/client/Client.ts">list</a>({ ...params }) -> Management.EventStreamResponseContent[]</code></summary>
+<details><summary><code>client.eventStreams.<a href="/src/management/api/resources/eventStreams/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.EventStreamResponseContent, Management.ListEventStreamsResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2884,10 +3687,25 @@ await client.emailTemplates.update("verify_email");
 <dd>
 
 ```typescript
-await client.eventStreams.list({
+const pageableResponse = await client.eventStreams.list({
     from: "from",
     take: 1,
 });
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.eventStreams.list({
+    from: "from",
+    take: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
 ```
 
 </dd>
@@ -2911,7 +3729,7 @@ await client.eventStreams.list({
 <dl>
 <dd>
 
-**requestOptions:** `EventStreams.RequestOptions`
+**requestOptions:** `EventStreamsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -2970,7 +3788,7 @@ await client.eventStreams.create({
 <dl>
 <dd>
 
-**requestOptions:** `EventStreams.RequestOptions`
+**requestOptions:** `EventStreamsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3018,7 +3836,7 @@ await client.eventStreams.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `EventStreams.RequestOptions`
+**requestOptions:** `EventStreamsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3066,7 +3884,7 @@ await client.eventStreams.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `EventStreams.RequestOptions`
+**requestOptions:** `EventStreamsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3122,7 +3940,7 @@ await client.eventStreams.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `EventStreams.RequestOptions`
+**requestOptions:** `EventStreamsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3147,7 +3965,7 @@ await client.eventStreams.update("id");
 
 ```typescript
 await client.eventStreams.test("id", {
-    event_type: "user.created",
+    event_type: "group.created",
 });
 ```
 
@@ -3180,7 +3998,79 @@ await client.eventStreams.test("id", {
 <dl>
 <dd>
 
-**requestOptions:** `EventStreams.RequestOptions`
+**requestOptions:** `EventStreamsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Events
+
+<details><summary><code>client.events.<a href="/src/management/api/resources/events/client/Client.ts">subscribe</a>({ ...params }) -> core.Stream&lt;Management.EventStreamSubscribeEventsResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Subscribe to events via Server-Sent Events (SSE)
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const response = await client.events.subscribe({
+    from: "from",
+    from_timestamp: "from_timestamp",
+    event_type: "group.created",
+});
+for await (const item of response) {
+    console.log(item);
+}
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.SubscribeEventsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `EventsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3193,7 +4083,7 @@ await client.eventStreams.test("id", {
 
 ## Flows
 
-<details><summary><code>client.flows.<a href="/src/management/api/resources/flows/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.FlowSummary, Management.ListFlowsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.flows.<a href="/src/management/api/resources/flows/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.FlowSummary, Management.ListFlowsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3210,6 +4100,7 @@ const pageableResponse = await client.flows.list({
     page: 1,
     per_page: 1,
     include_totals: true,
+    hydrate: ["form_count"],
     synchronous: true,
 });
 for await (const item of pageableResponse) {
@@ -3221,6 +4112,7 @@ let page = await client.flows.list({
     page: 1,
     per_page: 1,
     include_totals: true,
+    hydrate: ["form_count"],
     synchronous: true,
 });
 while (page.hasNextPage()) {
@@ -3244,7 +4136,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `Management.FlowsListRequest`
+**request:** `Management.ListFlowsRequestParameters`
 
 </dd>
 </dl>
@@ -3252,7 +4144,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Flows.RequestOptions`
+**requestOptions:** `FlowsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3302,7 +4194,7 @@ await client.flows.create({
 <dl>
 <dd>
 
-**requestOptions:** `Flows.RequestOptions`
+**requestOptions:** `FlowsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3326,7 +4218,9 @@ await client.flows.create({
 <dd>
 
 ```typescript
-await client.flows.get("id");
+await client.flows.get("id", {
+    hydrate: ["form_count"],
+});
 ```
 
 </dd>
@@ -3358,7 +4252,7 @@ await client.flows.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Flows.RequestOptions`
+**requestOptions:** `FlowsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3406,7 +4300,7 @@ await client.flows.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Flows.RequestOptions`
+**requestOptions:** `FlowsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3462,7 +4356,7 @@ await client.flows.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Flows.RequestOptions`
+**requestOptions:** `FlowsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3475,7 +4369,7 @@ await client.flows.update("id");
 
 ## Forms
 
-<details><summary><code>client.forms.<a href="/src/management/api/resources/forms/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.FormSummary, Management.ListFormsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.forms.<a href="/src/management/api/resources/forms/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.FormSummary, Management.ListFormsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3492,6 +4386,7 @@ const pageableResponse = await client.forms.list({
     page: 1,
     per_page: 1,
     include_totals: true,
+    hydrate: ["flow_count"],
 });
 for await (const item of pageableResponse) {
     console.log(item);
@@ -3502,6 +4397,7 @@ let page = await client.forms.list({
     page: 1,
     per_page: 1,
     include_totals: true,
+    hydrate: ["flow_count"],
 });
 while (page.hasNextPage()) {
     page = page.getNextPage();
@@ -3532,7 +4428,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Forms.RequestOptions`
+**requestOptions:** `FormsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3582,7 +4478,7 @@ await client.forms.create({
 <dl>
 <dd>
 
-**requestOptions:** `Forms.RequestOptions`
+**requestOptions:** `FormsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3606,7 +4502,9 @@ await client.forms.create({
 <dd>
 
 ```typescript
-await client.forms.get("id");
+await client.forms.get("id", {
+    hydrate: ["flow_count"],
+});
 ```
 
 </dd>
@@ -3638,7 +4536,7 @@ await client.forms.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Forms.RequestOptions`
+**requestOptions:** `FormsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3686,7 +4584,7 @@ await client.forms.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Forms.RequestOptions`
+**requestOptions:** `FormsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3742,7 +4640,7 @@ await client.forms.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Forms.RequestOptions`
+**requestOptions:** `FormsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3755,7 +4653,7 @@ await client.forms.update("id");
 
 ## UserGrants
 
-<details><summary><code>client.userGrants.<a href="/src/management/api/resources/userGrants/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.UserGrant, Management.ListUserGrantsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.userGrants.<a href="/src/management/api/resources/userGrants/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.UserGrant, Management.ListUserGrantsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -3833,7 +4731,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `UserGrants.RequestOptions`
+**requestOptions:** `UserGrantsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3898,7 +4796,7 @@ await client.userGrants.deleteByUserId({
 <dl>
 <dd>
 
-**requestOptions:** `UserGrants.RequestOptions`
+**requestOptions:** `UserGrantsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3961,7 +4859,228 @@ await client.userGrants.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `UserGrants.RequestOptions`
+**requestOptions:** `UserGrantsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Groups
+
+<details><summary><code>client.groups.<a href="/src/management/api/resources/groups/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.Group, Management.ListGroupsPaginatedResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all groups in your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.groups.list({
+    connection_id: "connection_id",
+    name: "name",
+    external_id: "external_id",
+    search: "search",
+    fields: "fields",
+    include_fields: true,
+    from: "from",
+    take: 1,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.groups.list({
+    connection_id: "connection_id",
+    name: "name",
+    external_id: "external_id",
+    search: "search",
+    fields: "fields",
+    include_fields: true,
+    from: "from",
+    take: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.ListGroupsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GroupsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.groups.<a href="/src/management/api/resources/groups/client/Client.ts">get</a>(id) -> Management.GetGroupResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a group by its ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.groups.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Unique identifier for the group (service-generated).
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GroupsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.groups.<a href="/src/management/api/resources/groups/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a group by its ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.groups.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Unique identifier for the group (service-generated).
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GroupsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -3974,7 +5093,7 @@ await client.userGrants.delete("id");
 
 ## Hooks
 
-<details><summary><code>client.hooks.<a href="/src/management/api/resources/hooks/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.Hook, Management.ListHooksOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.hooks.<a href="/src/management/api/resources/hooks/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.Hook, Management.ListHooksOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4052,7 +5171,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Hooks.RequestOptions`
+**requestOptions:** `HooksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -4119,7 +5238,7 @@ await client.hooks.create({
 <dl>
 <dd>
 
-**requestOptions:** `Hooks.RequestOptions`
+**requestOptions:** `HooksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -4192,7 +5311,7 @@ await client.hooks.get("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Hooks.RequestOptions`
+**requestOptions:** `HooksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -4255,7 +5374,7 @@ await client.hooks.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Hooks.RequestOptions`
+**requestOptions:** `HooksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -4326,7 +5445,7 @@ await client.hooks.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Hooks.RequestOptions`
+**requestOptions:** `HooksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -4391,7 +5510,7 @@ await client.jobs.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Jobs.RequestOptions`
+**requestOptions:** `JobsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -4416,73 +5535,81 @@ await client.jobs.get("id");
 <dl>
 <dd>
 
-Retrieve details on <a href="https://auth0.com/docs/logs/streams">log streams</a>.
+Retrieve details on [log streams](https://auth0.com/docs/logs/streams).
 
-<h5>Sample Response</h5><pre><code>[{
-	"id": "string",
-	"name": "string",
-	"type": "eventbridge",
-	"status": "active|paused|suspended",
-	"sink": {
-		"awsAccountId": "string",
-		"awsRegion": "string",
-		"awsPartnerEventSource": "string"
-	}
-}, {
-	"id": "string",
-	"name": "string",
-	"type": "http",
-	"status": "active|paused|suspended",
-	"sink": {
-		"httpContentFormat": "JSONLINES|JSONARRAY",
-		"httpContentType": "string",
-		"httpEndpoint": "string",
-		"httpAuthorization": "string"
-	}
-},
-{
-	"id": "string",
-	"name": "string",
-	"type": "eventgrid",
-	"status": "active|paused|suspended",
-	"sink": {
-		"azureSubscriptionId": "string",
-		"azureResourceGroup": "string",
-		"azureRegion": "string",
-		"azurePartnerTopic": "string"
-	}
-},
-{
-	"id": "string",
-	"name": "string",
-	"type": "splunk",
-	"status": "active|paused|suspended",
-	"sink": {
-		"splunkDomain": "string",
-		"splunkToken": "string",
-		"splunkPort": "string",
-		"splunkSecure": "boolean"
-	}
-},
-{
-	"id": "string",
-	"name": "string",
-	"type": "sumo",
-	"status": "active|paused|suspended",
-	"sink": {
-		"sumoSourceAddress": "string",
-	}
-},
-{
-	"id": "string",
-	"name": "string",
-	"type": "datadog",
-	"status": "active|paused|suspended",
-	"sink": {
-		"datadogRegion": "string",
-		"datadogApiKey": "string"
-	}
-}]</code></pre>
+**Sample Response**
+
+```json
+[
+    {
+        "id": "string",
+        "name": "string",
+        "type": "eventbridge",
+        "status": "active|paused|suspended",
+        "sink": {
+            "awsAccountId": "string",
+            "awsRegion": "string",
+            "awsPartnerEventSource": "string"
+        }
+    },
+    {
+        "id": "string",
+        "name": "string",
+        "type": "http",
+        "status": "active|paused|suspended",
+        "sink": {
+            "httpContentFormat": "JSONLINES|JSONARRAY",
+            "httpContentType": "string",
+            "httpEndpoint": "string",
+            "httpAuthorization": "string"
+        }
+    },
+    {
+        "id": "string",
+        "name": "string",
+        "type": "eventgrid",
+        "status": "active|paused|suspended",
+        "sink": {
+            "azureSubscriptionId": "string",
+            "azureResourceGroup": "string",
+            "azureRegion": "string",
+            "azurePartnerTopic": "string"
+        }
+    },
+    {
+        "id": "string",
+        "name": "string",
+        "type": "splunk",
+        "status": "active|paused|suspended",
+        "sink": {
+            "splunkDomain": "string",
+            "splunkToken": "string",
+            "splunkPort": "string",
+            "splunkSecure": "boolean"
+        }
+    },
+    {
+        "id": "string",
+        "name": "string",
+        "type": "sumo",
+        "status": "active|paused|suspended",
+        "sink": {
+            "sumoSourceAddress": "string"
+        }
+    },
+    {
+        "id": "string",
+        "name": "string",
+        "type": "datadog",
+        "status": "active|paused|suspended",
+        "sink": {
+            "datadogRegion": "string",
+            "datadogApiKey": "string"
+        }
+    }
+]
+```
+
 </dd>
 </dl>
 </dd>
@@ -4513,7 +5640,7 @@ await client.logStreams.list();
 <dl>
 <dd>
 
-**requestOptions:** `LogStreams.RequestOptions`
+**requestOptions:** `LogStreamsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -4538,131 +5665,214 @@ await client.logStreams.list();
 
 Create a log stream.
 
-<h5>Log Stream Types</h5> The <code>type</code> of log stream being created determines the properties required in the <code>sink</code> payload.
-<h5>HTTP Stream</h5> For an <code>http</code> Stream, the <code>sink</code> properties are listed in the payload below
-Request: <pre><code>{
-	"name": "string",
-	"type": "http",
-	"sink": {
-		"httpEndpoint": "string",
-		"httpContentType": "string",
-		"httpContentFormat": "JSONLINES|JSONARRAY",
-		"httpAuthorization": "string"
-	}
-}</code></pre>
-Response: <pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "http",
-	"status": "active",
-	"sink": {
-		"httpEndpoint": "string",
-		"httpContentType": "string",
-		"httpContentFormat": "JSONLINES|JSONARRAY",
-		"httpAuthorization": "string"
-	}
-}</code></pre>
-<h5>Amazon EventBridge Stream</h5> For an <code>eventbridge</code> Stream, the <code>sink</code> properties are listed in the payload below
-Request: <pre><code>{
-	"name": "string",
-	"type": "eventbridge",
-	"sink": {
-		"awsRegion": "string",
-		"awsAccountId": "string"
-	}
-}</code></pre>
-The response will include an additional field <code>awsPartnerEventSource</code> in the <code>sink</code>: <pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "eventbridge",
-	"status": "active",
-	"sink": {
-		"awsAccountId": "string",
-		"awsRegion": "string",
-		"awsPartnerEventSource": "string"
-	}
-}</code></pre>
-<h5>Azure Event Grid Stream</h5> For an <code>Azure Event Grid</code> Stream, the <code>sink</code> properties are listed in the payload below
-Request: <pre><code>{
-	"name": "string",
-	"type": "eventgrid",
-	"sink": {
-		"azureSubscriptionId": "string",
-		"azureResourceGroup": "string",
-		"azureRegion": "string"
-	}
-}</code></pre>
-Response: <pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "http",
-	"status": "active",
-	"sink": {
-		"azureSubscriptionId": "string",
-		"azureResourceGroup": "string",
-		"azureRegion": "string",
-		"azurePartnerTopic": "string"
-	}
-}</code></pre>
-<h5>Datadog Stream</h5> For a <code>Datadog</code> Stream, the <code>sink</code> properties are listed in the payload below
-Request: <pre><code>{
-	"name": "string",
-	"type": "datadog",
-	"sink": {
-		"datadogRegion": "string",
-		"datadogApiKey": "string"
-	}
-}</code></pre>
-Response: <pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "datadog",
-	"status": "active",
-	"sink": {
-		"datadogRegion": "string",
-		"datadogApiKey": "string"
-	}
-}</code></pre>
-<h5>Splunk Stream</h5> For a <code>Splunk</code> Stream, the <code>sink</code> properties are listed in the payload below
-Request: <pre><code>{
-	"name": "string",
-	"type": "splunk",
-	"sink": {
-		"splunkDomain": "string",
-		"splunkToken": "string",
-		"splunkPort": "string",
-		"splunkSecure": "boolean"
-	}
-}</code></pre>
-Response: <pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "splunk",
-	"status": "active",
-	"sink": {
-		"splunkDomain": "string",
-		"splunkToken": "string",
-		"splunkPort": "string",
-		"splunkSecure": "boolean"
-	}
-}</code></pre>
-<h5>Sumo Logic Stream</h5> For a <code>Sumo Logic</code> Stream, the <code>sink</code> properties are listed in the payload below
-Request: <pre><code>{
-	"name": "string",
-	"type": "sumo",
-	"sink": {
-		"sumoSourceAddress": "string",
-	}
-}</code></pre>
-Response: <pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "sumo",
-	"status": "active",
-	"sink": {
-		"sumoSourceAddress": "string",
-	}
-}</code></pre>
+**Log Stream Types**
+
+The `type` of log stream being created determines the properties required in the `sink` payload.
+
+**HTTP Stream**
+
+For an `http` Stream, the `sink` properties are listed in the payload below.
+
+**Request:**
+
+```json
+{
+    "name": "string",
+    "type": "http",
+    "sink": {
+        "httpEndpoint": "string",
+        "httpContentType": "string",
+        "httpContentFormat": "JSONLINES|JSONARRAY",
+        "httpAuthorization": "string"
+    }
+}
+```
+
+**Response:**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "http",
+    "status": "active",
+    "sink": {
+        "httpEndpoint": "string",
+        "httpContentType": "string",
+        "httpContentFormat": "JSONLINES|JSONARRAY",
+        "httpAuthorization": "string"
+    }
+}
+```
+
+**Amazon EventBridge Stream**
+
+For an `eventbridge` Stream, the `sink` properties are listed in the payload below.
+
+**Request:**
+
+```json
+{
+    "name": "string",
+    "type": "eventbridge",
+    "sink": {
+        "awsRegion": "string",
+        "awsAccountId": "string"
+    }
+}
+```
+
+The response will include an additional field `awsPartnerEventSource` in the `sink`:
+
+**Response:**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "eventbridge",
+    "status": "active",
+    "sink": {
+        "awsAccountId": "string",
+        "awsRegion": "string",
+        "awsPartnerEventSource": "string"
+    }
+}
+```
+
+**Azure Event Grid Stream**
+
+For an `Azure Event Grid` Stream, the `sink` properties are listed in the payload below.
+
+**Request:**
+
+```json
+{
+    "name": "string",
+    "type": "eventgrid",
+    "sink": {
+        "azureSubscriptionId": "string",
+        "azureResourceGroup": "string",
+        "azureRegion": "string"
+    }
+}
+```
+
+**Response:**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "http",
+    "status": "active",
+    "sink": {
+        "azureSubscriptionId": "string",
+        "azureResourceGroup": "string",
+        "azureRegion": "string",
+        "azurePartnerTopic": "string"
+    }
+}
+```
+
+**Datadog Stream**
+
+For a `Datadog` Stream, the `sink` properties are listed in the payload below.
+
+**Request:**
+
+```json
+{
+    "name": "string",
+    "type": "datadog",
+    "sink": {
+        "datadogRegion": "string",
+        "datadogApiKey": "string"
+    }
+}
+```
+
+**Response:**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "datadog",
+    "status": "active",
+    "sink": {
+        "datadogRegion": "string",
+        "datadogApiKey": "string"
+    }
+}
+```
+
+**Splunk Stream**
+
+For a `Splunk` Stream, the `sink` properties are listed in the payload below.
+
+**Request:**
+
+```json
+{
+    "name": "string",
+    "type": "splunk",
+    "sink": {
+        "splunkDomain": "string",
+        "splunkToken": "string",
+        "splunkPort": "string",
+        "splunkSecure": "boolean"
+    }
+}
+```
+
+**Response:**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "splunk",
+    "status": "active",
+    "sink": {
+        "splunkDomain": "string",
+        "splunkToken": "string",
+        "splunkPort": "string",
+        "splunkSecure": "boolean"
+    }
+}
+```
+
+**Sumo Logic Stream**
+
+For a `Sumo Logic` Stream, the `sink` properties are listed in the payload below.
+
+**Request:**
+
+```json
+{
+    "name": "string",
+    "type": "sumo",
+    "sink": {
+        "sumoSourceAddress": "string"
+    }
+}
+```
+
+**Response:**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "sumo",
+    "status": "active",
+    "sink": {
+        "sumoSourceAddress": "string"
+    }
+}
+```
+
 </dd>
 </dl>
 </dd>
@@ -4706,7 +5916,7 @@ await client.logStreams.create({
 <dl>
 <dd>
 
-**requestOptions:** `LogStreams.RequestOptions`
+**requestOptions:** `LogStreamsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -4731,108 +5941,160 @@ await client.logStreams.create({
 
 Retrieve a log stream configuration and status.
 
-<h5>Sample responses</h5><h5>Amazon EventBridge Log Stream</h5><pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "eventbridge",
-	"status": "active|paused|suspended",
-	"sink": {
-		"awsAccountId": "string",
-		"awsRegion": "string",
-		"awsPartnerEventSource": "string"
-	}
-}</code></pre> <h5>HTTP Log Stream</h5><pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "http",
-	"status": "active|paused|suspended",
-	"sink": {
-		"httpContentFormat": "JSONLINES|JSONARRAY",
-		"httpContentType": "string",
-		"httpEndpoint": "string",
-		"httpAuthorization": "string"
-	}
-}</code></pre> <h5>Datadog Log Stream</h5><pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "datadog",
-	"status": "active|paused|suspended",
-	"sink": {
-		"datadogRegion": "string",
-		"datadogApiKey": "string"
-	}
+**Sample responses**
 
-}</code></pre><h5>Mixpanel</h5>
-Request: <pre><code>{
-"name": "string",
-"type": "mixpanel",
-"sink": {
-"mixpanelRegion": "string", // "us" | "eu",
-"mixpanelProjectId": "string",
-"mixpanelServiceAccountUsername": "string",
-"mixpanelServiceAccountPassword": "string"
+**Amazon EventBridge Log Stream**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "eventbridge",
+    "status": "active|paused|suspended",
+    "sink": {
+        "awsAccountId": "string",
+        "awsRegion": "string",
+        "awsPartnerEventSource": "string"
+    }
 }
-} </code></pre>
-Response: <pre><code>{
-"id": "string",
-"name": "string",
-"type": "mixpanel",
-"status": "active",
-"sink": {
-"mixpanelRegion": "string", // "us" | "eu",
-"mixpanelProjectId": "string",
-"mixpanelServiceAccountUsername": "string",
-"mixpanelServiceAccountPassword": "string" // the following is redacted on return
+```
+
+**HTTP Log Stream**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "http",
+    "status": "active|paused|suspended",
+    "sink": {
+        "httpContentFormat": "JSONLINES|JSONARRAY",
+        "httpContentType": "string",
+        "httpEndpoint": "string",
+        "httpAuthorization": "string"
+    }
 }
-} </code></pre>
+```
 
-    <h5>Segment</h5>
+**Datadog Log Stream**
 
-    Request: <pre><code> {
-      "name": "string",
-      "type": "segment",
-      "sink": {
-    	"segmentWriteKey": "string"
-      }
-    }</code></pre>
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "datadog",
+    "status": "active|paused|suspended",
+    "sink": {
+        "datadogRegion": "string",
+        "datadogApiKey": "string"
+    }
+}
+```
 
-    Response: <pre><code>{
-      "id": "string",
-      "name": "string",
-      "type": "segment",
-      "status": "active",
-      "sink": {
-    	"segmentWriteKey": "string"
-      }
-    } </code></pre>
+**Mixpanel**
 
-<h5>Splunk Log Stream</h5><pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "splunk",
-	"status": "active|paused|suspended",
-	"sink": {
-		"splunkDomain": "string",
-		"splunkToken": "string",
-		"splunkPort": "string",
-		"splunkSecure": "boolean"
-	}
-}</code></pre> <h5>Sumo Logic Log Stream</h5><pre><code>{
-	"id": "string",
-	"name": "string",
-	"type": "sumo",
-	"status": "active|paused|suspended",
-	"sink": {
-		"sumoSourceAddress": "string",
-	}
-}</code></pre> <h5>Status</h5> The <code>status</code> of a log stream maybe any of the following:
-1. <code>active</code> - Stream is currently enabled.
-2. <code>paused</code> - Stream is currently user disabled and will not attempt log delivery.
-3. <code>suspended</code> - Stream is currently disabled because of errors and will not attempt log delivery.
-</dd>
-</dl>
-</dd>
-</dl>
+**Request:**
+
+```json
+{
+    "name": "string",
+    "type": "mixpanel",
+    "sink": {
+        "mixpanelRegion": "string",
+        "mixpanelProjectId": "string",
+        "mixpanelServiceAccountUsername": "string",
+        "mixpanelServiceAccountPassword": "string"
+    }
+}
+```
+
+**Response:**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "mixpanel",
+    "status": "active",
+    "sink": {
+        "mixpanelRegion": "string",
+        "mixpanelProjectId": "string",
+        "mixpanelServiceAccountUsername": "string",
+        "mixpanelServiceAccountPassword": "string"
+    }
+}
+```
+
+**Segment**
+
+**Request:**
+
+```json
+{
+    "name": "string",
+    "type": "segment",
+    "sink": {
+        "segmentWriteKey": "string"
+    }
+}
+```
+
+**Response:**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "segment",
+    "status": "active",
+    "sink": {
+        "segmentWriteKey": "string"
+    }
+}
+```
+
+**Splunk Log Stream**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "splunk",
+    "status": "active|paused|suspended",
+    "sink": {
+        "splunkDomain": "string",
+        "splunkToken": "string",
+        "splunkPort": "string",
+        "splunkSecure": "boolean"
+    }
+}
+```
+
+**Sumo Logic Log Stream**
+
+```json
+{
+    "id": "string",
+    "name": "string",
+    "type": "sumo",
+    "status": "active|paused|suspended",
+    "sink": {
+        "sumoSourceAddress": "string"
+    }
+}
+```
+
+**Status**
+
+The `status` of a log stream maybe any of the following:
+
+1. `active` - Stream is currently enabled.
+2. `paused` - Stream is currently user disabled and will not attempt log delivery.
+3. `suspended` - Stream is currently disabled because of errors and will not attempt log delivery.
+ </dd>
+ </dl>
+ </dd>
+ </dl>
 
 #### 🔌 Usage
 
@@ -4867,7 +6129,7 @@ await client.logStreams.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `LogStreams.RequestOptions`
+**requestOptions:** `LogStreamsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -4930,7 +6192,7 @@ await client.logStreams.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `LogStreams.RequestOptions`
+**requestOptions:** `LogStreamsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -4955,40 +6217,79 @@ await client.logStreams.delete("id");
 
 Update a log stream.
 
-<h4>Examples of how to use the PATCH endpoint.</h4> The following fields may be updated in a PATCH operation: <ul><li>name</li><li>status</li><li>sink</li></ul> Note: For log streams of type <code>eventbridge</code> and <code>eventgrid</code>, updating the <code>sink</code> is not permitted.
-<h5>Update the status of a log stream</h5><pre><code>{
-	"status": "active|paused"
-}</code></pre>
-<h5>Update the name of a log stream</h5><pre><code>{
-	"name": "string"
-}</code></pre>
-<h5>Update the sink properties of a stream of type <code>http</code></h5><pre><code>{
-  "sink": {
-    "httpEndpoint": "string",
-    "httpContentType": "string",
-    "httpContentFormat": "JSONARRAY|JSONLINES",
-    "httpAuthorization": "string"
-  }
-}</code></pre>
-<h5>Update the sink properties of a stream of type <code>datadog</code></h5><pre><code>{
-  "sink": {
-		"datadogRegion": "string",
-		"datadogApiKey": "string"
-  }
-}</code></pre>
-<h5>Update the sink properties of a stream of type <code>splunk</code></h5><pre><code>{
-  "sink": {
-    "splunkDomain": "string",
-    "splunkToken": "string",
-    "splunkPort": "string",
-    "splunkSecure": "boolean"
-  }
-}</code></pre>
-<h5>Update the sink properties of a stream of type <code>sumo</code></h5><pre><code>{
-  "sink": {
-    "sumoSourceAddress": "string"
-  }
-}</code></pre> 
+**Examples of how to use the PATCH endpoint.**
+
+The following fields may be updated in a PATCH operation:
+
+- name
+- status
+- sink
+
+Note: For log streams of type `eventbridge` and `eventgrid`, updating the `sink` is not permitted.
+
+**Update the status of a log stream**
+
+```json
+{
+    "status": "active|paused"
+}
+```
+
+**Update the name of a log stream**
+
+```json
+{
+    "name": "string"
+}
+```
+
+**Update the sink properties of a stream of type `http`**
+
+```json
+{
+    "sink": {
+        "httpEndpoint": "string",
+        "httpContentType": "string",
+        "httpContentFormat": "JSONARRAY|JSONLINES",
+        "httpAuthorization": "string"
+    }
+}
+```
+
+**Update the sink properties of a stream of type `datadog`**
+
+```json
+{
+    "sink": {
+        "datadogRegion": "string",
+        "datadogApiKey": "string"
+    }
+}
+```
+
+**Update the sink properties of a stream of type `splunk`**
+
+```json
+{
+    "sink": {
+        "splunkDomain": "string",
+        "splunkToken": "string",
+        "splunkPort": "string",
+        "splunkSecure": "boolean"
+    }
+}
+```
+
+**Update the sink properties of a stream of type `sumo`**
+
+```json
+{
+    "sink": {
+        "sumoSourceAddress": "string"
+    }
+}
+```
+
 </dd>
 </dl>
 </dd>
@@ -5035,7 +6336,7 @@ await client.logStreams.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `LogStreams.RequestOptions`
+**requestOptions:** `LogStreamsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5048,7 +6349,7 @@ await client.logStreams.update("id");
 
 ## Logs
 
-<details><summary><code>client.logs.<a href="/src/management/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.Log, Management.ListLogOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.logs.<a href="/src/management/api/resources/logs/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.Log, Management.ListLogOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5156,7 +6457,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Logs.RequestOptions`
+**requestOptions:** `LogsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5219,7 +6520,7 @@ await client.logs.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Logs.RequestOptions`
+**requestOptions:** `LogsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5232,7 +6533,7 @@ await client.logs.get("id");
 
 ## NetworkAcls
 
-<details><summary><code>client.networkAcls.<a href="/src/management/api/resources/networkAcls/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.NetworkAclsResponseContent, Management.ListNetworkAclsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.networkAcls.<a href="/src/management/api/resources/networkAcls/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.NetworkAclsResponseContent, Management.ListNetworkAclsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5304,7 +6605,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `NetworkAcls.RequestOptions`
+**requestOptions:** `NetworkAclsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5346,7 +6647,6 @@ Create a new access control list for your client.
 await client.networkAcls.create({
     description: "description",
     active: true,
-    priority: 1.1,
     rule: {
         action: {},
         scope: "management",
@@ -5375,7 +6675,7 @@ await client.networkAcls.create({
 <dl>
 <dd>
 
-**requestOptions:** `NetworkAcls.RequestOptions`
+**requestOptions:** `NetworkAclsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5438,7 +6738,7 @@ await client.networkAcls.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkAcls.RequestOptions`
+**requestOptions:** `NetworkAclsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5480,7 +6780,6 @@ Update existing access control list for your client.
 await client.networkAcls.set("id", {
     description: "description",
     active: true,
-    priority: 1.1,
     rule: {
         action: {},
         scope: "management",
@@ -5517,7 +6816,7 @@ await client.networkAcls.set("id", {
 <dl>
 <dd>
 
-**requestOptions:** `NetworkAcls.RequestOptions`
+**requestOptions:** `NetworkAclsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5580,7 +6879,7 @@ await client.networkAcls.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkAcls.RequestOptions`
+**requestOptions:** `NetworkAclsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5651,7 +6950,7 @@ await client.networkAcls.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `NetworkAcls.RequestOptions`
+**requestOptions:** `NetworkAclsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5664,7 +6963,7 @@ await client.networkAcls.update("id");
 
 ## Organizations
 
-<details><summary><code>client.organizations.<a href="/src/management/api/resources/organizations/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.Organization, Management.ListOrganizationsPaginatedResponseContent></code></summary>
+<details><summary><code>client.organizations.<a href="/src/management/api/resources/organizations/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.Organization, Management.ListOrganizationsPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5756,7 +7055,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `OrganizationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5821,7 +7120,7 @@ await client.organizations.create({
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `OrganizationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5884,7 +7183,7 @@ await client.organizations.getByName("name");
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `OrganizationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -5947,7 +7246,7 @@ await client.organizations.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `OrganizationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6012,7 +7311,7 @@ await client.organizations.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `OrganizationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6083,7 +7382,7 @@ await client.organizations.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `OrganizationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6140,7 +7439,7 @@ await client.prompts.getSettings();
 <dl>
 <dd>
 
-**requestOptions:** `Prompts.RequestOptions`
+**requestOptions:** `PromptsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6203,7 +7502,7 @@ await client.prompts.updateSettings();
 <dl>
 <dd>
 
-**requestOptions:** `Prompts.RequestOptions`
+**requestOptions:** `PromptsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6215,6 +7514,158 @@ await client.prompts.updateSettings();
 </details>
 
 ## RefreshTokens
+
+<details><summary><code>client.refreshTokens.<a href="/src/management/api/resources/refreshTokens/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.RefreshTokenResponseContent, Management.GetRefreshTokensPaginatedResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a paginated list of refresh tokens for a specific user, with optional filtering by client ID. Results are sorted by credential_id ascending.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.refreshTokens.list({
+    user_id: "user_id",
+    client_id: "client_id",
+    from: "from",
+    take: 1,
+    fields: "fields",
+    include_fields: true,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.refreshTokens.list({
+    user_id: "user_id",
+    client_id: "client_id",
+    from: "from",
+    take: 1,
+    fields: "fields",
+    include_fields: true,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.GetRefreshTokensRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RefreshTokensClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.refreshTokens.<a href="/src/management/api/resources/refreshTokens/client/Client.ts">revoke</a>({ ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Revoke refresh tokens in bulk by ID list, user, user+client, or client.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.refreshTokens.revoke();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.RevokeRefreshTokensRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RefreshTokensClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
 
 <details><summary><code>client.refreshTokens.<a href="/src/management/api/resources/refreshTokens/client/Client.ts">get</a>(id) -> Management.GetRefreshTokenResponseContent</code></summary>
 <dl>
@@ -6268,7 +7719,7 @@ await client.refreshTokens.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `RefreshTokens.RequestOptions`
+**requestOptions:** `RefreshTokensClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6331,7 +7782,78 @@ await client.refreshTokens.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `RefreshTokens.RequestOptions`
+**requestOptions:** `RefreshTokensClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.refreshTokens.<a href="/src/management/api/resources/refreshTokens/client/Client.ts">update</a>(id, { ...params }) -> Management.UpdateRefreshTokenResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update a refresh token by its ID.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.refreshTokens.update("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the refresh token to update.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.UpdateRefreshTokenRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `RefreshTokensClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6344,7 +7866,7 @@ await client.refreshTokens.delete("id");
 
 ## ResourceServers
 
-<details><summary><code>client.resourceServers.<a href="/src/management/api/resources/resourceServers/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.ResourceServer, Management.ListResourceServerOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.resourceServers.<a href="/src/management/api/resources/resourceServers/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.ResourceServer, Management.ListResourceServerOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6373,6 +7895,7 @@ Retrieve details of all APIs associated with your tenant.
 
 ```typescript
 const pageableResponse = await client.resourceServers.list({
+    identifiers: ["identifiers"],
     page: 1,
     per_page: 1,
     include_totals: true,
@@ -6384,6 +7907,7 @@ for await (const item of pageableResponse) {
 
 // Or you can manually iterate page-by-page
 let page = await client.resourceServers.list({
+    identifiers: ["identifiers"],
     page: 1,
     per_page: 1,
     include_totals: true,
@@ -6418,7 +7942,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `ResourceServers.RequestOptions`
+**requestOptions:** `ResourceServersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6483,7 +8007,7 @@ await client.resourceServers.create({
 <dl>
 <dd>
 
-**requestOptions:** `ResourceServers.RequestOptions`
+**requestOptions:** `ResourceServersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6556,7 +8080,7 @@ await client.resourceServers.get("id", {
 <dl>
 <dd>
 
-**requestOptions:** `ResourceServers.RequestOptions`
+**requestOptions:** `ResourceServersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6619,7 +8143,7 @@ await client.resourceServers.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `ResourceServers.RequestOptions`
+**requestOptions:** `ResourceServersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6690,7 +8214,7 @@ await client.resourceServers.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `ResourceServers.RequestOptions`
+**requestOptions:** `ResourceServersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6703,7 +8227,7 @@ await client.resourceServers.update("id");
 
 ## Roles
 
-<details><summary><code>client.roles.<a href="/src/management/api/resources/roles/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.Role, Management.ListRolesOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.roles.<a href="/src/management/api/resources/roles/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.Role, Management.ListRolesOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -6779,7 +8303,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6846,7 +8370,7 @@ await client.roles.create({
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6909,7 +8433,7 @@ await client.roles.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -6972,7 +8496,7 @@ await client.roles.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7043,7 +8567,7 @@ await client.roles.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7056,7 +8580,7 @@ await client.roles.update("id");
 
 ## Rules
 
-<details><summary><code>client.rules.<a href="/src/management/api/resources/rules/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.Rule, Management.ListRulesOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.rules.<a href="/src/management/api/resources/rules/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.Rule, Management.ListRulesOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7134,7 +8658,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Rules.RequestOptions`
+**requestOptions:** `RulesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7202,7 +8726,7 @@ await client.rules.create({
 <dl>
 <dd>
 
-**requestOptions:** `Rules.RequestOptions`
+**requestOptions:** `RulesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7276,7 +8800,7 @@ await client.rules.get("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Rules.RequestOptions`
+**requestOptions:** `RulesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7339,7 +8863,7 @@ await client.rules.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Rules.RequestOptions`
+**requestOptions:** `RulesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7410,7 +8934,7 @@ await client.rules.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Rules.RequestOptions`
+**requestOptions:** `RulesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7469,7 +8993,7 @@ await client.rulesConfigs.list();
 <dl>
 <dd>
 
-**requestOptions:** `RulesConfigs.RequestOptions`
+**requestOptions:** `RulesConfigsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7542,7 +9066,7 @@ await client.rulesConfigs.set("key", {
 <dl>
 <dd>
 
-**requestOptions:** `RulesConfigs.RequestOptions`
+**requestOptions:** `RulesConfigsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7605,7 +9129,7 @@ await client.rulesConfigs.delete("key");
 <dl>
 <dd>
 
-**requestOptions:** `RulesConfigs.RequestOptions`
+**requestOptions:** `RulesConfigsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7618,7 +9142,7 @@ await client.rulesConfigs.delete("key");
 
 ## SelfServiceProfiles
 
-<details><summary><code>client.selfServiceProfiles.<a href="/src/management/api/resources/selfServiceProfiles/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.SelfServiceProfile, Management.ListSelfServiceProfilesPaginatedResponseContent></code></summary>
+<details><summary><code>client.selfServiceProfiles.<a href="/src/management/api/resources/selfServiceProfiles/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.SelfServiceProfile, Management.ListSelfServiceProfilesPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7690,7 +9214,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `SelfServiceProfiles.RequestOptions`
+**requestOptions:** `SelfServiceProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7755,7 +9279,7 @@ await client.selfServiceProfiles.create({
 <dl>
 <dd>
 
-**requestOptions:** `SelfServiceProfiles.RequestOptions`
+**requestOptions:** `SelfServiceProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7818,7 +9342,7 @@ await client.selfServiceProfiles.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `SelfServiceProfiles.RequestOptions`
+**requestOptions:** `SelfServiceProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7881,7 +9405,7 @@ await client.selfServiceProfiles.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `SelfServiceProfiles.RequestOptions`
+**requestOptions:** `SelfServiceProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -7952,7 +9476,7 @@ await client.selfServiceProfiles.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `SelfServiceProfiles.RequestOptions`
+**requestOptions:** `SelfServiceProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8017,7 +9541,7 @@ await client.sessions.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions`
+**requestOptions:** `SessionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8080,7 +9604,7 @@ await client.sessions.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions`
+**requestOptions:** `SessionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8151,7 +9675,7 @@ await client.sessions.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions`
+**requestOptions:** `SessionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8214,7 +9738,7 @@ await client.sessions.revoke("id");
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions`
+**requestOptions:** `SessionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8271,7 +9795,7 @@ await client.stats.getActiveUsersCount();
 <dl>
 <dd>
 
-**requestOptions:** `Stats.RequestOptions`
+**requestOptions:** `StatsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8337,7 +9861,7 @@ await client.stats.getDaily({
 <dl>
 <dd>
 
-**requestOptions:** `Stats.RequestOptions`
+**requestOptions:** `StatsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8394,7 +9918,7 @@ await client.supplementalSignals.get();
 <dl>
 <dd>
 
-**requestOptions:** `SupplementalSignals.RequestOptions`
+**requestOptions:** `SupplementalSignalsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8459,7 +9983,7 @@ await client.supplementalSignals.patch({
 <dl>
 <dd>
 
-**requestOptions:** `SupplementalSignals.RequestOptions`
+**requestOptions:** `SupplementalSignalsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8526,7 +10050,7 @@ await client.tickets.verifyEmail({
 <dl>
 <dd>
 
-**requestOptions:** `Tickets.RequestOptions`
+**requestOptions:** `TicketsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8591,7 +10115,7 @@ await client.tickets.changePassword();
 <dl>
 <dd>
 
-**requestOptions:** `Tickets.RequestOptions`
+**requestOptions:** `TicketsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8604,7 +10128,7 @@ await client.tickets.changePassword();
 
 ## TokenExchangeProfiles
 
-<details><summary><code>client.tokenExchangeProfiles.<a href="/src/management/api/resources/tokenExchangeProfiles/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.TokenExchangeProfileResponseContent, Management.ListTokenExchangeProfileResponseContent></code></summary>
+<details><summary><code>client.tokenExchangeProfiles.<a href="/src/management/api/resources/tokenExchangeProfiles/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.TokenExchangeProfileResponseContent, Management.ListTokenExchangeProfileResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8617,6 +10141,8 @@ await client.tickets.changePassword();
 <dd>
 
 Retrieve a list of all Token Exchange Profiles available in your tenant.
+
+By using this feature, you agree to the applicable Free Trial terms in <a href="https://www.okta.com/legal/">Okta’s Master Subscription Agreement</a>. It is your responsibility to securely validate the user’s subject_token. See <a href="https://auth0.com/docs/authenticate/custom-token-exchange">User Guide</a> for more details.
 
 This endpoint supports Checkpoint pagination. To search by checkpoint, use the following parameters:
 
@@ -8683,7 +10209,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `TokenExchangeProfiles.RequestOptions`
+**requestOptions:** `TokenExchangeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8707,6 +10233,8 @@ const response = page.response;
 <dd>
 
 Create a new Token Exchange Profile within your tenant.
+
+By using this feature, you agree to the applicable Free Trial terms in <a href="https://www.okta.com/legal/">Okta’s Master Subscription Agreement</a>. It is your responsibility to securely validate the user’s subject_token. See <a href="https://auth0.com/docs/authenticate/custom-token-exchange">User Guide</a> for more details.
 
 </dd>
 </dl>
@@ -8750,7 +10278,7 @@ await client.tokenExchangeProfiles.create({
 <dl>
 <dd>
 
-**requestOptions:** `TokenExchangeProfiles.RequestOptions`
+**requestOptions:** `TokenExchangeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8774,6 +10302,8 @@ await client.tokenExchangeProfiles.create({
 <dd>
 
 Retrieve details about a single Token Exchange Profile specified by ID.
+
+By using this feature, you agree to the applicable Free Trial terms in <a href="https://www.okta.com/legal/">Okta’s Master Subscription Agreement</a>. It is your responsibility to securely validate the user’s subject_token. See <a href="https://auth0.com/docs/authenticate/custom-token-exchange">User Guide</a> for more details.
 
 </dd>
 </dl>
@@ -8813,7 +10343,7 @@ await client.tokenExchangeProfiles.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `TokenExchangeProfiles.RequestOptions`
+**requestOptions:** `TokenExchangeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8837,6 +10367,8 @@ await client.tokenExchangeProfiles.get("id");
 <dd>
 
 Delete a Token Exchange Profile within your tenant.
+
+By using this feature, you agree to the applicable Free Trial terms in <a href="https://www.okta.com/legal/">Okta's Master Subscription Agreement</a>. It is your responsibility to securely validate the user's subject_token. See <a href="https://auth0.com/docs/authenticate/custom-token-exchange">User Guide</a> for more details.
 
 </dd>
 </dl>
@@ -8876,7 +10408,7 @@ await client.tokenExchangeProfiles.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `TokenExchangeProfiles.RequestOptions`
+**requestOptions:** `TokenExchangeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8900,6 +10432,8 @@ await client.tokenExchangeProfiles.delete("id");
 <dd>
 
 Update a Token Exchange Profile within your tenant.
+
+By using this feature, you agree to the applicable Free Trial terms in <a href="https://www.okta.com/legal/">Okta's Master Subscription Agreement</a>. It is your responsibility to securely validate the user's subject_token. See <a href="https://auth0.com/docs/authenticate/custom-token-exchange">User Guide</a> for more details.
 
 </dd>
 </dl>
@@ -8947,7 +10481,7 @@ await client.tokenExchangeProfiles.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `TokenExchangeProfiles.RequestOptions`
+**requestOptions:** `TokenExchangeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -8960,7 +10494,7 @@ await client.tokenExchangeProfiles.update("id");
 
 ## UserAttributeProfiles
 
-<details><summary><code>client.userAttributeProfiles.<a href="/src/management/api/resources/userAttributeProfiles/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.UserAttributeProfile, Management.ListUserAttributeProfilesPaginatedResponseContent></code></summary>
+<details><summary><code>client.userAttributeProfiles.<a href="/src/management/api/resources/userAttributeProfiles/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.UserAttributeProfile, Management.ListUserAttributeProfilesPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9030,7 +10564,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `UserAttributeProfiles.RequestOptions`
+**requestOptions:** `UserAttributeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9053,7 +10587,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Retrieve details about a single User Attribute Profile specified by ID.
+Create a User Attribute Profile
 
 </dd>
 </dl>
@@ -9103,7 +10637,7 @@ await client.userAttributeProfiles.create({
 <dl>
 <dd>
 
-**requestOptions:** `UserAttributeProfiles.RequestOptions`
+**requestOptions:** `UserAttributeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9158,7 +10692,7 @@ await client.userAttributeProfiles.listTemplates();
 <dl>
 <dd>
 
-**requestOptions:** `UserAttributeProfiles.RequestOptions`
+**requestOptions:** `UserAttributeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9221,7 +10755,7 @@ await client.userAttributeProfiles.getTemplate("id");
 <dl>
 <dd>
 
-**requestOptions:** `UserAttributeProfiles.RequestOptions`
+**requestOptions:** `UserAttributeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9284,7 +10818,7 @@ await client.userAttributeProfiles.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `UserAttributeProfiles.RequestOptions`
+**requestOptions:** `UserAttributeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9347,7 +10881,7 @@ await client.userAttributeProfiles.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `UserAttributeProfiles.RequestOptions`
+**requestOptions:** `UserAttributeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9418,7 +10952,7 @@ await client.userAttributeProfiles.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `UserAttributeProfiles.RequestOptions`
+**requestOptions:** `UserAttributeProfilesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9486,7 +11020,7 @@ await client.userBlocks.listByIdentifier({
 <dl>
 <dd>
 
-**requestOptions:** `UserBlocks.RequestOptions`
+**requestOptions:** `UserBlocksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9553,7 +11087,7 @@ await client.userBlocks.deleteByIdentifier({
 <dl>
 <dd>
 
-**requestOptions:** `UserBlocks.RequestOptions`
+**requestOptions:** `UserBlocksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9626,7 +11160,7 @@ await client.userBlocks.list("id", {
 <dl>
 <dd>
 
-**requestOptions:** `UserBlocks.RequestOptions`
+**requestOptions:** `UserBlocksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9691,7 +11225,7 @@ await client.userBlocks.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `UserBlocks.RequestOptions`
+**requestOptions:** `UserBlocksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9704,7 +11238,7 @@ await client.userBlocks.delete("id");
 
 ## Users
 
-<details><summary><code>client.users.<a href="/src/management/api/resources/users/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.UserResponseSchema, Management.ListUsersOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.users.<a href="/src/management/api/resources/users/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.UserResponseSchema, Management.ListUsersOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9803,7 +11337,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9870,7 +11404,7 @@ await client.users.create({
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -9941,7 +11475,7 @@ await client.users.listUsersByEmail({
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10015,7 +11549,7 @@ await client.users.get("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10078,7 +11612,7 @@ await client.users.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10220,7 +11754,7 @@ await client.users.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10283,7 +11817,7 @@ await client.users.regenerateRecoveryCode("id");
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10354,7 +11888,7 @@ await client.users.revokeAccess("id");
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10367,7 +11901,7 @@ await client.users.revokeAccess("id");
 
 ## Actions Versions
 
-<details><summary><code>client.actions.versions.<a href="/src/management/api/resources/actions/resources/versions/client/Client.ts">list</a>(actionId, { ...params }) -> core.Page<Management.ActionVersion, Management.ListActionVersionsPaginatedResponseContent></code></summary>
+<details><summary><code>client.actions.versions.<a href="/src/management/api/resources/actions/resources/versions/client/Client.ts">list</a>(actionId, { ...params }) -> core.Page&lt;Management.ActionVersion, Management.ListActionVersionsPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10445,7 +11979,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Versions.RequestOptions`
+**requestOptions:** `VersionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10516,7 +12050,7 @@ await client.actions.versions.get("actionId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `Versions.RequestOptions`
+**requestOptions:** `VersionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10587,7 +12121,7 @@ await client.actions.versions.deploy("actionId", "id");
 <dl>
 <dd>
 
-**request:** `Management.DeployActionVersionRequestContent | undefined`
+**request:** `Management.DeployActionVersionRequestContent | null`
 
 </dd>
 </dl>
@@ -10595,7 +12129,7 @@ await client.actions.versions.deploy("actionId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `Versions.RequestOptions`
+**requestOptions:** `VersionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10660,7 +12194,515 @@ await client.actions.executions.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Executions.RequestOptions`
+**requestOptions:** `ExecutionsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Actions Modules
+
+<details><summary><code>client.actions.modules.<a href="/src/management/api/resources/actions/resources/modules/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.ActionModuleListItem, Management.GetActionModulesResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a paginated list of all Actions Modules with optional filtering and totals.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.actions.modules.list({
+    page: 1,
+    per_page: 1,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.actions.modules.list({
+    page: 1,
+    per_page: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.GetActionModulesRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ModulesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.actions.modules.<a href="/src/management/api/resources/actions/resources/modules/client/Client.ts">create</a>({ ...params }) -> Management.CreateActionModuleResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new Actions Module for reusable code across actions.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.actions.modules.create({
+    name: "name",
+    code: "code",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.CreateActionModuleRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ModulesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.actions.modules.<a href="/src/management/api/resources/actions/resources/modules/client/Client.ts">get</a>(id) -> Management.GetActionModuleResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details of a specific Actions Module by its unique identifier.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.actions.modules.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the action module to retrieve.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ModulesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.actions.modules.<a href="/src/management/api/resources/actions/resources/modules/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Permanently delete an Actions Module. This will fail if the module is still in use by any actions.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.actions.modules.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the Actions Module to delete.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ModulesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.actions.modules.<a href="/src/management/api/resources/actions/resources/modules/client/Client.ts">update</a>(id, { ...params }) -> Management.UpdateActionModuleResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update properties of an existing Actions Module, such as code, dependencies, or secrets.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.actions.modules.update("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the action module to update.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.UpdateActionModuleRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ModulesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.actions.modules.<a href="/src/management/api/resources/actions/resources/modules/client/Client.ts">listActions</a>(id, { ...params }) -> core.Page&lt;Management.ActionModuleAction, Management.GetActionModuleActionsResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Lists all actions that are using a specific Actions Module, showing which deployed action versions reference this Actions Module.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.actions.modules.listActions("id", {
+    page: 1,
+    per_page: 1,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.actions.modules.listActions("id", {
+    page: 1,
+    per_page: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The unique ID of the module.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.GetActionModuleActionsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ModulesClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.actions.modules.<a href="/src/management/api/resources/actions/resources/modules/client/Client.ts">rollback</a>(id, { ...params }) -> Management.RollbackActionModuleResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Rolls back an Actions Module's draft to a previously created version. This action copies the code, dependencies, and secrets from the specified version into the current draft.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.actions.modules.rollback("id", {
+    module_version_id: "module_version_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The unique ID of the module to roll back.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.RollbackActionModuleRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ModulesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10717,7 +12759,232 @@ await client.actions.triggers.list();
 <dl>
 <dd>
 
-**requestOptions:** `Triggers.RequestOptions`
+**requestOptions:** `TriggersClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Actions Modules Versions
+
+<details><summary><code>client.actions.modules.versions.<a href="/src/management/api/resources/actions/resources/modules/resources/versions/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.ActionModuleVersion, Management.GetActionModuleVersionsResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all published versions of a specific Actions Module.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.actions.modules.versions.list("id", {
+    page: 1,
+    per_page: 1,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.actions.modules.versions.list("id", {
+    page: 1,
+    per_page: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The unique ID of the module.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.GetActionModuleVersionsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VersionsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.actions.modules.versions.<a href="/src/management/api/resources/actions/resources/modules/resources/versions/client/Client.ts">create</a>(id) -> Management.CreateActionModuleVersionResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new immutable version of an Actions Module from the current draft version. This publishes the draft as a new version that can be referenced by actions, while maintaining the existing draft for continued development.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.actions.modules.versions.create("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The ID of the action module to create a version for.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VersionsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.actions.modules.versions.<a href="/src/management/api/resources/actions/resources/modules/resources/versions/client/Client.ts">get</a>(id, versionId) -> Management.GetActionModuleVersionResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the details of a specific, immutable version of an Actions Module.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.actions.modules.versions.get("id", "versionId");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The unique ID of the module.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**versionId:** `string` — The unique ID of the module version to retrieve.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `VersionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10730,7 +12997,7 @@ await client.actions.triggers.list();
 
 ## Actions Triggers Bindings
 
-<details><summary><code>client.actions.triggers.bindings.<a href="/src/management/api/resources/actions/resources/triggers/resources/bindings/client/Client.ts">list</a>(triggerId, { ...params }) -> core.Page<Management.ActionBinding, Management.ListActionBindingsPaginatedResponseContent></code></summary>
+<details><summary><code>client.actions.triggers.bindings.<a href="/src/management/api/resources/actions/resources/triggers/resources/bindings/client/Client.ts">list</a>(triggerId, { ...params }) -> core.Page&lt;Management.ActionBinding, Management.ListActionBindingsPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10758,7 +13025,7 @@ Retrieve the actions that are bound to a trigger. Once an action is created and 
 <dd>
 
 ```typescript
-const pageableResponse = await client.actions.triggers.bindings.list("triggerId", {
+const pageableResponse = await client.actions.triggers.bindings.list("post-login", {
     page: 1,
     per_page: 1,
 });
@@ -10767,7 +13034,7 @@ for await (const item of pageableResponse) {
 }
 
 // Or you can manually iterate page-by-page
-let page = await client.actions.triggers.bindings.list("triggerId", {
+let page = await client.actions.triggers.bindings.list("post-login", {
     page: 1,
     per_page: 1,
 });
@@ -10808,7 +13075,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Bindings.RequestOptions`
+**requestOptions:** `BindingsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10847,7 +13114,7 @@ Update the actions that are bound (i.e. attached) to a trigger. Once an action i
 <dd>
 
 ```typescript
-await client.actions.triggers.bindings.updateMany("triggerId");
+await client.actions.triggers.bindings.updateMany("post-login");
 ```
 
 </dd>
@@ -10879,7 +13146,7 @@ await client.actions.triggers.bindings.updateMany("triggerId");
 <dl>
 <dd>
 
-**requestOptions:** `Bindings.RequestOptions`
+**requestOptions:** `BindingsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -10944,7 +13211,7 @@ await client.anomaly.blocks.checkIp("id");
 <dl>
 <dd>
 
-**requestOptions:** `Blocks.RequestOptions`
+**requestOptions:** `BlocksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11007,7 +13274,7 @@ await client.anomaly.blocks.unblockIp("id");
 <dl>
 <dd>
 
-**requestOptions:** `Blocks.RequestOptions`
+**requestOptions:** `BlocksClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11064,7 +13331,7 @@ await client.attackProtection.botDetection.get();
 <dl>
 <dd>
 
-**requestOptions:** `BotDetection.RequestOptions`
+**requestOptions:** `BotDetectionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11127,7 +13394,7 @@ await client.attackProtection.botDetection.update();
 <dl>
 <dd>
 
-**requestOptions:** `BotDetection.RequestOptions`
+**requestOptions:** `BotDetectionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11184,7 +13451,7 @@ await client.attackProtection.breachedPasswordDetection.get();
 <dl>
 <dd>
 
-**requestOptions:** `BreachedPasswordDetection.RequestOptions`
+**requestOptions:** `BreachedPasswordDetectionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11247,7 +13514,7 @@ await client.attackProtection.breachedPasswordDetection.update();
 <dl>
 <dd>
 
-**requestOptions:** `BreachedPasswordDetection.RequestOptions`
+**requestOptions:** `BreachedPasswordDetectionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11304,7 +13571,7 @@ await client.attackProtection.bruteForceProtection.get();
 <dl>
 <dd>
 
-**requestOptions:** `BruteForceProtection.RequestOptions`
+**requestOptions:** `BruteForceProtectionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11367,7 +13634,7 @@ await client.attackProtection.bruteForceProtection.update();
 <dl>
 <dd>
 
-**requestOptions:** `BruteForceProtection.RequestOptions`
+**requestOptions:** `BruteForceProtectionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11424,7 +13691,7 @@ await client.attackProtection.captcha.get();
 <dl>
 <dd>
 
-**requestOptions:** `Captcha.RequestOptions`
+**requestOptions:** `CaptchaClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11487,7 +13754,7 @@ await client.attackProtection.captcha.update();
 <dl>
 <dd>
 
-**requestOptions:** `Captcha.RequestOptions`
+**requestOptions:** `CaptchaClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11544,7 +13811,7 @@ await client.attackProtection.suspiciousIpThrottling.get();
 <dl>
 <dd>
 
-**requestOptions:** `SuspiciousIpThrottling.RequestOptions`
+**requestOptions:** `SuspiciousIpThrottlingClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11607,7 +13874,7 @@ await client.attackProtection.suspiciousIpThrottling.update();
 <dl>
 <dd>
 
-**requestOptions:** `SuspiciousIpThrottling.RequestOptions`
+**requestOptions:** `SuspiciousIpThrottlingClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11649,7 +13916,7 @@ await client.branding.templates.getUniversalLogin();
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11734,7 +14001,7 @@ await client.branding.templates.updateUniversalLogin("string");
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11774,7 +14041,7 @@ await client.branding.templates.deleteUniversalLogin();
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11910,7 +14177,7 @@ await client.branding.themes.create({
 <dl>
 <dd>
 
-**requestOptions:** `Themes.RequestOptions`
+**requestOptions:** `ThemesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -11965,7 +14232,7 @@ await client.branding.themes.getDefault();
 <dl>
 <dd>
 
-**requestOptions:** `Themes.RequestOptions`
+**requestOptions:** `ThemesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12028,7 +14295,7 @@ await client.branding.themes.get("themeId");
 <dl>
 <dd>
 
-**requestOptions:** `Themes.RequestOptions`
+**requestOptions:** `ThemesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12091,7 +14358,7 @@ await client.branding.themes.delete("themeId");
 <dl>
 <dd>
 
-**requestOptions:** `Themes.RequestOptions`
+**requestOptions:** `ThemesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12233,7 +14500,7 @@ await client.branding.themes.update("themeId", {
 <dl>
 <dd>
 
-**requestOptions:** `Themes.RequestOptions`
+**requestOptions:** `ThemesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12300,7 +14567,7 @@ await client.branding.phone.providers.list({
 <dl>
 <dd>
 
-**requestOptions:** `Providers.RequestOptions`
+**requestOptions:** `ProvidersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12369,7 +14636,7 @@ await client.branding.phone.providers.create({
 <dl>
 <dd>
 
-**requestOptions:** `Providers.RequestOptions`
+**requestOptions:** `ProvidersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12432,7 +14699,7 @@ await client.branding.phone.providers.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Providers.RequestOptions`
+**requestOptions:** `ProvidersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12495,7 +14762,7 @@ await client.branding.phone.providers.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Providers.RequestOptions`
+**requestOptions:** `ProvidersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12567,7 +14834,7 @@ await client.branding.phone.providers.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Providers.RequestOptions`
+**requestOptions:** `ProvidersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12625,7 +14892,7 @@ await client.branding.phone.providers.test("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Providers.RequestOptions`
+**requestOptions:** `ProvidersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12677,7 +14944,7 @@ await client.branding.phone.templates.list({
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12725,7 +14992,7 @@ await client.branding.phone.templates.create();
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12773,7 +15040,7 @@ await client.branding.phone.templates.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12821,7 +15088,7 @@ await client.branding.phone.templates.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12877,7 +15144,7 @@ await client.branding.phone.templates.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12935,7 +15202,7 @@ await client.branding.phone.templates.reset("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -12993,7 +15260,7 @@ await client.branding.phone.templates.test("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13006,7 +15273,7 @@ await client.branding.phone.templates.test("id", {
 
 ## ClientGrants Organizations
 
-<details><summary><code>client.clientGrants.organizations.<a href="/src/management/api/resources/clientGrants/resources/organizations/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.Organization, Management.ListClientGrantOrganizationsPaginatedResponseContent></code></summary>
+<details><summary><code>client.clientGrants.organizations.<a href="/src/management/api/resources/clientGrants/resources/organizations/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.Organization, Management.ListClientGrantOrganizationsPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13069,7 +15336,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `OrganizationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13082,7 +15349,7 @@ const response = page.response;
 
 ## Clients Credentials
 
-<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">list</a>(clientId) -> Management.ClientCredential[]</code></summary>
+<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">list</a>(client_id) -> Management.ClientCredential[]</code></summary>
 <dl>
 <dd>
 
@@ -13128,7 +15395,7 @@ await client.clients.credentials.list("client_id");
 <dl>
 <dd>
 
-**clientId:** `string` — ID of the client.
+**client_id:** `string` — ID of the client.
 
 </dd>
 </dl>
@@ -13136,7 +15403,7 @@ await client.clients.credentials.list("client_id");
 <dl>
 <dd>
 
-**requestOptions:** `Credentials.RequestOptions`
+**requestOptions:** `CredentialsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13147,7 +15414,7 @@ await client.clients.credentials.list("client_id");
 </dl>
 </details>
 
-<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">create</a>(clientId, { ...params }) -> Management.PostClientCredentialResponseContent</code></summary>
+<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">create</a>(client_id, { ...params }) -> Management.PostClientCredentialResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -13226,7 +15493,7 @@ await client.clients.credentials.create("client_id", {
 <dl>
 <dd>
 
-**clientId:** `string` — ID of the client.
+**client_id:** `string` — ID of the client.
 
 </dd>
 </dl>
@@ -13242,7 +15509,7 @@ await client.clients.credentials.create("client_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Credentials.RequestOptions`
+**requestOptions:** `CredentialsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13253,7 +15520,7 @@ await client.clients.credentials.create("client_id", {
 </dl>
 </details>
 
-<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">get</a>(clientId, credentialId) -> Management.GetClientCredentialResponseContent</code></summary>
+<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">get</a>(client_id, credential_id) -> Management.GetClientCredentialResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -13299,7 +15566,7 @@ await client.clients.credentials.get("client_id", "credential_id");
 <dl>
 <dd>
 
-**clientId:** `string` — ID of the client.
+**client_id:** `string` — ID of the client.
 
 </dd>
 </dl>
@@ -13307,7 +15574,7 @@ await client.clients.credentials.get("client_id", "credential_id");
 <dl>
 <dd>
 
-**credentialId:** `string` — ID of the credential.
+**credential_id:** `string` — ID of the credential.
 
 </dd>
 </dl>
@@ -13315,7 +15582,7 @@ await client.clients.credentials.get("client_id", "credential_id");
 <dl>
 <dd>
 
-**requestOptions:** `Credentials.RequestOptions`
+**requestOptions:** `CredentialsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13326,7 +15593,7 @@ await client.clients.credentials.get("client_id", "credential_id");
 </dl>
 </details>
 
-<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">delete</a>(clientId, credentialId) -> void</code></summary>
+<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">delete</a>(client_id, credential_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -13370,7 +15637,7 @@ await client.clients.credentials.delete("client_id", "credential_id");
 <dl>
 <dd>
 
-**clientId:** `string` — ID of the client.
+**client_id:** `string` — ID of the client.
 
 </dd>
 </dl>
@@ -13378,7 +15645,7 @@ await client.clients.credentials.delete("client_id", "credential_id");
 <dl>
 <dd>
 
-**credentialId:** `string` — ID of the credential to delete.
+**credential_id:** `string` — ID of the credential to delete.
 
 </dd>
 </dl>
@@ -13386,7 +15653,7 @@ await client.clients.credentials.delete("client_id", "credential_id");
 <dl>
 <dd>
 
-**requestOptions:** `Credentials.RequestOptions`
+**requestOptions:** `CredentialsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13397,7 +15664,7 @@ await client.clients.credentials.delete("client_id", "credential_id");
 </dl>
 </details>
 
-<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">update</a>(clientId, credentialId, { ...params }) -> Management.PatchClientCredentialResponseContent</code></summary>
+<details><summary><code>client.clients.credentials.<a href="/src/management/api/resources/clients/resources/credentials/client/Client.ts">update</a>(client_id, credential_id, { ...params }) -> Management.PatchClientCredentialResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -13441,7 +15708,7 @@ await client.clients.credentials.update("client_id", "credential_id");
 <dl>
 <dd>
 
-**clientId:** `string` — ID of the client.
+**client_id:** `string` — ID of the client.
 
 </dd>
 </dl>
@@ -13449,7 +15716,7 @@ await client.clients.credentials.update("client_id", "credential_id");
 <dl>
 <dd>
 
-**credentialId:** `string` — ID of the credential.
+**credential_id:** `string` — ID of the credential.
 
 </dd>
 </dl>
@@ -13465,7 +15732,7 @@ await client.clients.credentials.update("client_id", "credential_id");
 <dl>
 <dd>
 
-**requestOptions:** `Credentials.RequestOptions`
+**requestOptions:** `CredentialsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13478,7 +15745,7 @@ await client.clients.credentials.update("client_id", "credential_id");
 
 ## Clients Connections
 
-<details><summary><code>client.clients.connections.<a href="/src/management/api/resources/clients/resources/connections/client/Client.ts">get</a>(id, { ...params }) -> core.Page<Management.ConnectionForList, Management.ListClientConnectionsResponseContent></code></summary>
+<details><summary><code>client.clients.connections.<a href="/src/management/api/resources/clients/resources/connections/client/Client.ts">get</a>(id, { ...params }) -> core.Page&lt;Management.ConnectionForList, Management.ListClientConnectionsResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13515,6 +15782,7 @@ Retrieve all connections that are enabled for the specified <a href="https://www
 
 ```typescript
 const pageableResponse = await client.clients.connections.get("id", {
+    strategy: ["ad"],
     from: "from",
     take: 1,
     fields: "fields",
@@ -13526,6 +15794,7 @@ for await (const item of pageableResponse) {
 
 // Or you can manually iterate page-by-page
 let page = await client.clients.connections.get("id", {
+    strategy: ["ad"],
     from: "from",
     take: 1,
     fields: "fields",
@@ -13568,7 +15837,1004 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections DirectoryProvisioning
+
+<details><summary><code>client.connections.directoryProvisioning.<a href="/src/management/api/resources/connections/resources/directoryProvisioning/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.DirectoryProvisioning, Management.ListDirectoryProvisioningsResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of directory provisioning configurations of a tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.connections.directoryProvisioning.list({
+    from: "from",
+    take: 1,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.connections.directoryProvisioning.list({
+    from: "from",
+    take: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.ListDirectoryProvisioningsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DirectoryProvisioningClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.directoryProvisioning.<a href="/src/management/api/resources/connections/resources/directoryProvisioning/client/Client.ts">get</a>(id) -> Management.GetDirectoryProvisioningResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the directory provisioning configuration of a connection.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.directoryProvisioning.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to retrieve its directory provisioning configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DirectoryProvisioningClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.directoryProvisioning.<a href="/src/management/api/resources/connections/resources/directoryProvisioning/client/Client.ts">create</a>(id, { ...params }) -> Management.CreateDirectoryProvisioningResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a directory provisioning configuration for a connection.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.directoryProvisioning.create("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to create its directory provisioning configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.CreateDirectoryProvisioningRequestContent | null`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DirectoryProvisioningClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.directoryProvisioning.<a href="/src/management/api/resources/connections/resources/directoryProvisioning/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete the directory provisioning configuration of a connection.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.directoryProvisioning.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to delete its directory provisioning configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DirectoryProvisioningClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.directoryProvisioning.<a href="/src/management/api/resources/connections/resources/directoryProvisioning/client/Client.ts">update</a>(id, { ...params }) -> Management.UpdateDirectoryProvisioningResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update the directory provisioning configuration of a connection.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.directoryProvisioning.update("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to create its directory provisioning configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.UpdateDirectoryProvisioningRequestContent | null`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DirectoryProvisioningClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.directoryProvisioning.<a href="/src/management/api/resources/connections/resources/directoryProvisioning/client/Client.ts">getDefaultMapping</a>(id) -> Management.GetDirectoryProvisioningDefaultMappingResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the directory provisioning default attribute mapping of a connection.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.directoryProvisioning.getDefaultMapping("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to retrieve its directory provisioning configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DirectoryProvisioningClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.directoryProvisioning.<a href="/src/management/api/resources/connections/resources/directoryProvisioning/client/Client.ts">listSynchronizedGroups</a>(id, { ...params }) -> core.Page&lt;Management.SynchronizedGroupPayload, Management.ListSynchronizedGroupsResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the configured synchronized groups for a connection directory provisioning configuration.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.connections.directoryProvisioning.listSynchronizedGroups("id", {
+    from: "from",
+    take: 1,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.connections.directoryProvisioning.listSynchronizedGroups("id", {
+    from: "from",
+    take: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to list synchronized groups for.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.ListSynchronizedGroupsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DirectoryProvisioningClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.directoryProvisioning.<a href="/src/management/api/resources/connections/resources/directoryProvisioning/client/Client.ts">set</a>(id, { ...params }) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create or replace the selected groups for a connection directory provisioning configuration.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.directoryProvisioning.set("id", {
+    groups: [
+        {
+            id: "id",
+        },
+    ],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to create or replace synchronized groups for
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.ReplaceSynchronizedGroupsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DirectoryProvisioningClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections ScimConfiguration
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.ScimConfiguration, Management.ListScimConfigurationsResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve a list of SCIM configurations of a tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.connections.scimConfiguration.list({
+    from: "from",
+    take: 1,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.connections.scimConfiguration.list({
+    from: "from",
+    take: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.ListScimConfigurationsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfigurationClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">get</a>(id) -> Management.GetScimConfigurationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a scim configuration by its <code>connectionId</code>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.get("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to retrieve its SCIM configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfigurationClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">create</a>(id, { ...params }) -> Management.CreateScimConfigurationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a scim configuration for a connection.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.create("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to create its SCIM configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.CreateScimConfigurationRequestContent | null`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfigurationClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">delete</a>(id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a scim configuration by its <code>connectionId</code>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.delete("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to delete its SCIM configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfigurationClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">update</a>(id, { ...params }) -> Management.UpdateScimConfigurationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update a scim configuration by its <code>connectionId</code>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.update("id", {
+    user_id_attribute: "user_id_attribute",
+    mapping: [{}],
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to update its SCIM configuration
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.UpdateScimConfigurationRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfigurationClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">getDefaultMapping</a>(id) -> Management.GetScimConfigurationDefaultMappingResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a scim configuration's default mapping by its <code>connectionId</code>.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.scimConfiguration.getDefaultMapping("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to retrieve its default SCIM mapping
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ScimConfigurationClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13581,7 +16847,7 @@ const response = page.response;
 
 ## Connections Clients
 
-<details><summary><code>client.connections.clients.<a href="/src/management/api/resources/connections/resources/clients/client/Client.ts">get</a>(id, { ...params }) -> core.Page<Management.ConnectionEnabledClient, Management.GetConnectionEnabledClientsResponseContent></code></summary>
+<details><summary><code>client.connections.clients.<a href="/src/management/api/resources/connections/resources/clients/client/Client.ts">get</a>(id, { ...params }) -> core.Page&lt;Management.ConnectionEnabledClient, Management.GetConnectionEnabledClientsResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13661,7 +16927,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Clients.RequestOptions`
+**requestOptions:** `ClientsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13722,7 +16988,7 @@ await client.connections.clients.update("id", [
 <dl>
 <dd>
 
-**requestOptions:** `Clients.RequestOptions`
+**requestOptions:** `ClientsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13787,7 +17053,78 @@ await client.connections.keys.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions`
+**requestOptions:** `KeysClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.connections.keys.<a href="/src/management/api/resources/connections/resources/keys/client/Client.ts">create</a>(id, { ...params }) -> Management.PostConnectionsKeysResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Provision initial connection keys for Okta or OIDC connection strategies. This endpoint allows you to create keys before configuring the connection to use Private Key JWT authentication, enabling zero-downtime transitions.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.keys.create("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the connection
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.PostConnectionKeysRequestContent | null`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `KeysClient.RequestOptions`
 
 </dd>
 </dl>
@@ -13858,343 +17195,7 @@ await client.connections.keys.rotate("id");
 <dl>
 <dd>
 
-**requestOptions:** `Keys.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-## Connections ScimConfiguration
-
-<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">get</a>(id) -> Management.GetScimConfigurationResponseContent</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a scim configuration by its <code>connectionId</code>.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.connections.scimConfiguration.get("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — The id of the connection to retrieve its SCIM configuration
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScimConfiguration.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">create</a>(id, { ...params }) -> Management.CreateScimConfigurationResponseContent</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a scim configuration for a connection.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.connections.scimConfiguration.create("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — The id of the connection to create its SCIM configuration
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Management.CreateScimConfigurationRequestContent | null`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScimConfiguration.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">delete</a>(id) -> void</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a scim configuration by its <code>connectionId</code>.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.connections.scimConfiguration.delete("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — The id of the connection to delete its SCIM configuration
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScimConfiguration.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">update</a>(id, { ...params }) -> Management.UpdateScimConfigurationResponseContent</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update a scim configuration by its <code>connectionId</code>.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.connections.scimConfiguration.update("id", {
-    user_id_attribute: "user_id_attribute",
-    mapping: [{}],
-});
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — The id of the connection to update its SCIM configuration
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `Management.UpdateScimConfigurationRequestContent`
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScimConfiguration.RequestOptions`
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.connections.scimConfiguration.<a href="/src/management/api/resources/connections/resources/scimConfiguration/client/Client.ts">getDefaultMapping</a>(id) -> Management.GetScimConfigurationDefaultMappingResponseContent</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a scim configuration's default mapping by its <code>connectionId</code>.
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```typescript
-await client.connections.scimConfiguration.getDefaultMapping("id");
-```
-
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — The id of the connection to retrieve its default SCIM mapping
-
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**requestOptions:** `ScimConfiguration.RequestOptions`
+**requestOptions:** `KeysClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14269,7 +17270,72 @@ await client.connections.users.deleteByEmail("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Connections DirectoryProvisioning Synchronizations
+
+<details><summary><code>client.connections.directoryProvisioning.synchronizations.<a href="/src/management/api/resources/connections/resources/directoryProvisioning/resources/synchronizations/client/Client.ts">create</a>(id) -> Management.CreateDirectorySynchronizationResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Request an on-demand synchronization of the directory.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.connections.directoryProvisioning.synchronizations.create("id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — The id of the connection to trigger synchronization for
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `SynchronizationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14334,7 +17400,7 @@ await client.connections.scimConfiguration.tokens.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions`
+**requestOptions:** `TokensClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14405,7 +17471,7 @@ await client.connections.scimConfiguration.tokens.create("id");
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions`
+**requestOptions:** `TokensClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14476,7 +17542,7 @@ await client.connections.scimConfiguration.tokens.delete("id", "tokenId");
 <dl>
 <dd>
 
-**requestOptions:** `Tokens.RequestOptions`
+**requestOptions:** `TokensClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14544,7 +17610,7 @@ await client.emails.provider.get({
 <dl>
 <dd>
 
-**requestOptions:** `Provider.RequestOptions`
+**requestOptions:** `ProviderClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14653,7 +17719,7 @@ await client.emails.provider.create({
 <dl>
 <dd>
 
-**requestOptions:** `Provider.RequestOptions`
+**requestOptions:** `ProviderClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14708,7 +17774,7 @@ await client.emails.provider.delete();
 <dl>
 <dd>
 
-**requestOptions:** `Provider.RequestOptions`
+**requestOptions:** `ProviderClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14810,7 +17876,7 @@ await client.emails.provider.update();
 <dl>
 <dd>
 
-**requestOptions:** `Provider.RequestOptions`
+**requestOptions:** `ProviderClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14875,7 +17941,7 @@ await client.eventStreams.deliveries.list("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Deliveries.RequestOptions`
+**requestOptions:** `DeliveriesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14886,7 +17952,7 @@ await client.eventStreams.deliveries.list("id", {
 </dl>
 </details>
 
-<details><summary><code>client.eventStreams.deliveries.<a href="/src/management/api/resources/eventStreams/resources/deliveries/client/Client.ts">getHistory</a>(id, eventId) -> Management.GetEventStreamDeliveryHistoryResponseContent</code></summary>
+<details><summary><code>client.eventStreams.deliveries.<a href="/src/management/api/resources/eventStreams/resources/deliveries/client/Client.ts">getHistory</a>(id, event_id) -> Management.GetEventStreamDeliveryHistoryResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -14923,7 +17989,7 @@ await client.eventStreams.deliveries.getHistory("id", "event_id");
 <dl>
 <dd>
 
-**eventId:** `string` — Unique identifier for the event
+**event_id:** `string` — Unique identifier for the event
 
 </dd>
 </dl>
@@ -14931,7 +17997,7 @@ await client.eventStreams.deliveries.getHistory("id", "event_id");
 <dl>
 <dd>
 
-**requestOptions:** `Deliveries.RequestOptions`
+**requestOptions:** `DeliveriesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -14989,7 +18055,7 @@ await client.eventStreams.redeliveries.create("id");
 <dl>
 <dd>
 
-**requestOptions:** `Redeliveries.RequestOptions`
+**requestOptions:** `RedeliveriesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15000,7 +18066,7 @@ await client.eventStreams.redeliveries.create("id");
 </dl>
 </details>
 
-<details><summary><code>client.eventStreams.redeliveries.<a href="/src/management/api/resources/eventStreams/resources/redeliveries/client/Client.ts">createById</a>(id, eventId) -> void</code></summary>
+<details><summary><code>client.eventStreams.redeliveries.<a href="/src/management/api/resources/eventStreams/resources/redeliveries/client/Client.ts">createById</a>(id, event_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -15037,7 +18103,7 @@ await client.eventStreams.redeliveries.createById("id", "event_id");
 <dl>
 <dd>
 
-**eventId:** `string` — Unique identifier for the event
+**event_id:** `string` — Unique identifier for the event
 
 </dd>
 </dl>
@@ -15045,7 +18111,7 @@ await client.eventStreams.redeliveries.createById("id", "event_id");
 <dl>
 <dd>
 
-**requestOptions:** `Redeliveries.RequestOptions`
+**requestOptions:** `RedeliveriesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15058,7 +18124,7 @@ await client.eventStreams.redeliveries.createById("id", "event_id");
 
 ## Flows Executions
 
-<details><summary><code>client.flows.executions.<a href="/src/management/api/resources/flows/resources/executions/client/Client.ts">list</a>(flowId, { ...params }) -> core.Page<Management.FlowExecutionSummary, Management.ListFlowExecutionsPaginatedResponseContent></code></summary>
+<details><summary><code>client.flows.executions.<a href="/src/management/api/resources/flows/resources/executions/client/Client.ts">list</a>(flow_id, { ...params }) -> core.Page&lt;Management.FlowExecutionSummary, Management.ListFlowExecutionsPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15105,7 +18171,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**flowId:** `string` — Flow id
+**flow_id:** `string` — Flow id
 
 </dd>
 </dl>
@@ -15113,7 +18179,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**request:** `Management.ExecutionsListRequest`
+**request:** `Management.ListFlowExecutionsRequestParameters`
 
 </dd>
 </dl>
@@ -15121,7 +18187,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Executions.RequestOptions`
+**requestOptions:** `ExecutionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15132,7 +18198,7 @@ const response = page.response;
 </dl>
 </details>
 
-<details><summary><code>client.flows.executions.<a href="/src/management/api/resources/flows/resources/executions/client/Client.ts">get</a>(flowId, executionId, { ...params }) -> Management.GetFlowExecutionResponseContent</code></summary>
+<details><summary><code>client.flows.executions.<a href="/src/management/api/resources/flows/resources/executions/client/Client.ts">get</a>(flow_id, execution_id, { ...params }) -> Management.GetFlowExecutionResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -15145,7 +18211,9 @@ const response = page.response;
 <dd>
 
 ```typescript
-await client.flows.executions.get("flow_id", "execution_id");
+await client.flows.executions.get("flow_id", "execution_id", {
+    hydrate: ["debug"],
+});
 ```
 
 </dd>
@@ -15161,7 +18229,7 @@ await client.flows.executions.get("flow_id", "execution_id");
 <dl>
 <dd>
 
-**flowId:** `string` — Flow id
+**flow_id:** `string` — Flow id
 
 </dd>
 </dl>
@@ -15169,7 +18237,7 @@ await client.flows.executions.get("flow_id", "execution_id");
 <dl>
 <dd>
 
-**executionId:** `string` — Flow execution id
+**execution_id:** `string` — Flow execution id
 
 </dd>
 </dl>
@@ -15177,7 +18245,7 @@ await client.flows.executions.get("flow_id", "execution_id");
 <dl>
 <dd>
 
-**request:** `Management.ExecutionsGetRequest`
+**request:** `Management.GetFlowExecutionRequestParameters`
 
 </dd>
 </dl>
@@ -15185,7 +18253,7 @@ await client.flows.executions.get("flow_id", "execution_id");
 <dl>
 <dd>
 
-**requestOptions:** `Executions.RequestOptions`
+**requestOptions:** `ExecutionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15196,7 +18264,7 @@ await client.flows.executions.get("flow_id", "execution_id");
 </dl>
 </details>
 
-<details><summary><code>client.flows.executions.<a href="/src/management/api/resources/flows/resources/executions/client/Client.ts">delete</a>(flowId, executionId) -> void</code></summary>
+<details><summary><code>client.flows.executions.<a href="/src/management/api/resources/flows/resources/executions/client/Client.ts">delete</a>(flow_id, execution_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -15225,7 +18293,7 @@ await client.flows.executions.delete("flow_id", "execution_id");
 <dl>
 <dd>
 
-**flowId:** `string` — Flows id
+**flow_id:** `string` — Flows id
 
 </dd>
 </dl>
@@ -15233,7 +18301,7 @@ await client.flows.executions.delete("flow_id", "execution_id");
 <dl>
 <dd>
 
-**executionId:** `string` — Flow execution identifier
+**execution_id:** `string` — Flow execution identifier
 
 </dd>
 </dl>
@@ -15241,7 +18309,7 @@ await client.flows.executions.delete("flow_id", "execution_id");
 <dl>
 <dd>
 
-**requestOptions:** `Executions.RequestOptions`
+**requestOptions:** `ExecutionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15254,7 +18322,7 @@ await client.flows.executions.delete("flow_id", "execution_id");
 
 ## Flows Vault Connections
 
-<details><summary><code>client.flows.vault.connections.<a href="/src/management/api/resources/flows/resources/vault/resources/connections/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.FlowsVaultConnectionSummary, Management.ListFlowsVaultConnectionsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.flows.vault.connections.<a href="/src/management/api/resources/flows/resources/vault/resources/connections/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.FlowsVaultConnectionSummary, Management.ListFlowsVaultConnectionsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15311,7 +18379,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15367,7 +18435,7 @@ await client.flows.vault.connections.create({
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15415,7 +18483,7 @@ await client.flows.vault.connections.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15463,7 +18531,7 @@ await client.flows.vault.connections.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15519,7 +18587,102 @@ await client.flows.vault.connections.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Connections.RequestOptions`
+**requestOptions:** `ConnectionsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Groups Members
+
+<details><summary><code>client.groups.members.<a href="/src/management/api/resources/groups/resources/members/client/Client.ts">get</a>(id, { ...params }) -> core.Page&lt;Management.GroupMember, Management.GetGroupMembersResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all users that are a member of this group.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.groups.members.get("id", {
+    fields: "fields",
+    include_fields: true,
+    from: "from",
+    take: 1,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.groups.members.get("id", {
+    fields: "fields",
+    include_fields: true,
+    from: "from",
+    take: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Unique identifier for the group (service-generated).
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.GetGroupMembersRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `MembersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15589,7 +18752,7 @@ await client.guardian.enrollments.createTicket({
 <dl>
 <dd>
 
-**requestOptions:** `Enrollments.RequestOptions`
+**requestOptions:** `EnrollmentsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15652,7 +18815,7 @@ await client.guardian.enrollments.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Enrollments.RequestOptions`
+**requestOptions:** `EnrollmentsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15715,7 +18878,7 @@ await client.guardian.enrollments.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Enrollments.RequestOptions`
+**requestOptions:** `EnrollmentsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15772,7 +18935,7 @@ await client.guardian.factors.list();
 <dl>
 <dd>
 
-**requestOptions:** `Factors.RequestOptions`
+**requestOptions:** `FactorsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15845,7 +19008,7 @@ await client.guardian.factors.set("push-notification", {
 <dl>
 <dd>
 
-**requestOptions:** `Factors.RequestOptions`
+**requestOptions:** `FactorsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15911,7 +19074,7 @@ await client.guardian.policies.list();
 <dl>
 <dd>
 
-**requestOptions:** `Policies.RequestOptions`
+**requestOptions:** `PoliciesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -15983,7 +19146,7 @@ await client.guardian.policies.set(["all-applications"]);
 <dl>
 <dd>
 
-**requestOptions:** `Policies.RequestOptions`
+**requestOptions:** `PoliciesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16040,7 +19203,7 @@ await client.guardian.factors.phone.getMessageTypes();
 <dl>
 <dd>
 
-**requestOptions:** `Phone.RequestOptions`
+**requestOptions:** `PhoneClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16105,7 +19268,7 @@ await client.guardian.factors.phone.setMessageTypes({
 <dl>
 <dd>
 
-**requestOptions:** `Phone.RequestOptions`
+**requestOptions:** `PhoneClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16160,7 +19323,7 @@ await client.guardian.factors.phone.getTwilioProvider();
 <dl>
 <dd>
 
-**requestOptions:** `Phone.RequestOptions`
+**requestOptions:** `PhoneClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16223,7 +19386,7 @@ await client.guardian.factors.phone.setTwilioProvider();
 <dl>
 <dd>
 
-**requestOptions:** `Phone.RequestOptions`
+**requestOptions:** `PhoneClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16278,7 +19441,7 @@ await client.guardian.factors.phone.getSelectedProvider();
 <dl>
 <dd>
 
-**requestOptions:** `Phone.RequestOptions`
+**requestOptions:** `PhoneClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16328,7 +19491,7 @@ await client.guardian.factors.phone.setProvider({
 <dl>
 <dd>
 
-**requestOptions:** `Phone.RequestOptions`
+**requestOptions:** `PhoneClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16383,7 +19546,7 @@ await client.guardian.factors.phone.getTemplates();
 <dl>
 <dd>
 
-**requestOptions:** `Phone.RequestOptions`
+**requestOptions:** `PhoneClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16449,7 +19612,7 @@ await client.guardian.factors.phone.setTemplates({
 <dl>
 <dd>
 
-**requestOptions:** `Phone.RequestOptions`
+**requestOptions:** `PhoneClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16506,7 +19669,7 @@ await client.guardian.factors.pushNotification.getApnsProvider();
 <dl>
 <dd>
 
-**requestOptions:** `PushNotification.RequestOptions`
+**requestOptions:** `PushNotificationClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16518,6 +19681,69 @@ await client.guardian.factors.pushNotification.getApnsProvider();
 </details>
 
 <details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">setApnsProvider</a>({ ...params }) -> Management.SetGuardianFactorsProviderPushNotificationApnsResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Overwrite all configuration details of the multi-factor authentication APNS provider associated with your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.setApnsProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.SetGuardianFactorsProviderPushNotificationApnsRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotificationClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">updateApnsProvider</a>({ ...params }) -> Management.UpdateGuardianFactorsProviderPushNotificationApnsResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -16545,7 +19771,7 @@ Modify configuration details of the multi-factor authentication APNS provider as
 <dd>
 
 ```typescript
-await client.guardian.factors.pushNotification.setApnsProvider({});
+await client.guardian.factors.pushNotification.updateApnsProvider();
 ```
 
 </dd>
@@ -16561,7 +19787,7 @@ await client.guardian.factors.pushNotification.setApnsProvider({});
 <dl>
 <dd>
 
-**request:** `Management.SetGuardianFactorsProviderPushNotificationApnsRequestContent`
+**request:** `Management.UpdateGuardianFactorsProviderPushNotificationApnsRequestContent`
 
 </dd>
 </dl>
@@ -16569,7 +19795,7 @@ await client.guardian.factors.pushNotification.setApnsProvider({});
 <dl>
 <dd>
 
-**requestOptions:** `PushNotification.RequestOptions`
+**requestOptions:** `PushNotificationClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16581,6 +19807,69 @@ await client.guardian.factors.pushNotification.setApnsProvider({});
 </details>
 
 <details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">setFcmProvider</a>({ ...params }) -> Management.SetGuardianFactorsProviderPushNotificationFcmResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Overwrite all configuration details of the multi-factor authentication FCM provider associated with your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.setFcmProvider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.SetGuardianFactorsProviderPushNotificationFcmRequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotificationClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">updateFcmProvider</a>({ ...params }) -> Management.UpdateGuardianFactorsProviderPushNotificationFcmResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -16608,7 +19897,7 @@ Modify configuration details of the multi-factor authentication FCM provider ass
 <dd>
 
 ```typescript
-await client.guardian.factors.pushNotification.setFcmProvider({});
+await client.guardian.factors.pushNotification.updateFcmProvider();
 ```
 
 </dd>
@@ -16624,7 +19913,7 @@ await client.guardian.factors.pushNotification.setFcmProvider({});
 <dl>
 <dd>
 
-**request:** `Management.SetGuardianFactorsProviderPushNotificationFcmRequestContent`
+**request:** `Management.UpdateGuardianFactorsProviderPushNotificationFcmRequestContent`
 
 </dd>
 </dl>
@@ -16632,7 +19921,7 @@ await client.guardian.factors.pushNotification.setFcmProvider({});
 <dl>
 <dd>
 
-**requestOptions:** `PushNotification.RequestOptions`
+**requestOptions:** `PushNotificationClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16644,6 +19933,69 @@ await client.guardian.factors.pushNotification.setFcmProvider({});
 </details>
 
 <details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">setFcmv1Provider</a>({ ...params }) -> Management.SetGuardianFactorsProviderPushNotificationFcmv1ResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Overwrite all configuration details of the multi-factor authentication FCMV1 provider associated with your tenant.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.guardian.factors.pushNotification.setFcmv1Provider();
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `Management.SetGuardianFactorsProviderPushNotificationFcmv1RequestContent`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `PushNotificationClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.guardian.factors.pushNotification.<a href="/src/management/api/resources/guardian/resources/factors/resources/pushNotification/client/Client.ts">updateFcmv1Provider</a>({ ...params }) -> Management.UpdateGuardianFactorsProviderPushNotificationFcmv1ResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -16671,7 +20023,7 @@ Modify configuration details of the multi-factor authentication FCMV1 provider a
 <dd>
 
 ```typescript
-await client.guardian.factors.pushNotification.setFcmv1Provider({});
+await client.guardian.factors.pushNotification.updateFcmv1Provider();
 ```
 
 </dd>
@@ -16687,7 +20039,7 @@ await client.guardian.factors.pushNotification.setFcmv1Provider({});
 <dl>
 <dd>
 
-**request:** `Management.SetGuardianFactorsProviderPushNotificationFcmv1RequestContent`
+**request:** `Management.UpdateGuardianFactorsProviderPushNotificationFcmv1RequestContent`
 
 </dd>
 </dl>
@@ -16695,7 +20047,7 @@ await client.guardian.factors.pushNotification.setFcmv1Provider({});
 <dl>
 <dd>
 
-**requestOptions:** `PushNotification.RequestOptions`
+**requestOptions:** `PushNotificationClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16750,7 +20102,7 @@ await client.guardian.factors.pushNotification.getSnsProvider();
 <dl>
 <dd>
 
-**requestOptions:** `PushNotification.RequestOptions`
+**requestOptions:** `PushNotificationClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16813,7 +20165,7 @@ await client.guardian.factors.pushNotification.setSnsProvider();
 <dl>
 <dd>
 
-**requestOptions:** `PushNotification.RequestOptions`
+**requestOptions:** `PushNotificationClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16876,7 +20228,7 @@ await client.guardian.factors.pushNotification.updateSnsProvider();
 <dl>
 <dd>
 
-**requestOptions:** `PushNotification.RequestOptions`
+**requestOptions:** `PushNotificationClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16931,7 +20283,7 @@ await client.guardian.factors.pushNotification.getSelectedProvider();
 <dl>
 <dd>
 
-**requestOptions:** `PushNotification.RequestOptions`
+**requestOptions:** `PushNotificationClient.RequestOptions`
 
 </dd>
 </dl>
@@ -16996,7 +20348,7 @@ await client.guardian.factors.pushNotification.setProvider({
 <dl>
 <dd>
 
-**requestOptions:** `PushNotification.RequestOptions`
+**requestOptions:** `PushNotificationClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17055,7 +20407,7 @@ await client.guardian.factors.sms.getTwilioProvider();
 <dl>
 <dd>
 
-**requestOptions:** `Sms.RequestOptions`
+**requestOptions:** `SmsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17120,7 +20472,7 @@ await client.guardian.factors.sms.setTwilioProvider();
 <dl>
 <dd>
 
-**requestOptions:** `Sms.RequestOptions`
+**requestOptions:** `SmsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17177,7 +20529,7 @@ await client.guardian.factors.sms.getSelectedProvider();
 <dl>
 <dd>
 
-**requestOptions:** `Sms.RequestOptions`
+**requestOptions:** `SmsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17244,7 +20596,7 @@ await client.guardian.factors.sms.setProvider({
 <dl>
 <dd>
 
-**requestOptions:** `Sms.RequestOptions`
+**requestOptions:** `SmsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17301,7 +20653,7 @@ await client.guardian.factors.sms.getTemplates();
 <dl>
 <dd>
 
-**requestOptions:** `Sms.RequestOptions`
+**requestOptions:** `SmsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17369,7 +20721,7 @@ await client.guardian.factors.sms.setTemplates({
 <dl>
 <dd>
 
-**requestOptions:** `Sms.RequestOptions`
+**requestOptions:** `SmsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17426,7 +20778,7 @@ await client.guardian.factors.duo.settings.get();
 <dl>
 <dd>
 
-**requestOptions:** `Settings.RequestOptions`
+**requestOptions:** `SettingsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17489,7 +20841,7 @@ await client.guardian.factors.duo.settings.set();
 <dl>
 <dd>
 
-**requestOptions:** `Settings.RequestOptions`
+**requestOptions:** `SettingsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17537,7 +20889,7 @@ await client.guardian.factors.duo.settings.update();
 <dl>
 <dd>
 
-**requestOptions:** `Settings.RequestOptions`
+**requestOptions:** `SettingsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17602,7 +20954,7 @@ await client.hooks.secrets.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Secrets.RequestOptions`
+**requestOptions:** `SecretsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17675,7 +21027,7 @@ await client.hooks.secrets.create("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Secrets.RequestOptions`
+**requestOptions:** `SecretsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17746,7 +21098,7 @@ await client.hooks.secrets.delete("id", ["string"]);
 <dl>
 <dd>
 
-**requestOptions:** `Secrets.RequestOptions`
+**requestOptions:** `SecretsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17819,7 +21171,7 @@ await client.hooks.secrets.update("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Secrets.RequestOptions`
+**requestOptions:** `SecretsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17884,7 +21236,7 @@ await client.jobs.usersExports.create();
 <dl>
 <dd>
 
-**requestOptions:** `UsersExports.RequestOptions`
+**requestOptions:** `UsersExportsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -17952,7 +21304,7 @@ await client.jobs.usersImports.create({
 <dl>
 <dd>
 
-**requestOptions:** `UsersImports.RequestOptions`
+**requestOptions:** `UsersImportsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18021,7 +21373,7 @@ await client.jobs.verificationEmail.create({
 <dl>
 <dd>
 
-**requestOptions:** `VerificationEmail.RequestOptions`
+**requestOptions:** `VerificationEmailClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18086,7 +21438,7 @@ await client.jobs.errors.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Errors.RequestOptions`
+**requestOptions:** `ErrorsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18143,7 +21495,7 @@ await client.keys.customSigning.get();
 <dl>
 <dd>
 
-**requestOptions:** `CustomSigning.RequestOptions`
+**requestOptions:** `CustomSigningClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18212,7 +21564,7 @@ await client.keys.customSigning.set({
 <dl>
 <dd>
 
-**requestOptions:** `CustomSigning.RequestOptions`
+**requestOptions:** `CustomSigningClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18267,7 +21619,7 @@ await client.keys.customSigning.delete();
 <dl>
 <dd>
 
-**requestOptions:** `CustomSigning.RequestOptions`
+**requestOptions:** `CustomSigningClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18280,7 +21632,7 @@ await client.keys.customSigning.delete();
 
 ## Keys Encryption
 
-<details><summary><code>client.keys.encryption.<a href="/src/management/api/resources/keys/resources/encryption/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.EncryptionKey, Management.ListEncryptionKeyOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.keys.encryption.<a href="/src/management/api/resources/keys/resources/encryption/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.EncryptionKey, Management.ListEncryptionKeyOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -18352,7 +21704,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Encryption.RequestOptions`
+**requestOptions:** `EncryptionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18417,7 +21769,7 @@ await client.keys.encryption.create({
 <dl>
 <dd>
 
-**requestOptions:** `Encryption.RequestOptions`
+**requestOptions:** `EncryptionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18472,7 +21824,7 @@ await client.keys.encryption.rekey();
 <dl>
 <dd>
 
-**requestOptions:** `Encryption.RequestOptions`
+**requestOptions:** `EncryptionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18535,7 +21887,7 @@ await client.keys.encryption.get("kid");
 <dl>
 <dd>
 
-**requestOptions:** `Encryption.RequestOptions`
+**requestOptions:** `EncryptionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18608,7 +21960,7 @@ await client.keys.encryption.import("kid", {
 <dl>
 <dd>
 
-**requestOptions:** `Encryption.RequestOptions`
+**requestOptions:** `EncryptionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18671,7 +22023,7 @@ await client.keys.encryption.delete("kid");
 <dl>
 <dd>
 
-**requestOptions:** `Encryption.RequestOptions`
+**requestOptions:** `EncryptionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18734,7 +22086,7 @@ await client.keys.encryption.createPublicWrappingKey("kid");
 <dl>
 <dd>
 
-**requestOptions:** `Encryption.RequestOptions`
+**requestOptions:** `EncryptionClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18791,7 +22143,7 @@ await client.keys.signing.list();
 <dl>
 <dd>
 
-**requestOptions:** `Signing.RequestOptions`
+**requestOptions:** `SigningClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18846,7 +22198,7 @@ await client.keys.signing.rotate();
 <dl>
 <dd>
 
-**requestOptions:** `Signing.RequestOptions`
+**requestOptions:** `SigningClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18909,7 +22261,7 @@ await client.keys.signing.get("kid");
 <dl>
 <dd>
 
-**requestOptions:** `Signing.RequestOptions`
+**requestOptions:** `SigningClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18972,7 +22324,7 @@ await client.keys.signing.revoke("kid");
 <dl>
 <dd>
 
-**requestOptions:** `Signing.RequestOptions`
+**requestOptions:** `SigningClient.RequestOptions`
 
 </dd>
 </dl>
@@ -18985,7 +22337,7 @@ await client.keys.signing.revoke("kid");
 
 ## Organizations ClientGrants
 
-<details><summary><code>client.organizations.clientGrants.<a href="/src/management/api/resources/organizations/resources/clientGrants/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.OrganizationClientGrant, Management.ListOrganizationClientGrantsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.organizations.clientGrants.<a href="/src/management/api/resources/organizations/resources/clientGrants/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.OrganizationClientGrant, Management.ListOrganizationClientGrantsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -19001,6 +22353,7 @@ await client.keys.signing.revoke("kid");
 const pageableResponse = await client.organizations.clientGrants.list("id", {
     audience: "audience",
     client_id: "client_id",
+    grant_ids: ["grant_ids"],
     page: 1,
     per_page: 1,
     include_totals: true,
@@ -19013,6 +22366,7 @@ for await (const item of pageableResponse) {
 let page = await client.organizations.clientGrants.list("id", {
     audience: "audience",
     client_id: "client_id",
+    grant_ids: ["grant_ids"],
     page: 1,
     per_page: 1,
     include_totals: true,
@@ -19054,7 +22408,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `ClientGrants.RequestOptions`
+**requestOptions:** `ClientGrantsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19112,7 +22466,7 @@ await client.organizations.clientGrants.create("id", {
 <dl>
 <dd>
 
-**requestOptions:** `ClientGrants.RequestOptions`
+**requestOptions:** `ClientGrantsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19123,7 +22477,7 @@ await client.organizations.clientGrants.create("id", {
 </dl>
 </details>
 
-<details><summary><code>client.organizations.clientGrants.<a href="/src/management/api/resources/organizations/resources/clientGrants/client/Client.ts">delete</a>(id, grantId) -> void</code></summary>
+<details><summary><code>client.organizations.clientGrants.<a href="/src/management/api/resources/organizations/resources/clientGrants/client/Client.ts">delete</a>(id, grant_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -19160,7 +22514,7 @@ await client.organizations.clientGrants.delete("id", "grant_id");
 <dl>
 <dd>
 
-**grantId:** `string` — The Client Grant ID to remove from the organization
+**grant_id:** `string` — The Client Grant ID to remove from the organization
 
 </dd>
 </dl>
@@ -19168,7 +22522,321 @@ await client.organizations.clientGrants.delete("id", "grant_id");
 <dl>
 <dd>
 
-**requestOptions:** `ClientGrants.RequestOptions`
+**requestOptions:** `ClientGrantsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Organizations Connections
+
+<details><summary><code>client.organizations.connections.<a href="/src/management/api/resources/organizations/resources/connections/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.OrganizationAllConnectionPost, Management.ListOrganizationAllConnectionsOffsetPaginatedResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.organizations.connections.list("id", {
+    page: 1,
+    per_page: 1,
+    include_totals: true,
+    is_enabled: true,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.organizations.connections.list("id", {
+    page: 1,
+    per_page: 1,
+    include_totals: true,
+    is_enabled: true,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.ListOrganizationAllConnectionsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.connections.<a href="/src/management/api/resources/organizations/resources/connections/client/Client.ts">create</a>(id, { ...params }) -> Management.CreateOrganizationAllConnectionResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.connections.create("id", {
+    connection_id: "connection_id",
+});
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.CreateOrganizationAllConnectionRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.connections.<a href="/src/management/api/resources/organizations/resources/connections/client/Client.ts">get</a>(id, connection_id) -> Management.GetOrganizationAllConnectionResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.connections.get("id", "connection_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**connection_id:** `string` — Connection identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.connections.<a href="/src/management/api/resources/organizations/resources/connections/client/Client.ts">delete</a>(id, connection_id) -> void</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.connections.delete("id", "connection_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**connection_id:** `string` — Connection identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.connections.<a href="/src/management/api/resources/organizations/resources/connections/client/Client.ts">update</a>(id, connection_id, { ...params }) -> Management.UpdateOrganizationAllConnectionResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.connections.update("id", "connection_id");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — Organization identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**connection_id:** `string` — Connection identifier.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.UpdateOrganizationConnectionRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `ConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19181,7 +22849,7 @@ await client.organizations.clientGrants.delete("id", "grant_id");
 
 ## Organizations DiscoveryDomains
 
-<details><summary><code>client.organizations.discoveryDomains.<a href="/src/management/api/resources/organizations/resources/discoveryDomains/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.OrganizationDiscoveryDomain, Management.ListOrganizationDiscoveryDomainsResponseContent></code></summary>
+<details><summary><code>client.organizations.discoveryDomains.<a href="/src/management/api/resources/organizations/resources/discoveryDomains/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.OrganizationDiscoveryDomain, Management.ListOrganizationDiscoveryDomainsResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -19194,6 +22862,7 @@ await client.organizations.clientGrants.delete("id", "grant_id");
 <dd>
 
 Retrieve list of all organization discovery domains associated with the specified organization.
+This endpoint is subject to eventual consistency; newly created, updated, or deleted discovery domains may not immediately appear in the response.
 
 </dd>
 </dl>
@@ -19259,7 +22928,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `DiscoveryDomains.RequestOptions`
+**requestOptions:** `DiscoveryDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19282,7 +22951,7 @@ const response = page.response;
 <dl>
 <dd>
 
-Update the verification status for an organization discovery domain. The <code>status</code> field must be either <code>pending</code> or <code>verified</code>.
+Create a new discovery domain for an organization.
 
 </dd>
 </dl>
@@ -19332,7 +23001,7 @@ await client.organizations.discoveryDomains.create("id", {
 <dl>
 <dd>
 
-**requestOptions:** `DiscoveryDomains.RequestOptions`
+**requestOptions:** `DiscoveryDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19343,7 +23012,79 @@ await client.organizations.discoveryDomains.create("id", {
 </dl>
 </details>
 
-<details><summary><code>client.organizations.discoveryDomains.<a href="/src/management/api/resources/organizations/resources/discoveryDomains/client/Client.ts">get</a>(id, discoveryDomainId) -> Management.GetOrganizationDiscoveryDomainResponseContent</code></summary>
+<details><summary><code>client.organizations.discoveryDomains.<a href="/src/management/api/resources/organizations/resources/discoveryDomains/client/Client.ts">getByName</a>(id, discovery_domain) -> Management.GetOrganizationDiscoveryDomainByNameResponseContent</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve details about a single organization discovery domain specified by domain name.
+This endpoint is subject to eventual consistency; newly created, updated, or deleted discovery domains may not immediately appear in the response.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+await client.organizations.discoveryDomains.getByName("id", "discovery_domain");
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the organization.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**discovery_domain:** `string` — Domain name of the discovery domain.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `DiscoveryDomainsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.organizations.discoveryDomains.<a href="/src/management/api/resources/organizations/resources/discoveryDomains/client/Client.ts">get</a>(id, discovery_domain_id) -> Management.GetOrganizationDiscoveryDomainResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -19356,6 +23097,7 @@ await client.organizations.discoveryDomains.create("id", {
 <dd>
 
 Retrieve details about a single organization discovery domain specified by ID.
+This endpoint is subject to eventual consistency; newly created, updated, or deleted discovery domains may not immediately appear in the response.
 
 </dd>
 </dl>
@@ -19395,7 +23137,7 @@ await client.organizations.discoveryDomains.get("id", "discovery_domain_id");
 <dl>
 <dd>
 
-**discoveryDomainId:** `string` — ID of the discovery domain.
+**discovery_domain_id:** `string` — ID of the discovery domain.
 
 </dd>
 </dl>
@@ -19403,7 +23145,7 @@ await client.organizations.discoveryDomains.get("id", "discovery_domain_id");
 <dl>
 <dd>
 
-**requestOptions:** `DiscoveryDomains.RequestOptions`
+**requestOptions:** `DiscoveryDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19414,7 +23156,7 @@ await client.organizations.discoveryDomains.get("id", "discovery_domain_id");
 </dl>
 </details>
 
-<details><summary><code>client.organizations.discoveryDomains.<a href="/src/management/api/resources/organizations/resources/discoveryDomains/client/Client.ts">delete</a>(id, discoveryDomainId) -> void</code></summary>
+<details><summary><code>client.organizations.discoveryDomains.<a href="/src/management/api/resources/organizations/resources/discoveryDomains/client/Client.ts">delete</a>(id, discovery_domain_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -19466,7 +23208,7 @@ await client.organizations.discoveryDomains.delete("id", "discovery_domain_id");
 <dl>
 <dd>
 
-**discoveryDomainId:** `string` — ID of the discovery domain.
+**discovery_domain_id:** `string` — ID of the discovery domain.
 
 </dd>
 </dl>
@@ -19474,7 +23216,7 @@ await client.organizations.discoveryDomains.delete("id", "discovery_domain_id");
 <dl>
 <dd>
 
-**requestOptions:** `DiscoveryDomains.RequestOptions`
+**requestOptions:** `DiscoveryDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19485,7 +23227,7 @@ await client.organizations.discoveryDomains.delete("id", "discovery_domain_id");
 </dl>
 </details>
 
-<details><summary><code>client.organizations.discoveryDomains.<a href="/src/management/api/resources/organizations/resources/discoveryDomains/client/Client.ts">update</a>(id, discoveryDomainId, { ...params }) -> Management.UpdateOrganizationDiscoveryDomainResponseContent</code></summary>
+<details><summary><code>client.organizations.discoveryDomains.<a href="/src/management/api/resources/organizations/resources/discoveryDomains/client/Client.ts">update</a>(id, discovery_domain_id, { ...params }) -> Management.UpdateOrganizationDiscoveryDomainResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -19497,7 +23239,7 @@ await client.organizations.discoveryDomains.delete("id", "discovery_domain_id");
 <dl>
 <dd>
 
-Update the verification status for an organization discovery domain. The <code>status</code> field must be either <code>pending</code> or <code>verified</code>.
+Update the verification status and/or use_for_organization_discovery for an organization discovery domain. The <code>status</code> field must be either <code>pending</code> or <code>verified</code>. The <code>use_for_organization_discovery</code> field can be <code>true</code> or <code>false</code> (default: <code>true</code>).
 
 </dd>
 </dl>
@@ -19537,7 +23279,7 @@ await client.organizations.discoveryDomains.update("id", "discovery_domain_id");
 <dl>
 <dd>
 
-**discoveryDomainId:** `string` — ID of the discovery domain to update.
+**discovery_domain_id:** `string` — ID of the discovery domain to update.
 
 </dd>
 </dl>
@@ -19553,7 +23295,7 @@ await client.organizations.discoveryDomains.update("id", "discovery_domain_id");
 <dl>
 <dd>
 
-**requestOptions:** `DiscoveryDomains.RequestOptions`
+**requestOptions:** `DiscoveryDomainsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19566,7 +23308,7 @@ await client.organizations.discoveryDomains.update("id", "discovery_domain_id");
 
 ## Organizations EnabledConnections
 
-<details><summary><code>client.organizations.enabledConnections.<a href="/src/management/api/resources/organizations/resources/enabledConnections/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.OrganizationConnection, Management.ListOrganizationConnectionsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.organizations.enabledConnections.<a href="/src/management/api/resources/organizations/resources/enabledConnections/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.OrganizationConnection, Management.ListOrganizationConnectionsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -19646,7 +23388,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `EnabledConnections.RequestOptions`
+**requestOptions:** `EnabledConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19721,7 +23463,7 @@ await client.organizations.enabledConnections.add("id", {
 <dl>
 <dd>
 
-**requestOptions:** `EnabledConnections.RequestOptions`
+**requestOptions:** `EnabledConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19792,7 +23534,7 @@ await client.organizations.enabledConnections.get("id", "connectionId");
 <dl>
 <dd>
 
-**requestOptions:** `EnabledConnections.RequestOptions`
+**requestOptions:** `EnabledConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19865,7 +23607,7 @@ await client.organizations.enabledConnections.delete("id", "connectionId");
 <dl>
 <dd>
 
-**requestOptions:** `EnabledConnections.RequestOptions`
+**requestOptions:** `EnabledConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19944,7 +23686,7 @@ await client.organizations.enabledConnections.update("id", "connectionId");
 <dl>
 <dd>
 
-**requestOptions:** `EnabledConnections.RequestOptions`
+**requestOptions:** `EnabledConnectionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -19957,7 +23699,7 @@ await client.organizations.enabledConnections.update("id", "connectionId");
 
 ## Organizations Invitations
 
-<details><summary><code>client.organizations.invitations.<a href="/src/management/api/resources/organizations/resources/invitations/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.OrganizationInvitation, Management.ListOrganizationInvitationsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.organizations.invitations.<a href="/src/management/api/resources/organizations/resources/invitations/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.OrganizationInvitation, Management.ListOrganizationInvitationsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -20043,7 +23785,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions`
+**requestOptions:** `InvitationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20122,7 +23864,7 @@ await client.organizations.invitations.create("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions`
+**requestOptions:** `InvitationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20133,7 +23875,7 @@ await client.organizations.invitations.create("id", {
 </dl>
 </details>
 
-<details><summary><code>client.organizations.invitations.<a href="/src/management/api/resources/organizations/resources/invitations/client/Client.ts">get</a>(id, invitationId, { ...params }) -> Management.GetOrganizationInvitationResponseContent</code></summary>
+<details><summary><code>client.organizations.invitations.<a href="/src/management/api/resources/organizations/resources/invitations/client/Client.ts">get</a>(id, invitation_id, { ...params }) -> Management.GetOrganizationInvitationResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -20173,7 +23915,7 @@ await client.organizations.invitations.get("id", "invitation_id", {
 <dl>
 <dd>
 
-**invitationId:** `string` — The id of the user invitation.
+**invitation_id:** `string` — The id of the user invitation.
 
 </dd>
 </dl>
@@ -20189,7 +23931,7 @@ await client.organizations.invitations.get("id", "invitation_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions`
+**requestOptions:** `InvitationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20200,7 +23942,7 @@ await client.organizations.invitations.get("id", "invitation_id", {
 </dl>
 </details>
 
-<details><summary><code>client.organizations.invitations.<a href="/src/management/api/resources/organizations/resources/invitations/client/Client.ts">delete</a>(id, invitationId) -> void</code></summary>
+<details><summary><code>client.organizations.invitations.<a href="/src/management/api/resources/organizations/resources/invitations/client/Client.ts">delete</a>(id, invitation_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -20237,7 +23979,7 @@ await client.organizations.invitations.delete("id", "invitation_id");
 <dl>
 <dd>
 
-**invitationId:** `string` — The id of the user invitation.
+**invitation_id:** `string` — The id of the user invitation.
 
 </dd>
 </dl>
@@ -20245,7 +23987,7 @@ await client.organizations.invitations.delete("id", "invitation_id");
 <dl>
 <dd>
 
-**requestOptions:** `Invitations.RequestOptions`
+**requestOptions:** `InvitationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20258,7 +24000,7 @@ await client.organizations.invitations.delete("id", "invitation_id");
 
 ## Organizations Members
 
-<details><summary><code>client.organizations.members.<a href="/src/management/api/resources/organizations/resources/members/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.OrganizationMember, Management.ListOrganizationMembersPaginatedResponseContent></code></summary>
+<details><summary><code>client.organizations.members.<a href="/src/management/api/resources/organizations/resources/members/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.OrganizationMember, Management.ListOrganizationMembersPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -20361,7 +24103,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Members.RequestOptions`
+**requestOptions:** `MembersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20436,7 +24178,7 @@ await client.organizations.members.create("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Members.RequestOptions`
+**requestOptions:** `MembersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20494,7 +24236,7 @@ await client.organizations.members.delete("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Members.RequestOptions`
+**requestOptions:** `MembersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20507,7 +24249,7 @@ await client.organizations.members.delete("id", {
 
 ## Organizations Members Roles
 
-<details><summary><code>client.organizations.members.roles.<a href="/src/management/api/resources/organizations/resources/members/resources/roles/client/Client.ts">list</a>(id, userId, { ...params }) -> core.Page<Management.Role, Management.ListOrganizationMemberRolesOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.organizations.members.roles.<a href="/src/management/api/resources/organizations/resources/members/resources/roles/client/Client.ts">list</a>(id, user_id, { ...params }) -> core.Page&lt;Management.Role, Management.ListOrganizationMemberRolesOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -20581,7 +24323,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**userId:** `string` — ID of the user to associate roles with.
+**user_id:** `string` — ID of the user to associate roles with.
 
 </dd>
 </dl>
@@ -20597,7 +24339,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20608,7 +24350,7 @@ const response = page.response;
 </dl>
 </details>
 
-<details><summary><code>client.organizations.members.roles.<a href="/src/management/api/resources/organizations/resources/members/resources/roles/client/Client.ts">assign</a>(id, userId, { ...params }) -> void</code></summary>
+<details><summary><code>client.organizations.members.roles.<a href="/src/management/api/resources/organizations/resources/members/resources/roles/client/Client.ts">assign</a>(id, user_id, { ...params }) -> void</code></summary>
 <dl>
 <dd>
 
@@ -20664,7 +24406,7 @@ await client.organizations.members.roles.assign("id", "user_id", {
 <dl>
 <dd>
 
-**userId:** `string` — ID of the user to associate roles with.
+**user_id:** `string` — ID of the user to associate roles with.
 
 </dd>
 </dl>
@@ -20680,7 +24422,7 @@ await client.organizations.members.roles.assign("id", "user_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20691,7 +24433,7 @@ await client.organizations.members.roles.assign("id", "user_id", {
 </dl>
 </details>
 
-<details><summary><code>client.organizations.members.roles.<a href="/src/management/api/resources/organizations/resources/members/resources/roles/client/Client.ts">delete</a>(id, userId, { ...params }) -> void</code></summary>
+<details><summary><code>client.organizations.members.roles.<a href="/src/management/api/resources/organizations/resources/members/resources/roles/client/Client.ts">delete</a>(id, user_id, { ...params }) -> void</code></summary>
 <dl>
 <dd>
 
@@ -20747,7 +24489,7 @@ await client.organizations.members.roles.delete("id", "user_id", {
 <dl>
 <dd>
 
-**userId:** `string` — User ID of the organization member to remove roles from.
+**user_id:** `string` — User ID of the organization member to remove roles from.
 
 </dd>
 </dl>
@@ -20763,7 +24505,7 @@ await client.organizations.members.roles.delete("id", "user_id", {
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20776,7 +24518,7 @@ await client.organizations.members.roles.delete("id", "user_id", {
 
 ## Prompts Rendering
 
-<details><summary><code>client.prompts.rendering.<a href="/src/management/api/resources/prompts/resources/rendering/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.AculResponseContent, Management.ListAculsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.prompts.rendering.<a href="/src/management/api/resources/prompts/resources/rendering/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.ListAculsResponseContentItem, Management.ListAculsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -20858,7 +24600,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Rendering.RequestOptions`
+**requestOptions:** `RenderingClient.RequestOptions`
 
 </dd>
 </dl>
@@ -20883,32 +24625,6 @@ const response = page.response;
 
 Learn more about <a href='https://auth0.com/docs/customize/login-pages/advanced-customizations/getting-started/configure-acul-screens'>configuring render settings</a> for advanced customization.
 
-<p>
-  Example <code>head_tags</code> array. See our <a href='https://auth0.com/docs/customize/login-pages/advanced-customizations/getting-started/configure-acul-screens'>documentation</a> on using Liquid variables within head tags.
-</p>
-<pre>{
-  "head_tags": [
-    {
-      "tag": "script",
-      "attributes": {
-        "defer": true,
-        "src": "URL_TO_ASSET",
-        "async": true,
-        "integrity": [
-          "ASSET_SHA"
-        ]
-      }
-    },
-    {
-      "tag": "link",
-      "attributes": {
-        "href": "URL_TO_ASSET",
-        "rel": "stylesheet"
-      }
-    }
-  ]
-}
-</pre>
 </dd>
 </dl>
 </dd>
@@ -20928,8 +24644,6 @@ await client.prompts.rendering.bulkUpdate({
         {
             prompt: "login",
             screen: "login",
-            rendering_mode: "advanced",
-            head_tags: [{}],
         },
     ],
 });
@@ -20956,7 +24670,7 @@ await client.prompts.rendering.bulkUpdate({
 <dl>
 <dd>
 
-**requestOptions:** `Rendering.RequestOptions`
+**requestOptions:** `RenderingClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21027,7 +24741,7 @@ await client.prompts.rendering.get("login", "login");
 <dl>
 <dd>
 
-**requestOptions:** `Rendering.RequestOptions`
+**requestOptions:** `RenderingClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21052,32 +24766,6 @@ await client.prompts.rendering.get("login", "login");
 
 Learn more about <a href='https://auth0.com/docs/customize/login-pages/advanced-customizations/getting-started/configure-acul-screens'>configuring render settings</a> for advanced customization.
 
-<p>
-  Example <code>head_tags</code> array. See our <a href='https://auth0.com/docs/customize/login-pages/advanced-customizations/getting-started/configure-acul-screens'>documentation</a> on using Liquid variables within head tags.
-</p>
-<pre>{
-  "head_tags": [
-    {
-      "tag": "script",
-      "attributes": {
-        "defer": true,
-        "src": "URL_TO_ASSET",
-        "async": true,
-        "integrity": [
-          "ASSET_SHA"
-        ]
-      }
-    },
-    {
-      "tag": "link",
-      "attributes": {
-        "href": "URL_TO_ASSET",
-        "rel": "stylesheet"
-      }
-    }
-  ]
-}
-</pre>
 </dd>
 </dl>
 </dd>
@@ -21092,10 +24780,7 @@ Learn more about <a href='https://auth0.com/docs/customize/login-pages/advanced-
 <dd>
 
 ```typescript
-await client.prompts.rendering.update("login", "login", {
-    rendering_mode: "advanced",
-    head_tags: [{}],
-});
+await client.prompts.rendering.update("login", "login");
 ```
 
 </dd>
@@ -21135,7 +24820,7 @@ await client.prompts.rendering.update("login", "login", {
 <dl>
 <dd>
 
-**requestOptions:** `Rendering.RequestOptions`
+**requestOptions:** `RenderingClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21208,7 +24893,7 @@ await client.prompts.customText.get("login", "am");
 <dl>
 <dd>
 
-**requestOptions:** `CustomText.RequestOptions`
+**requestOptions:** `CustomTextClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21289,7 +24974,7 @@ await client.prompts.customText.set("login", "am", {
 <dl>
 <dd>
 
-**requestOptions:** `CustomText.RequestOptions`
+**requestOptions:** `CustomTextClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21354,7 +25039,7 @@ await client.prompts.partials.get("login");
 <dl>
 <dd>
 
-**requestOptions:** `Partials.RequestOptions`
+**requestOptions:** `PartialsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21427,7 +25112,7 @@ await client.prompts.partials.set("login", {
 <dl>
 <dd>
 
-**requestOptions:** `Partials.RequestOptions`
+**requestOptions:** `PartialsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21484,7 +25169,7 @@ await client.riskAssessments.settings.get();
 <dl>
 <dd>
 
-**requestOptions:** `Settings.RequestOptions`
+**requestOptions:** `SettingsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21549,7 +25234,7 @@ await client.riskAssessments.settings.update({
 <dl>
 <dd>
 
-**requestOptions:** `Settings.RequestOptions`
+**requestOptions:** `SettingsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21606,7 +25291,7 @@ await client.riskAssessments.settings.newDevice.get();
 <dl>
 <dd>
 
-**requestOptions:** `NewDevice.RequestOptions`
+**requestOptions:** `NewDeviceClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21671,7 +25356,7 @@ await client.riskAssessments.settings.newDevice.update({
 <dl>
 <dd>
 
-**requestOptions:** `NewDevice.RequestOptions`
+**requestOptions:** `NewDeviceClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21684,7 +25369,7 @@ await client.riskAssessments.settings.newDevice.update({
 
 ## Roles Permissions
 
-<details><summary><code>client.roles.permissions.<a href="/src/management/api/resources/roles/resources/permissions/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.PermissionsResponsePayload, Management.ListRolePermissionsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.roles.permissions.<a href="/src/management/api/resources/roles/resources/permissions/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.PermissionsResponsePayload, Management.ListRolePermissionsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -21764,7 +25449,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Permissions.RequestOptions`
+**requestOptions:** `PermissionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21842,7 +25527,7 @@ await client.roles.permissions.add("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Permissions.RequestOptions`
+**requestOptions:** `PermissionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21920,7 +25605,7 @@ await client.roles.permissions.delete("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Permissions.RequestOptions`
+**requestOptions:** `PermissionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -21933,7 +25618,7 @@ await client.roles.permissions.delete("id", {
 
 ## Roles Users
 
-<details><summary><code>client.roles.users.<a href="/src/management/api/resources/roles/resources/users/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.RoleUser, Management.ListRoleUsersPaginatedResponseContent></code></summary>
+<details><summary><code>client.roles.users.<a href="/src/management/api/resources/roles/resources/users/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.RoleUser, Management.ListRoleUsersPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -22031,7 +25716,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22106,7 +25791,7 @@ await client.roles.users.assign("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Users.RequestOptions`
+**requestOptions:** `UsersClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22131,7 +25816,7 @@ await client.roles.users.assign("id", {
 <dl>
 <dd>
 
-Retrieves text customizations for a given self-service profile, language and Self Service SSO Flow page.
+Retrieves text customizations for a given self-service profile, language and Self-Service Enterprise Configuration flow page.
 
 </dd>
 </dl>
@@ -22187,7 +25872,7 @@ await client.selfServiceProfiles.customText.list("id", "en", "get-started");
 <dl>
 <dd>
 
-**requestOptions:** `CustomText.RequestOptions`
+**requestOptions:** `CustomTextClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22210,7 +25895,7 @@ await client.selfServiceProfiles.customText.list("id", "en", "get-started");
 <dl>
 <dd>
 
-Updates text customizations for a given self-service profile, language and Self Service SSO Flow page.
+Updates text customizations for a given self-service profile, language and Self-Service Enterprise Configuration flow page.
 
 </dd>
 </dl>
@@ -22276,7 +25961,7 @@ await client.selfServiceProfiles.customText.set("id", "en", "get-started", {
 <dl>
 <dd>
 
-**requestOptions:** `CustomText.RequestOptions`
+**requestOptions:** `CustomTextClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22301,7 +25986,7 @@ await client.selfServiceProfiles.customText.set("id", "en", "get-started", {
 <dl>
 <dd>
 
-Creates an SSO access ticket to initiate the Self Service SSO Flow using a self-service profile.
+Creates an access ticket to initiate the Self-Service Enterprise Configuration flow using a self-service profile.
 
 </dd>
 </dl>
@@ -22349,7 +26034,7 @@ await client.selfServiceProfiles.ssoTicket.create("id");
 <dl>
 <dd>
 
-**requestOptions:** `SsoTicket.RequestOptions`
+**requestOptions:** `SsoTicketClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22372,7 +26057,7 @@ await client.selfServiceProfiles.ssoTicket.create("id");
 <dl>
 <dd>
 
-Revokes an SSO access ticket and invalidates associated sessions. The ticket will no longer be accepted to initiate a Self-Service SSO session. If any users have already started a session through this ticket, their session will be terminated. Clients should expect a `202 Accepted` response upon successful processing, indicating that the request has been acknowledged and that the revocation is underway but may not be fully completed at the time of response. If the specified ticket does not exist, a `202 Accepted` response is also returned, signaling that no further action is required.
+Revokes a Self-Service Enterprise Configuration access ticket and invalidates associated sessions. The ticket will no longer be accepted to initiate a Self-Service Enterprise Configuration session. If any users have already started a session through this ticket, their session will be terminated. Clients should expect a `202 Accepted` response upon successful processing, indicating that the request has been acknowledged and that the revocation is underway but may not be fully completed at the time of response. If the specified ticket does not exist, a `202 Accepted` response is also returned, signaling that no further action is required.
 Clients should treat these `202` responses as an acknowledgment that the request has been accepted and is in progress, even if the ticket was not found.
 
 </dd>
@@ -22421,7 +26106,7 @@ await client.selfServiceProfiles.ssoTicket.revoke("profileId", "id");
 <dl>
 <dd>
 
-**requestOptions:** `SsoTicket.RequestOptions`
+**requestOptions:** `SsoTicketClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22489,7 +26174,7 @@ await client.tenants.settings.get({
 <dl>
 <dd>
 
-**requestOptions:** `Settings.RequestOptions`
+**requestOptions:** `SettingsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22552,7 +26237,7 @@ await client.tenants.settings.update();
 <dl>
 <dd>
 
-**requestOptions:** `Settings.RequestOptions`
+**requestOptions:** `SettingsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22565,7 +26250,7 @@ await client.tenants.settings.update();
 
 ## Users AuthenticationMethods
 
-<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.UserAuthenticationMethod, Management.ListUserAuthenticationMethodsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.UserAuthenticationMethod, Management.ListUserAuthenticationMethodsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -22645,7 +26330,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `AuthenticationMethods.RequestOptions`
+**requestOptions:** `AuthenticationMethodsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22718,7 +26403,7 @@ await client.users.authenticationMethods.create("id", {
 <dl>
 <dd>
 
-**requestOptions:** `AuthenticationMethods.RequestOptions`
+**requestOptions:** `AuthenticationMethodsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22795,7 +26480,7 @@ await client.users.authenticationMethods.set("id", [
 <dl>
 <dd>
 
-**requestOptions:** `AuthenticationMethods.RequestOptions`
+**requestOptions:** `AuthenticationMethodsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22858,7 +26543,7 @@ await client.users.authenticationMethods.deleteAll("id");
 <dl>
 <dd>
 
-**requestOptions:** `AuthenticationMethods.RequestOptions`
+**requestOptions:** `AuthenticationMethodsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22869,7 +26554,7 @@ await client.users.authenticationMethods.deleteAll("id");
 </dl>
 </details>
 
-<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">get</a>(id, authenticationMethodId) -> Management.GetUserAuthenticationMethodResponseContent</code></summary>
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">get</a>(id, authentication_method_id) -> Management.GetUserAuthenticationMethodResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -22906,7 +26591,7 @@ await client.users.authenticationMethods.get("id", "authentication_method_id");
 <dl>
 <dd>
 
-**authenticationMethodId:** `string` — The ID of the authentication methods in question.
+**authentication_method_id:** `string` — The ID of the authentication methods in question.
 
 </dd>
 </dl>
@@ -22914,7 +26599,7 @@ await client.users.authenticationMethods.get("id", "authentication_method_id");
 <dl>
 <dd>
 
-**requestOptions:** `AuthenticationMethods.RequestOptions`
+**requestOptions:** `AuthenticationMethodsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22925,7 +26610,7 @@ await client.users.authenticationMethods.get("id", "authentication_method_id");
 </dl>
 </details>
 
-<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">delete</a>(id, authenticationMethodId) -> void</code></summary>
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">delete</a>(id, authentication_method_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -22977,7 +26662,7 @@ await client.users.authenticationMethods.delete("id", "authentication_method_id"
 <dl>
 <dd>
 
-**authenticationMethodId:** `string` — The ID of the authentication method to delete.
+**authentication_method_id:** `string` — The ID of the authentication method to delete.
 
 </dd>
 </dl>
@@ -22985,7 +26670,7 @@ await client.users.authenticationMethods.delete("id", "authentication_method_id"
 <dl>
 <dd>
 
-**requestOptions:** `AuthenticationMethods.RequestOptions`
+**requestOptions:** `AuthenticationMethodsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -22996,7 +26681,7 @@ await client.users.authenticationMethods.delete("id", "authentication_method_id"
 </dl>
 </details>
 
-<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">update</a>(id, authenticationMethodId, { ...params }) -> Management.UpdateUserAuthenticationMethodResponseContent</code></summary>
+<details><summary><code>client.users.authenticationMethods.<a href="/src/management/api/resources/users/resources/authenticationMethods/client/Client.ts">update</a>(id, authentication_method_id, { ...params }) -> Management.UpdateUserAuthenticationMethodResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -23048,7 +26733,7 @@ await client.users.authenticationMethods.update("id", "authentication_method_id"
 <dl>
 <dd>
 
-**authenticationMethodId:** `string` — The ID of the authentication method to update.
+**authentication_method_id:** `string` — The ID of the authentication method to update.
 
 </dd>
 </dl>
@@ -23064,7 +26749,7 @@ await client.users.authenticationMethods.update("id", "authentication_method_id"
 <dl>
 <dd>
 
-**requestOptions:** `AuthenticationMethods.RequestOptions`
+**requestOptions:** `AuthenticationMethodsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23129,7 +26814,7 @@ await client.users.authenticators.deleteAll("id");
 <dl>
 <dd>
 
-**requestOptions:** `Authenticators.RequestOptions`
+**requestOptions:** `AuthenticatorsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23142,7 +26827,7 @@ await client.users.authenticators.deleteAll("id");
 
 ## Users ConnectedAccounts
 
-<details><summary><code>client.users.connectedAccounts.<a href="/src/management/api/resources/users/resources/connectedAccounts/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.ConnectedAccount, Management.ListUserConnectedAccountsResponseContent></code></summary>
+<details><summary><code>client.users.connectedAccounts.<a href="/src/management/api/resources/users/resources/connectedAccounts/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.ConnectedAccount, Management.ListUserConnectedAccountsResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -23220,7 +26905,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `ConnectedAccounts.RequestOptions`
+**requestOptions:** `ConnectedAccountsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23285,7 +26970,7 @@ await client.users.enrollments.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Enrollments.RequestOptions`
+**requestOptions:** `EnrollmentsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23350,7 +27035,7 @@ await client.users.federatedConnectionsTokensets.list("id");
 <dl>
 <dd>
 
-**requestOptions:** `FederatedConnectionsTokensets.RequestOptions`
+**requestOptions:** `FederatedConnectionsTokensetsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23361,7 +27046,7 @@ await client.users.federatedConnectionsTokensets.list("id");
 </dl>
 </details>
 
-<details><summary><code>client.users.federatedConnectionsTokensets.<a href="/src/management/api/resources/users/resources/federatedConnectionsTokensets/client/Client.ts">delete</a>(id, tokensetId) -> void</code></summary>
+<details><summary><code>client.users.federatedConnectionsTokensets.<a href="/src/management/api/resources/users/resources/federatedConnectionsTokensets/client/Client.ts">delete</a>(id, tokenset_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -23398,7 +27083,7 @@ await client.users.federatedConnectionsTokensets.delete("id", "tokenset_id");
 <dl>
 <dd>
 
-**tokensetId:** `string` — The tokenset id
+**tokenset_id:** `string` — The tokenset id
 
 </dd>
 </dl>
@@ -23406,7 +27091,102 @@ await client.users.federatedConnectionsTokensets.delete("id", "tokenset_id");
 <dl>
 <dd>
 
-**requestOptions:** `FederatedConnectionsTokensets.RequestOptions`
+**requestOptions:** `FederatedConnectionsTokensetsClient.RequestOptions`
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+</dd>
+</dl>
+</details>
+
+## Users Groups
+
+<details><summary><code>client.users.groups.<a href="/src/management/api/resources/users/resources/groups/client/Client.ts">get</a>(id, { ...params }) -> core.Page&lt;Management.UserGroupsResponseSchema, Management.GetUserGroupsPaginatedResponseContent&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all groups to which this user belongs.
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```typescript
+const pageableResponse = await client.users.groups.get("id", {
+    fields: "fields",
+    include_fields: true,
+    from: "from",
+    take: 1,
+});
+for await (const item of pageableResponse) {
+    console.log(item);
+}
+
+// Or you can manually iterate page-by-page
+let page = await client.users.groups.get("id", {
+    fields: "fields",
+    include_fields: true,
+    from: "from",
+    take: 1,
+});
+while (page.hasNextPage()) {
+    page = page.getNextPage();
+}
+
+// You can also access the underlying response
+const response = page.response;
+```
+
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` — ID of the user to list groups for.
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `Management.GetUserGroupsRequestParameters`
+
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**requestOptions:** `GroupsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23505,7 +27285,7 @@ await client.users.identities.link("id");
 <dl>
 <dd>
 
-**requestOptions:** `Identities.RequestOptions`
+**requestOptions:** `IdentitiesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23516,7 +27296,7 @@ await client.users.identities.link("id");
 </dl>
 </details>
 
-<details><summary><code>client.users.identities.<a href="/src/management/api/resources/users/resources/identities/client/Client.ts">delete</a>(id, provider, userId) -> Management.DeleteUserIdentityResponseContent</code></summary>
+<details><summary><code>client.users.identities.<a href="/src/management/api/resources/users/resources/identities/client/Client.ts">delete</a>(id, provider, user_id) -> Management.DeleteUserIdentityResponseContent</code></summary>
 <dl>
 <dd>
 
@@ -23578,7 +27358,7 @@ await client.users.identities.delete("id", "ad", "user_id");
 <dl>
 <dd>
 
-**userId:** `string` — ID of the secondary linked account (e.g. `123456789081523216417` part after the `|` in `google-oauth2|123456789081523216417`).
+**user_id:** `string` — ID of the secondary linked account (e.g. `123456789081523216417` part after the `|` in `google-oauth2|123456789081523216417`).
 
 </dd>
 </dl>
@@ -23586,7 +27366,7 @@ await client.users.identities.delete("id", "ad", "user_id");
 <dl>
 <dd>
 
-**requestOptions:** `Identities.RequestOptions`
+**requestOptions:** `IdentitiesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23599,7 +27379,7 @@ await client.users.identities.delete("id", "ad", "user_id");
 
 ## Users Logs
 
-<details><summary><code>client.users.logs.<a href="/src/management/api/resources/users/resources/logs/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.Log, Management.UserListLogOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.users.logs.<a href="/src/management/api/resources/users/resources/logs/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.Log, Management.UserListLogOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -23687,7 +27467,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Logs.RequestOptions`
+**requestOptions:** `LogsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23752,7 +27532,7 @@ await client.users.multifactor.invalidateRememberBrowser("id");
 <dl>
 <dd>
 
-**requestOptions:** `Multifactor.RequestOptions`
+**requestOptions:** `MultifactorClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23823,7 +27603,7 @@ await client.users.multifactor.deleteProvider("id", "duo");
 <dl>
 <dd>
 
-**requestOptions:** `Multifactor.RequestOptions`
+**requestOptions:** `MultifactorClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23836,7 +27616,7 @@ await client.users.multifactor.deleteProvider("id", "duo");
 
 ## Users Organizations
 
-<details><summary><code>client.users.organizations.<a href="/src/management/api/resources/users/resources/organizations/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.Organization, Management.ListUserOrganizationsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.users.organizations.<a href="/src/management/api/resources/users/resources/organizations/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.Organization, Management.ListUserOrganizationsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -23916,7 +27696,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Organizations.RequestOptions`
+**requestOptions:** `OrganizationsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -23929,7 +27709,7 @@ const response = page.response;
 
 ## Users Permissions
 
-<details><summary><code>client.users.permissions.<a href="/src/management/api/resources/users/resources/permissions/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.UserPermissionSchema, Management.ListUserPermissionsOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.users.permissions.<a href="/src/management/api/resources/users/resources/permissions/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.UserPermissionSchema, Management.ListUserPermissionsOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -24009,7 +27789,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Permissions.RequestOptions`
+**requestOptions:** `PermissionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24087,7 +27867,7 @@ await client.users.permissions.create("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Permissions.RequestOptions`
+**requestOptions:** `PermissionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24165,7 +27945,7 @@ await client.users.permissions.delete("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Permissions.RequestOptions`
+**requestOptions:** `PermissionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24241,7 +28021,7 @@ await client.users.riskAssessments.clear("id", {
 <dl>
 <dd>
 
-**requestOptions:** `RiskAssessments.RequestOptions`
+**requestOptions:** `RiskAssessmentsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24254,7 +28034,7 @@ await client.users.riskAssessments.clear("id", {
 
 ## Users Roles
 
-<details><summary><code>client.users.roles.<a href="/src/management/api/resources/users/resources/roles/client/Client.ts">list</a>(id, { ...params }) -> core.Page<Management.Role, Management.ListUserRolesOffsetPaginatedResponseContent></code></summary>
+<details><summary><code>client.users.roles.<a href="/src/management/api/resources/users/resources/roles/client/Client.ts">list</a>(id, { ...params }) -> core.Page&lt;Management.Role, Management.ListUserRolesOffsetPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -24336,7 +28116,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24411,7 +28191,7 @@ await client.users.roles.assign("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24486,7 +28266,7 @@ await client.users.roles.delete("id", {
 <dl>
 <dd>
 
-**requestOptions:** `Roles.RequestOptions`
+**requestOptions:** `RolesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24499,7 +28279,7 @@ await client.users.roles.delete("id", {
 
 ## Users RefreshToken
 
-<details><summary><code>client.users.refreshToken.<a href="/src/management/api/resources/users/resources/refreshToken/client/Client.ts">list</a>(userId, { ...params }) -> core.Page<Management.RefreshTokenResponseContent, Management.ListRefreshTokensPaginatedResponseContent></code></summary>
+<details><summary><code>client.users.refreshToken.<a href="/src/management/api/resources/users/resources/refreshToken/client/Client.ts">list</a>(user_id, { ...params }) -> core.Page&lt;Management.RefreshTokenResponseContent, Management.ListRefreshTokensPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -24561,7 +28341,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**userId:** `string` — ID of the user to get refresh tokens for
+**user_id:** `string` — ID of the user to get refresh tokens for
 
 </dd>
 </dl>
@@ -24577,7 +28357,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `RefreshToken.RequestOptions`
+**requestOptions:** `RefreshTokenClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24588,7 +28368,7 @@ const response = page.response;
 </dl>
 </details>
 
-<details><summary><code>client.users.refreshToken.<a href="/src/management/api/resources/users/resources/refreshToken/client/Client.ts">delete</a>(userId) -> void</code></summary>
+<details><summary><code>client.users.refreshToken.<a href="/src/management/api/resources/users/resources/refreshToken/client/Client.ts">delete</a>(user_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -24632,7 +28412,7 @@ await client.users.refreshToken.delete("user_id");
 <dl>
 <dd>
 
-**userId:** `string` — ID of the user to get remove refresh tokens for
+**user_id:** `string` — ID of the user to get remove refresh tokens for
 
 </dd>
 </dl>
@@ -24640,7 +28420,7 @@ await client.users.refreshToken.delete("user_id");
 <dl>
 <dd>
 
-**requestOptions:** `RefreshToken.RequestOptions`
+**requestOptions:** `RefreshTokenClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24653,7 +28433,7 @@ await client.users.refreshToken.delete("user_id");
 
 ## Users Sessions
 
-<details><summary><code>client.users.sessions.<a href="/src/management/api/resources/users/resources/sessions/client/Client.ts">list</a>(userId, { ...params }) -> core.Page<Management.SessionResponseContent, Management.ListUserSessionsPaginatedResponseContent></code></summary>
+<details><summary><code>client.users.sessions.<a href="/src/management/api/resources/users/resources/sessions/client/Client.ts">list</a>(user_id, { ...params }) -> core.Page&lt;Management.SessionResponseContent, Management.ListUserSessionsPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -24715,7 +28495,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**userId:** `string` — ID of the user to get sessions for
+**user_id:** `string` — ID of the user to get sessions for
 
 </dd>
 </dl>
@@ -24731,7 +28511,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions`
+**requestOptions:** `SessionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24742,7 +28522,7 @@ const response = page.response;
 </dl>
 </details>
 
-<details><summary><code>client.users.sessions.<a href="/src/management/api/resources/users/resources/sessions/client/Client.ts">delete</a>(userId) -> void</code></summary>
+<details><summary><code>client.users.sessions.<a href="/src/management/api/resources/users/resources/sessions/client/Client.ts">delete</a>(user_id) -> void</code></summary>
 <dl>
 <dd>
 
@@ -24786,7 +28566,7 @@ await client.users.sessions.delete("user_id");
 <dl>
 <dd>
 
-**userId:** `string` — ID of the user to get sessions for
+**user_id:** `string` — ID of the user to get sessions for
 
 </dd>
 </dl>
@@ -24794,7 +28574,7 @@ await client.users.sessions.delete("user_id");
 <dl>
 <dd>
 
-**requestOptions:** `Sessions.RequestOptions`
+**requestOptions:** `SessionsClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24807,7 +28587,7 @@ await client.users.sessions.delete("user_id");
 
 ## VerifiableCredentials Verification Templates
 
-<details><summary><code>client.verifiableCredentials.verification.templates.<a href="/src/management/api/resources/verifiableCredentials/resources/verification/resources/templates/client/Client.ts">list</a>({ ...params }) -> core.Page<Management.VerifiableCredentialTemplateResponse, Management.ListVerifiableCredentialTemplatesPaginatedResponseContent></code></summary>
+<details><summary><code>client.verifiableCredentials.verification.templates.<a href="/src/management/api/resources/verifiableCredentials/resources/verification/resources/templates/client/Client.ts">list</a>({ ...params }) -> core.Page&lt;Management.VerifiableCredentialTemplateResponse, Management.ListVerifiableCredentialTemplatesPaginatedResponseContent&gt;</code></summary>
 <dl>
 <dd>
 
@@ -24819,7 +28599,7 @@ await client.users.sessions.delete("user_id");
 <dl>
 <dd>
 
-List a verifiable credential templates.
+List verifiable credential templates.
 
 </dd>
 </dl>
@@ -24877,7 +28657,7 @@ const response = page.response;
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -24950,7 +28730,7 @@ await client.verifiableCredentials.verification.templates.create({
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -25013,7 +28793,7 @@ await client.verifiableCredentials.verification.templates.get("id");
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -25076,7 +28856,7 @@ await client.verifiableCredentials.verification.templates.delete("id");
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
@@ -25147,7 +28927,7 @@ await client.verifiableCredentials.verification.templates.update("id");
 <dl>
 <dd>
 
-**requestOptions:** `Templates.RequestOptions`
+**requestOptions:** `TemplatesClient.RequestOptions`
 
 </dd>
 </dl>
